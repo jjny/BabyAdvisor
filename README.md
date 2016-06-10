@@ -19,6 +19,8 @@ A Symfony project created on June 7, 2016, 2:38 pm.
 
 
 # Pré-requis: (http://symfony.com/doc/current/book/installation.html)
+    Utiliser php 5.6
+
     Tester si ils sont installé dans la console dans le repertoire de BabyAdvisor:
              • php -v
              • composer -version 
@@ -36,8 +38,9 @@ A Symfony project created on June 7, 2016, 2:38 pm.
                         ex: C:\ProgramData\ComposerSetup\bin
                             C:\Program Files (x86)\Git\cmd
                             C:\Program Files (x86)\EasyPHP-Devserver-16.1\eds-binaries\php\php5619vc11x86x160607133816\
+ 
 
-
+# Si vous avez des problémes avec une extension du type 'php_openssl.dll', il faut "l'activer" dans le fichier de configuration de php (php.ini) de votre plateforme de développement et décommenter la ligne qu'il vous faut.
 
 
 # Tester sur le navigateur l'adresse :
