@@ -1,0 +1,15 @@
+inscription:
+    path:     /inscription
+    defaults: { _controller: ConnexionBundle:Inscription:index }
+
+login:
+    path:     /login
+    defaults: { _controller: ConnexionBundle:Connexion:login }
+
+login_check:
+    path:    /login_check
+
+logout:
+    path:    /logout  
+
+    

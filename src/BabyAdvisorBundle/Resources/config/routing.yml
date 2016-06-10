@@ -1,0 +1,11 @@
+homepage:
+    path:     /
+    defaults: { _controller: BabyAdvisorBundle:Home:index }
+
+favoris:
+    path:     /favoris
+    defaults: { _controller: BabyAdvisorBundle:Favoris:index }
+
+profil:
+    path:     /profil
+    defaults: { _controller: BabyAdvisorBundle:Profil:index }        

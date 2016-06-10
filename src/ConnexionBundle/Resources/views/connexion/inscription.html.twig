@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+
+    <div class="form-group container home col-md-8 col-md-offset-2">
+
+
+        <form action="#" method="post">
+       {{ form_label(form.nom) }}
+        {{ form_widget(form.nom) }}
+
+        {{ form_label(form.prenom) }}
+        {{ form_widget(form.prenom) }}
+
+        {{ form_label(form.pseudo) }}
+        {{ form_widget(form.pseudo) }}
+
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+
+        {{ form_label(form.motDePasse) }}
+        {{ form_widget(form.motDePasse) }}
+
+         {{ form_label(form.motDePasseConfirmation) }}
+        {{ form_widget(form.motDePasseConfirmation) }}
+
+        {{ form_label(form.nombreEnfant) }}
+        {{ form_widget(form.nombreEnfant) }}
+
+        {{ form_label(form.ageEnfant) }}
+        {{ form_widget(form.ageEnfant) }}
+
+
+
+        {{ form_widget(form.Valider) }}
+
+        </form>
+
+
+    </div>
+
+
+{% endblock %}
