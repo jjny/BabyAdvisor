@@ -2,12 +2,126 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/home.css') }}" type="text/css" />
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div id="wrap">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+
+                 <a href="{{ path ('homepage') }}">
+                    <img src="{{ asset('images/ba_logo_xs.jpg') }}" class=""><span class="glyphicons glyphicons-hand-left"></span></img>
+                </a>
+
+                  <div class="navbar-right">
+
+                 <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
+                </a>
+
+                       <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
+                </a>
+
+                       <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Ajouter un article </button>
+
+                </a>
+
+                    </div>
+                </div>
+
+                   <div class="container">
+
+
+                 <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les activités</button>
+                </a>
+
+                       <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les lieux </button>
+                </a>
+
+                       <a href="{{ path ('membres') }}">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les advisors </button>
+
+                </a>
+
+
+                  
+                <div class="navbar-right">
+
+                      {% if is_granted("ROLE_USER") %}
+
+                      <table>
+
+                        <tr>
+                            <td  rowspan="2">
+                         <img src="{{ asset('images/girl-icon.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
+                         </td>
+                        <td>
+                         <p>Bonjour truc </p>
+                         </td>
+
+                         </tr>
+                         <tr>
+                           <td>
+                         <a href="{{ path ('favoris') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Mes favoris </button>
+                        </a>
+                         </td>
+
+                           <td>
+                             <a href="{{ path ('profil') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Mon profil </button>
+                        </a>
+                         </td>
+                         <td>
+                           <a href="{{ path ('logout') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Déconnexion </button>
+                        </a>
+                         </td>
+                           </tr>
+
+                        </table>
+
+                        {% else %}
+
+                          <a href="{{ path ('login') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Login </button>
+                      </a>
+
+                             <a href="{{ path ('inscription') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Inscription </button>
+                      </a>
+
+                      {% endif %}
+                   </div>
+                    
+
+
+                </div>
+            </nav>
+
+        {% block body %}
+
+        {% endblock %}
+       </div>
+
+        <footer class="footer">
+         
+         
+          
+        </footer>
+        
         {% block javascripts %}{% endblock %}
     </body>
 </html>

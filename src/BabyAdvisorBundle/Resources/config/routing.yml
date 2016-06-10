@@ -8,4 +8,8 @@ favoris:
 
 profil:
     path:     /profil
-    defaults: { _controller: BabyAdvisorBundle:Profil:index }        
+    defaults: { _controller: BabyAdvisorBundle:Profil:index }    
+
+membres:
+    path:     /membres
+    defaults: { _controller: BabyAdvisorBundle:Membres:index }          
