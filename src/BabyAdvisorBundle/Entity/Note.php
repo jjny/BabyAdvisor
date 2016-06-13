@@ -13,7 +13,7 @@ class Note
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idNote;
+    private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -51,14 +51,10 @@ class Note
     private $NbCom;
 
     /**
-     * Get idNote
-     *
-     * @return integer
-     */
-    public function getIdNote()
-    {
-        return $this->idNote;
-    }
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
 
     /**
      * Set moyGen
@@ -226,5 +222,15 @@ class Note
     public function getNbCom()
     {
         return $this->NbCom;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

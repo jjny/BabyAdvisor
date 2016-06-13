@@ -13,7 +13,7 @@ class Tranche_age
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idTranche_age;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
@@ -21,14 +21,9 @@ class Tranche_age
     private $Libelle;
 
     /**
-     * Get idTrancheAge
-     *
-     * @return integer
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="TrancheAge")
      */
-    public function getIdTrancheAge()
-    {
-        return $this->idTranche_age;
-    }
+    private $Articles;
 
     /**
      * Set libelle
@@ -52,5 +47,15 @@ class Tranche_age
     public function getLibelle()
     {
         return $this->Libelle;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

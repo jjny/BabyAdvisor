@@ -13,22 +13,12 @@ class Centre_interet
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idCentreInteret;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $Libelle;
-
-    /**
-     * Get idCentreInteret
-     *
-     * @return integer
-     */
-    public function getIdCentreInteret()
-    {
-        return $this->idCentreInteret;
-    }
 
     /**
      * Set libelle
@@ -52,5 +42,15 @@ class Centre_interet
     public function getLibelle()
     {
         return $this->Libelle;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

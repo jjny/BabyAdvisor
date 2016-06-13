@@ -13,12 +13,17 @@ class Categorie
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idCategorie;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $NomCat;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="Categories")
+     */
+    private $Articles;
 
     /**
      * Get idCategorie

@@ -13,7 +13,7 @@ class Photo
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idPhoto;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)

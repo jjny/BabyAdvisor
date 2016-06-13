@@ -13,7 +13,7 @@ class User
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idUser;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -46,14 +46,18 @@ class User
     private $CodePostal;
 
     /**
-     * Get idUser
-     *
-     * @return integer
+     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="idEnfant", cascade={"remove", "persist"})
      */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
+    protected $Enfant;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Centre_interet")
+     * @ORM\JoinTable(name="users_interet",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="interet_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $CentreInteret;
 
     /**
      * Set pseudo
@@ -197,5 +201,91 @@ class User
     public function getCodePostal()
     {
         return $this->CodePostal;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Enfant = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->CentreInteret = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add enfant
+     *
+     * @param \BabyAdvisorBundle\Entity\Enfant $enfant
+     *
+     * @return User
+     */
+    public function addEnfant(\BabyAdvisorBundle\Entity\Enfant $enfant)
+    {
+        $this->Enfant[] = $enfant;
+
+        return $this;
+    }
+
+    /**
+     * Remove enfant
+     *
+     * @param \BabyAdvisorBundle\Entity\Enfant $enfant
+     */
+    public function removeEnfant(\BabyAdvisorBundle\Entity\Enfant $enfant)
+    {
+        $this->Enfant->removeElement($enfant);
+    }
+
+    /**
+     * Get enfant
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEnfant()
+    {
+        return $this->Enfant;
+    }
+
+    /**
+     * Add centreInteret
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
+     *
+     * @return User
+     */
+    public function addCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    {
+        $this->CentreInteret[] = $centreInteret;
+
+        return $this;
+    }
+
+    /**
+     * Remove centreInteret
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
+     */
+    public function removeCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    {
+        $this->CentreInteret->removeElement($centreInteret);
+    }
+
+    /**
+     * Get centreInteret
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCentreInteret()
+    {
+        return $this->CentreInteret;
     }
 }

@@ -13,7 +13,7 @@ class Photo
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idPhoto;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
@@ -26,14 +26,10 @@ class Photo
     private $Photocol;
 
     /**
-     * Get idPhoto
-     *
-     * @return integer
-     */
-    public function getIdPhoto()
-    {
-        return $this->idPhoto;
-    }
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
 
     /**
      * Set nomPhoto
@@ -81,5 +77,15 @@ class Photo
     public function getPhotocol()
     {
         return $this->Photocol;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

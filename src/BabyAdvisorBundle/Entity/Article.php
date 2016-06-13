@@ -13,7 +13,7 @@ class Article
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idArticle;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
@@ -46,14 +46,36 @@ class Article
     private $DateCrea;
 
     /**
-     * Get idArticle
-     *
-     * @return integer
+     * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Articles")
+     * @ORM\JoinTable(name="article_age")
      */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
+    private $TrancheAge;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="Articles")
+     * @ORM\JoinTable(name="article_categorie")
+     */
+    protected $Categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Horaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Horaire;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Activite", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Activite;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Photo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Note;
 
     /**
      * Set titre
@@ -197,5 +219,15 @@ class Article
     public function getDateCrea()
     {
         return $this->DateCrea;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
