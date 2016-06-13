@@ -13,7 +13,7 @@ class Enfant
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idEnfant;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
@@ -26,14 +26,10 @@ class Enfant
     private $DateNaiss;
 
     /**
-     * Get idEnfant
-     *
-     * @return integer
-     */
-    public function getIdEnfant()
-    {
-        return $this->idEnfant;
-    }
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $Parent;
 
     /**
      * Set ageEnfant
@@ -81,5 +77,39 @@ class Enfant
     public function getDateNaiss()
     {
         return $this->DateNaiss;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \BabyAdvisorBundle\Entity\User $parent
+     *
+     * @return Enfant
+     */
+    public function setParent(\BabyAdvisorBundle\Entity\User $parent = null)
+    {
+        $this->Parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \BabyAdvisorBundle\Entity\User
+     */
+    public function getParent()
+    {
+        return $this->Parent;
     }
 }

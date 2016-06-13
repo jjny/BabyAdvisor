@@ -13,7 +13,7 @@ class Tranche_age
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idTranche_age;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)

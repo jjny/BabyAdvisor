@@ -13,7 +13,7 @@ class Notation
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idNotation;
+    private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)

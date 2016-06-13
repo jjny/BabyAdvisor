@@ -13,7 +13,7 @@ class Commentaire
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idCommentaires;
+    private $id;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -29,16 +29,6 @@ class Commentaire
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $Signale;
-
-    /**
-     * Get idCommentaires
-     *
-     * @return integer
-     */
-    public function getIdCommentaires()
-    {
-        return $this->idCommentaires;
-    }
 
     /**
      * Set texte
@@ -110,5 +100,15 @@ class Commentaire
     public function getSignale()
     {
         return $this->Signale;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

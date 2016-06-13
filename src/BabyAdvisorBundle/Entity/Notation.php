@@ -13,7 +13,7 @@ class Notation
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idNotation;
+    private $id;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -39,16 +39,6 @@ class Notation
      * @ORM\Column(type="integer", nullable=true)
      */
     private $Equipement;
-
-    /**
-     * Get idNotation
-     *
-     * @return integer
-     */
-    public function getIdNotation()
-    {
-        return $this->idNotation;
-    }
 
     /**
      * Set proprete
@@ -168,5 +158,15 @@ class Notation
     public function getEquipement()
     {
         return $this->Equipement;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

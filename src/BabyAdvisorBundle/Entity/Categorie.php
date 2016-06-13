@@ -13,22 +13,12 @@ class Categorie
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idCategorie;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
      */
     private $NomCat;
-
-    /**
-     * Get idCategorie
-     *
-     * @return integer
-     */
-    public function getIdCategorie()
-    {
-        return $this->idCategorie;
-    }
 
     /**
      * Set nomCat
@@ -52,5 +42,15 @@ class Categorie
     public function getNomCat()
     {
         return $this->NomCat;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

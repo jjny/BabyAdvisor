@@ -13,7 +13,7 @@ class Horaire
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $IdHoraire;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
@@ -31,14 +31,10 @@ class Horaire
     private $HeureFin;
 
     /**
-     * Get idHoraire
-     *
-     * @return integer
-     */
-    public function getIdHoraire()
-    {
-        return $this->IdHoraire;
-    }
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
 
     /**
      * Set jour
@@ -110,5 +106,15 @@ class Horaire
     public function getHeureFin()
     {
         return $this->HeureFin;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

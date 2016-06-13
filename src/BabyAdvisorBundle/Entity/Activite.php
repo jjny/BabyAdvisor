@@ -13,7 +13,7 @@ class Activite
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idActivite;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -25,16 +25,11 @@ class Activite
      */
     private $Tarif;
 
-
     /**
-     * Get idActivite
-     *
-     * @return integer
-     */
-    public function getIdActivite()
-    {
-        return $this->idActivite;
-    }
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
 
     /**
      * Set libelle
@@ -82,5 +77,15 @@ class Activite
     public function getTarif()
     {
         return $this->Tarif;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
