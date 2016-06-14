@@ -21,16 +21,6 @@ class Centre_interet
     private $Libelle;
 
     /**
-     * Get idCentreInteret
-     *
-     * @return integer
-     */
-    public function getIdCentreInteret()
-    {
-        return $this->idCentreInteret;
-    }
-
-    /**
      * Set libelle
      *
      * @param string $libelle
@@ -52,5 +42,15 @@ class Centre_interet
     public function getLibelle()
     {
         return $this->Libelle;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

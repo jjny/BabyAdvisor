@@ -46,14 +46,52 @@ class Article
     private $DateCrea;
 
     /**
-     * Get idArticle
-     *
-     * @return integer
+     * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Articles")
+     * @ORM\JoinTable(name="article_age")
      */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
+    private $TranchesAge;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="Articles")
+     * @ORM\JoinTable(name="article_categorie")
+     */
+    protected $Categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Horaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Horaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Activite", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Activites;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Photos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Commentaires;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
 
     /**
      * Set titre
@@ -197,5 +235,15 @@ class Article
     public function getDateCrea()
     {
         return $this->DateCrea;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

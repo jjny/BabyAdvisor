@@ -58,4 +58,45 @@ class Tranche_age
     {
         return $this->id;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return Tranche_age
+     */
+    public function addArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     */
+    public function removeArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->Articles;
+    }
 }
