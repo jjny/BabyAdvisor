@@ -12,4 +12,8 @@ profil:
 
 membres:
     path:     /membres
-    defaults: { _controller: BabyAdvisorBundle:Membres:index }          
+    defaults: { _controller: BabyAdvisorBundle:Membres:index }    
+
+admin_suppresion:
+    path:     /adminSuppresion
+    defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }  
