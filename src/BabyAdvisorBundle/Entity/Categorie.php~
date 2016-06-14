@@ -21,21 +21,6 @@ class Categorie
     private $NomCat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="Categories")
-     */
-    private $Articles;
-
-    /**
-     * Get idCategorie
-     *
-     * @return integer
-     */
-    public function getIdCategorie()
-    {
-        return $this->idCategorie;
-    }
-
-    /**
      * Set nomCat
      *
      * @param string $nomCat
@@ -57,5 +42,15 @@ class Categorie
     public function getNomCat()
     {
         return $this->NomCat;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

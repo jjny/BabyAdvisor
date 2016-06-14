@@ -49,7 +49,7 @@ class Article
      * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Articles")
      * @ORM\JoinTable(name="article_age")
      */
-    private $TrancheAge;
+    private $TranchesAge;
 
     /**
      * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="Articles")
@@ -60,22 +60,38 @@ class Article
     /**
      * @ORM\OneToMany(targetEntity="Horaire", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Horaire;
+    protected $Horaires;
 
     /**
      * @ORM\OneToMany(targetEntity="Activite", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Activite;
+    protected $Activites;
 
     /**
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Photo;
+    protected $Photos;
 
     /**
      * @ORM\OneToMany(targetEntity="Note", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Note;
+    protected $Notes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Commentaires;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
 
     /**
      * Set titre
@@ -229,5 +245,315 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->TranchesAge = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Horaires = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Activites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Photos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Notes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Notations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     *
+     * @return Article
+     */
+    public function addTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge[] = $tranchesAge;
+
+        return $this;
+    }
+
+    /**
+     * Remove tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     */
+    public function removeTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge->removeElement($tranchesAge);
+    }
+
+    /**
+     * Get tranchesAge
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranchesAge()
+    {
+        return $this->TranchesAge;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \BabyAdvisorBundle\Entity\Categorie $category
+     *
+     * @return Article
+     */
+    public function addCategory(\BabyAdvisorBundle\Entity\Categorie $category)
+    {
+        $this->Categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \BabyAdvisorBundle\Entity\Categorie $category
+     */
+    public function removeCategory(\BabyAdvisorBundle\Entity\Categorie $category)
+    {
+        $this->Categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->Categories;
+    }
+
+    /**
+     * Add horaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Horaire $horaire
+     *
+     * @return Article
+     */
+    public function addHoraire(\BabyAdvisorBundle\Entity\Horaire $horaire)
+    {
+        $this->Horaires[] = $horaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove horaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Horaire $horaire
+     */
+    public function removeHoraire(\BabyAdvisorBundle\Entity\Horaire $horaire)
+    {
+        $this->Horaires->removeElement($horaire);
+    }
+
+    /**
+     * Get horaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHoraires()
+    {
+        return $this->Horaires;
+    }
+
+    /**
+     * Add activite
+     *
+     * @param \BabyAdvisorBundle\Entity\Activite $activite
+     *
+     * @return Article
+     */
+    public function addActivite(\BabyAdvisorBundle\Entity\Activite $activite)
+    {
+        $this->Activites[] = $activite;
+
+        return $this;
+    }
+
+    /**
+     * Remove activite
+     *
+     * @param \BabyAdvisorBundle\Entity\Activite $activite
+     */
+    public function removeActivite(\BabyAdvisorBundle\Entity\Activite $activite)
+    {
+        $this->Activites->removeElement($activite);
+    }
+
+    /**
+     * Get activites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActivites()
+    {
+        return $this->Activites;
+    }
+
+    /**
+     * Add photo
+     *
+     * @param \BabyAdvisorBundle\Entity\Photo $photo
+     *
+     * @return Article
+     */
+    public function addPhoto(\BabyAdvisorBundle\Entity\Photo $photo)
+    {
+        $this->Photos[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \BabyAdvisorBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\BabyAdvisorBundle\Entity\Photo $photo)
+    {
+        $this->Photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->Photos;
+    }
+
+    /**
+     * Add note
+     *
+     * @param \BabyAdvisorBundle\Entity\Note $note
+     *
+     * @return Article
+     */
+    public function addNote(\BabyAdvisorBundle\Entity\Note $note)
+    {
+        $this->Notes[] = $note;
+
+        return $this;
+    }
+
+    /**
+     * Remove note
+     *
+     * @param \BabyAdvisorBundle\Entity\Note $note
+     */
+    public function removeNote(\BabyAdvisorBundle\Entity\Note $note)
+    {
+        $this->Notes->removeElement($note);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotes()
+    {
+        return $this->Notes;
+    }
+
+    /**
+     * Add notation
+     *
+     * @param \BabyAdvisorBundle\Entity\Notation $notation
+     *
+     * @return Article
+     */
+    public function addNotation(\BabyAdvisorBundle\Entity\Notation $notation)
+    {
+        $this->Notations[] = $notation;
+
+        return $this;
+    }
+
+    /**
+     * Remove notation
+     *
+     * @param \BabyAdvisorBundle\Entity\Notation $notation
+     */
+    public function removeNotation(\BabyAdvisorBundle\Entity\Notation $notation)
+    {
+        $this->Notations->removeElement($notation);
+    }
+
+    /**
+     * Get notations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotations()
+    {
+        return $this->Notations;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\BabyAdvisorBundle\Entity\Commentaire $commentaire)
+    {
+        $this->Commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\BabyAdvisorBundle\Entity\Commentaire $commentaire)
+    {
+        $this->Commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->Commentaires;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BabyAdvisorBundle\Entity\User $user
+     *
+     * @return Article
+     */
+    public function setUser(\BabyAdvisorBundle\Entity\User $user = null)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BabyAdvisorBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->User;
     }
 }

@@ -46,9 +46,24 @@ class User
     private $CodePostal;
 
     /**
-     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="idEnfant", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Enfant;
+    protected $Enfants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Commentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Articles;
 
     /**
      * @ORM\ManyToMany(targetEntity="Centre_interet")
@@ -57,7 +72,7 @@ class User
      *      inverseJoinColumns={@ORM\JoinColumn(name="interet_id", referencedColumnName="id")}
      *      )
      */
-    protected $CentreInteret;
+    protected $CentreInterets;
 
     /**
      * Set pseudo
@@ -287,5 +302,127 @@ class User
     public function getCentreInteret()
     {
         return $this->CentreInteret;
+    }
+
+    /**
+     * Get enfants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEnfants()
+    {
+        return $this->Enfants;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Commentaire $commentaire
+     *
+     * @return User
+     */
+    public function addCommentaire(\BabyAdvisorBundle\Entity\Commentaire $commentaire)
+    {
+        $this->Commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \BabyAdvisorBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\BabyAdvisorBundle\Entity\Commentaire $commentaire)
+    {
+        $this->Commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->Commentaires;
+    }
+
+    /**
+     * Add notation
+     *
+     * @param \BabyAdvisorBundle\Entity\Notation $notation
+     *
+     * @return User
+     */
+    public function addNotation(\BabyAdvisorBundle\Entity\Notation $notation)
+    {
+        $this->Notations[] = $notation;
+
+        return $this;
+    }
+
+    /**
+     * Remove notation
+     *
+     * @param \BabyAdvisorBundle\Entity\Notation $notation
+     */
+    public function removeNotation(\BabyAdvisorBundle\Entity\Notation $notation)
+    {
+        $this->Notations->removeElement($notation);
+    }
+
+    /**
+     * Get notations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotations()
+    {
+        return $this->Notations;
+    }
+
+    /**
+     * Add article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return User
+     */
+    public function addArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     */
+    public function removeArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->Articles;
+    }
+
+    /**
+     * Get centreInterets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCentreInterets()
+    {
+        return $this->CentreInterets;
     }
 }

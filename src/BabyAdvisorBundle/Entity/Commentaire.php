@@ -31,6 +31,18 @@ class Commentaire
     private $Signale;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
+
+    /**
      * Set texte
      *
      * @param string $texte
@@ -110,5 +122,53 @@ class Commentaire
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BabyAdvisorBundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\BabyAdvisorBundle\Entity\User $user = null)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BabyAdvisorBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\BabyAdvisorBundle\Entity\Article $article = null)
+    {
+        $this->Article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \BabyAdvisorBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->Article;
     }
 }

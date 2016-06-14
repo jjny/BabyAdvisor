@@ -41,14 +41,16 @@ class Notation
     private $Equipement;
 
     /**
-     * Get idNotation
-     *
-     * @return integer
-     */
-    public function getIdNotation()
-    {
-        return $this->idNotation;
-    }
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
 
     /**
      * Set proprete
@@ -168,5 +170,15 @@ class Notation
     public function getEquipement()
     {
         return $this->Equipement;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
