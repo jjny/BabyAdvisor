@@ -27,6 +27,64 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $context = $this->context;
         $request = $this->request;
 
+        if (0 === strpos($pathinfo, '/css/e997b03')) {
+            // _assetic_e997b03
+            if ($pathinfo === '/css/e997b03.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => 'e997b03',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_e997b03',);
+            }
+
+            if (0 === strpos($pathinfo, '/css/e997b03_part_1_')) {
+                if (0 === strpos($pathinfo, '/css/e997b03_part_1_b')) {
+                    // _assetic_e997b03_0
+                    if ($pathinfo === '/css/e997b03_part_1_base_1.css') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => 'e997b03',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_e997b03_0',);
+                    }
+
+                    // _assetic_e997b03_1
+                    if ($pathinfo === '/css/e997b03_part_1_bootstrap.min_2.css') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => 'e997b03',  'pos' => 1,  '_format' => 'css',  '_route' => '_assetic_e997b03_1',);
+                    }
+
+                }
+
+                // _assetic_e997b03_2
+                if ($pathinfo === '/css/e997b03_part_1_home_3.css') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => 'e997b03',  'pos' => 2,  '_format' => 'css',  '_route' => '_assetic_e997b03_2',);
+                }
+
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/js/8b2924b')) {
+            // _assetic_8b2924b
+            if ($pathinfo === '/js/8b2924b.js') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '8b2924b',  'pos' => NULL,  '_format' => 'js',  '_route' => '_assetic_8b2924b',);
+            }
+
+            if (0 === strpos($pathinfo, '/js/8b2924b_part_1_')) {
+                // _assetic_8b2924b_0
+                if ($pathinfo === '/js/8b2924b_part_1_bootstrap.min_1.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '8b2924b',  'pos' => 0,  '_format' => 'js',  '_route' => '_assetic_8b2924b_0',);
+                }
+
+                if (0 === strpos($pathinfo, '/js/8b2924b_part_1_jquery')) {
+                    // _assetic_8b2924b_1
+                    if ($pathinfo === '/js/8b2924b_part_1_jquery-2.1.1.min_2.js') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => '8b2924b',  'pos' => 1,  '_format' => 'js',  '_route' => '_assetic_8b2924b_1',);
+                    }
+
+                    // _assetic_8b2924b_2
+                    if ($pathinfo === '/js/8b2924b_part_1_jquery.min_3.js') {
+                        return array (  '_controller' => 'assetic.controller:render',  'name' => '8b2924b',  'pos' => 2,  '_format' => 'js',  '_route' => '_assetic_8b2924b_2',);
+                    }
+
+                }
+
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -122,6 +180,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // membres
         if ($pathinfo === '/membres') {
             return array (  '_controller' => 'BabyAdvisorBundle\\Controller\\MembresController::indexAction',  '_route' => 'membres',);
+        }
+
+        // admin_suppresion
+        if ($pathinfo === '/adminSuppresion') {
+            return array (  '_controller' => 'BabyAdvisorBundle\\Controller\\AdminController::confirmationAction',  '_route' => 'admin_suppresion',);
         }
 
         // inscription
