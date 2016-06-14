@@ -117,4 +117,28 @@ class Horaire
     {
         return $this->id;
     }
+
+    /**
+     * Set article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return Horaire
+     */
+    public function setArticle(\BabyAdvisorBundle\Entity\Article $article = null)
+    {
+        $this->Article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \BabyAdvisorBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->Article;
+    }
 }
