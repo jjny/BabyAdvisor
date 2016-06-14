@@ -41,6 +41,18 @@ class Notation
     private $Equipement;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */ 
+    protected $Article;
+
+    /**
      * Set proprete
      *
      * @param integer $proprete

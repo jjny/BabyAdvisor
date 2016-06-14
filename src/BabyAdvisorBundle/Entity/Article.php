@@ -49,7 +49,7 @@ class Article
      * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Articles")
      * @ORM\JoinTable(name="article_age")
      */
-    private $TrancheAge;
+    private $TranchesAge;
 
     /**
      * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="Articles")
@@ -60,22 +60,38 @@ class Article
     /**
      * @ORM\OneToMany(targetEntity="Horaire", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Horaire;
+    protected $Horaires;
 
     /**
      * @ORM\OneToMany(targetEntity="Activite", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Activite;
+    protected $Activites;
 
     /**
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Photo;
+    protected $Photos;
 
     /**
      * @ORM\OneToMany(targetEntity="Note", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Note;
+    protected $Notes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Commentaires;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     */ 
+    protected $User;
 
     /**
      * Set titre

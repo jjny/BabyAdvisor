@@ -46,9 +46,24 @@ class User
     private $CodePostal;
 
     /**
-     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="idEnfant", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="id", cascade={"remove", "persist"})
      */
-    protected $Enfant;
+    protected $Enfants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Commentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Notations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="id", cascade={"remove", "persist"})
+     */
+    protected $Articles;
 
     /**
      * @ORM\ManyToMany(targetEntity="Centre_interet")
@@ -57,7 +72,7 @@ class User
      *      inverseJoinColumns={@ORM\JoinColumn(name="interet_id", referencedColumnName="id")}
      *      )
      */
-    protected $CentreInteret;
+    protected $CentreInterets;
 
     /**
      * Set pseudo
