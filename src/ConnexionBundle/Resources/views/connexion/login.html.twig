@@ -19,7 +19,8 @@
 
 
            <form action="{{ path('login_check') }}" method="post">
-                <label for="username">Username:</label>
+
+           <label for="username">Username:</label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
                 <label for="password">Password:</label>
@@ -33,17 +34,11 @@
 
                 <button type="submit">login</button>
 
+              
+
 
        
-       {#{{ form_label(form.username) }}
-        {{ form_widget(form.username, { 'id': 'username' }) }}
-
-        {{ form_label(form.password) }}
-        {{ form_widget(form.password, { 'id': 'password' } )}}
-
-
-
-        {{ form_widget(form.Connexion) }}#}
+       
 
         </form>
 

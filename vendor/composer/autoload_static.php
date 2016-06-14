@@ -32,6 +32,7 @@ class ComposerStaticInit10561a6f08e59be4fe3d67ff579ca9bf
             'Symfony\\Component\\' => 18,
             'Symfony\\Bundle\\SwiftmailerBundle\\' => 33,
             'Symfony\\Bundle\\MonologBundle\\' => 29,
+            'Symfony\\Bundle\\AsseticBundle\\' => 29,
             'Symfony\\Bundle\\' => 15,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Symfony\\Bridge\\Swiftmailer\\' => 27,
@@ -102,6 +103,10 @@ class ComposerStaticInit10561a6f08e59be4fe3d67ff579ca9bf
         'Symfony\\Bundle\\MonologBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/monolog-bundle',
+        ),
+        'Symfony\\Bundle\\AsseticBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/assetic-bundle',
         ),
         'Symfony\\Bundle\\' => 
         array (

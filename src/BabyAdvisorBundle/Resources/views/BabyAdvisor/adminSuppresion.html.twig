@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Admin{% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+
+	 <div class="container home form-group">
+	 <div class="col-md-8 col-md-offset-2">
+			  <h1> Voulez-vous supprimer le post ?</h1>
+
+			  <div class="alert alert-danger" role="alert">
+			  	<p> Toute suppression sera définitive</p>
+			  </div>
+	  </div>
+
+	  <div class="col-md-4 col-md-offset-4 text-center">
+
+	       <form action="#" method="post">
+
+           {{ form_label(form.supprimer) }}
+        	{{ form_widget(form.supprimer) }}
+
+        	</br>
+
+       
+
+
+             {{ form_widget(form.Supprimer) }}  
+
+        </form>
+        </div>
+
+        	
+	  </div >
+
+
+
+{% endblock %}

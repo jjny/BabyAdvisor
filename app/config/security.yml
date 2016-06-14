@@ -34,6 +34,9 @@ security:
             logout:
                 path:   /logout
                 target: /
+
+        
+                    
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -45,3 +48,4 @@ security:
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
