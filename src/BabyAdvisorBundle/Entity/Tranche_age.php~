@@ -26,6 +26,11 @@ class Tranche_age
     private $Articles;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="TranchesAge")
+     */
+    private $Users;
+
+    /**
      * Set libelle
      *
      * @param string $libelle

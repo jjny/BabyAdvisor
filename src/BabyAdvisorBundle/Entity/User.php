@@ -85,6 +85,12 @@ class User
     protected $Signale;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Users")
+     * @ORM\JoinTable(name="user_age")
+     */
+    private $TranchesAge;
+
+    /**
      * Set pseudo
      *
      * @param string $pseudo
@@ -492,5 +498,39 @@ class User
     public function getSignale()
     {
         return $this->Signale;
+    }
+
+    /**
+     * Add tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     *
+     * @return User
+     */
+    public function addTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge[] = $tranchesAge;
+
+        return $this;
+    }
+
+    /**
+     * Remove tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     */
+    public function removeTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge->removeElement($tranchesAge);
+    }
+
+    /**
+     * Get tranchesAge
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranchesAge()
+    {
+        return $this->TranchesAge;
     }
 }
