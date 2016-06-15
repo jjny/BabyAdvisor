@@ -26,8 +26,7 @@ class Activite
     private $Tarif;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Activites", cascade={"remove"})
      */ 
     protected $Article;
 

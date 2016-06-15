@@ -21,7 +21,7 @@ class Tranche_age
     private $Libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="TrancheAge")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="TranchesAge")
      */
     private $Articles;
 

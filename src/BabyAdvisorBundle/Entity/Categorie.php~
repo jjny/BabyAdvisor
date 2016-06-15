@@ -21,6 +21,11 @@ class Categorie
     private $NomCat;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="Categories")
+     */
+    private $Articles;
+
+    /**
      * Set nomCat
      *
      * @param string $nomCat

@@ -8,10 +8,16 @@
 	
 {% block body %}
 
-	 <div class="container home">
-	  <p> homepage</p>
+	<div class="container home">
 
-	  </div >
+		<ul class="pagination">
+			{% for p in topArticle %}
+			    <li>
+			      	<p>{{p.Titre}}</p>
+			    </li>
+			{% endfor %}
+		</ul>
+	</div>
 
 
 

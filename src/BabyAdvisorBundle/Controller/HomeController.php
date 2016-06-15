@@ -4,6 +4,7 @@ namespace BabyAdvisorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use BabyAdvisorBundle\Entity\Article;
 
 class HomeController extends Controller
 {
@@ -12,23 +13,22 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->container->get('doctrine')->getManager();
+        $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle(9);
 
     	if ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-    		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig'
-    			);
+    		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig');
     	}
     	elseif ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_USER')){
     		return $this->render('BabyAdvisorBundle:BabyAdvisor:homeMembre.html.twig');
     	}
     	else{
-    		return $this->render('BabyAdvisorBundle:BabyAdvisor:home.html.twig');
+    		return $this->render(
+                'BabyAdvisorBundle:BabyAdvisor:home.html.twig',
+                array(
+                    'topArticle' => $topArticle 
+                ));
     	}
         
     }
-
-  
-
-
-
-
 }

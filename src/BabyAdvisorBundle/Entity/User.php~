@@ -46,27 +46,27 @@ class User
     private $CodePostal;
 
     /** 
-     *@ORM\Column(type="string", columnDefinition="ENUM('ROLE_USER', 'ROLE_ADMIN')") 
+     *@ORM\Column(type="string", length=12) 
      */
     private $Role;
 
     /**
-     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="Parent", cascade={"remove", "persist"})
      */
     protected $Enfants;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Notations;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Articles;
 
@@ -79,7 +79,10 @@ class User
      */
     protected $CentreInterets;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="EstSignale", mappedBy="User", cascade={"remove", "persist"})
+     */
+    protected $Signale;
 
     /**
      * Set pseudo
