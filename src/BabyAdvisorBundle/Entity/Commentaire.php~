@@ -123,4 +123,52 @@ class Commentaire
     {
         return $this->id;
     }
+
+    /**
+     * Set user
+     *
+     * @param \BabyAdvisorBundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\BabyAdvisorBundle\Entity\User $user = null)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BabyAdvisorBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * Set article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\BabyAdvisorBundle\Entity\Article $article = null)
+    {
+        $this->Article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \BabyAdvisorBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->Article;
+    }
 }

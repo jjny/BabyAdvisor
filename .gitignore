@@ -17,13 +17,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -45,3 +38,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+vendor/*
+var/*

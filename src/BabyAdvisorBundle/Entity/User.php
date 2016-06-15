@@ -45,6 +45,11 @@ class User
      */
     private $CodePostal;
 
+    /** 
+     *@ORM\Column(type="string", columnDefinition="ENUM('ROLE_USER', 'ROLE_ADMIN')") 
+     */
+    private $Role;
+
     /**
      * @ORM\OneToMany(targetEntity="Enfant", mappedBy="id", cascade={"remove", "persist"})
      */
@@ -424,5 +429,29 @@ class User
     public function getCentreInterets()
     {
         return $this->CentreInterets;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->Role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->Role;
     }
 }
