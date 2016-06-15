@@ -26,8 +26,7 @@ class EstSignale
     private $IdObject;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Signale", cascade={"remove"})
      */ 
     protected $User;
 

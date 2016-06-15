@@ -26,8 +26,7 @@ class Enfant
     private $DateNaiss;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Enfants", cascade={"remove"})
      */ 
     protected $Parent;
 

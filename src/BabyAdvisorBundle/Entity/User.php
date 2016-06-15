@@ -46,27 +46,27 @@ class User
     private $CodePostal;
 
     /** 
-     *@ORM\Column(type="string", columnDefinition="ENUM('ROLE_USER', 'ROLE_ADMIN')") 
+     *@ORM\Column(type="string", length=12) 
      */
     private $Role;
 
     /**
-     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Enfant", mappedBy="Parent", cascade={"remove", "persist"})
      */
     protected $Enfants;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Commentaires;
 
     /**
-     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Notations;
 
     /**
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="User", cascade={"remove", "persist"})
      */
     protected $Articles;
 
@@ -78,6 +78,17 @@ class User
      *      )
      */
     protected $CentreInterets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EstSignale", mappedBy="User", cascade={"remove", "persist"})
+     */
+    protected $Signale;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tranche_age", inversedBy="Users")
+     * @ORM\JoinTable(name="user_age")
+     */
+    private $TranchesAge;
 
     /**
      * Set pseudo
@@ -453,5 +464,73 @@ class User
     public function getRole()
     {
         return $this->Role;
+    }
+
+    /**
+     * Add signale
+     *
+     * @param \BabyAdvisorBundle\Entity\EstSignale $signale
+     *
+     * @return User
+     */
+    public function addSignale(\BabyAdvisorBundle\Entity\EstSignale $signale)
+    {
+        $this->Signale[] = $signale;
+
+        return $this;
+    }
+
+    /**
+     * Remove signale
+     *
+     * @param \BabyAdvisorBundle\Entity\EstSignale $signale
+     */
+    public function removeSignale(\BabyAdvisorBundle\Entity\EstSignale $signale)
+    {
+        $this->Signale->removeElement($signale);
+    }
+
+    /**
+     * Get signale
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSignale()
+    {
+        return $this->Signale;
+    }
+
+    /**
+     * Add tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     *
+     * @return User
+     */
+    public function addTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge[] = $tranchesAge;
+
+        return $this;
+    }
+
+    /**
+     * Remove tranchesAge
+     *
+     * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
+     */
+    public function removeTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
+    {
+        $this->TranchesAge->removeElement($tranchesAge);
+    }
+
+    /**
+     * Get tranchesAge
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranchesAge()
+    {
+        return $this->TranchesAge;
     }
 }
