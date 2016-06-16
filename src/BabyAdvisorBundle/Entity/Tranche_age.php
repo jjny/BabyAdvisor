@@ -3,7 +3,7 @@ namespace BabyAdvisorBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BabyAdvisorBundle\Repository\Tranche_ageRepository")
  * @ORM\Table(name="Tranche_age")
  */
 class Tranche_age
@@ -69,6 +69,7 @@ class Tranche_age
     public function __construct()
     {
         $this->Articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -114,7 +115,7 @@ class Tranche_age
      */
     public function addUser(\BabyAdvisorBundle\Entity\User $user)
     {
-        $this->Users[] = $user;
+        $this->Users->add($user);
 
         return $this;
     }

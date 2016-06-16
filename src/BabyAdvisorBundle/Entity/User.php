@@ -71,7 +71,7 @@ class User
     protected $Articles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Centre_interet")
+     * @ORM\ManyToMany(targetEntity="Centre_interet", inversedBy="Users")
      * @ORM\JoinTable(name="users_interet",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="interet_id", referencedColumnName="id")}
@@ -239,7 +239,8 @@ class User
     public function __construct()
     {
         $this->Enfant = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->CentreInteret = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->CentreInterets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->TranchesAge = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -287,37 +288,38 @@ class User
     }
 
     /**
-     * Add centreInteret
+     * Add centreInterets
      *
      * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
      *
      * @return User
      */
-    public function addCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    public function addCentreInterets(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
     {
-        $this->CentreInteret[] = $centreInteret;
+        $this->CentreInterets->add($centreInteret);
 
         return $this;
     }
 
     /**
-     * Remove centreInteret
+     * Remove centreInterets
      *
      * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
      */
-    public function removeCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    public function removeCentreInterets(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
     {
-        $this->CentreInteret->removeElement($centreInteret);
+        $this->CentreInterets->removeElement($centreInteret);
     }
 
+
     /**
-     * Get centreInteret
+     * Get centreInterets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCentreInteret()
+    public function getCentreInterets()
     {
-        return $this->CentreInteret;
+        return $this->CentreInterets;
     }
 
     /**
@@ -432,15 +434,7 @@ class User
         return $this->Articles;
     }
 
-    /**
-     * Get centreInterets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCentreInterets()
-    {
-        return $this->CentreInterets;
-    }
+    
 
     /**
      * Set role
@@ -505,13 +499,10 @@ class User
      *
      * @param \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
      *
-     * @return User
      */
     public function addTranchesAge(\BabyAdvisorBundle\Entity\Tranche_age $tranchesAge)
     {
-        $this->TranchesAge[] = $tranchesAge;
-
-        return $this;
+        $this->TranchesAge->add($tranchesAge);
     }
 
     /**
@@ -532,5 +523,29 @@ class User
     public function getTranchesAge()
     {
         return $this->TranchesAge;
+    }
+
+    /**
+     * Add centreInteret
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
+     *
+     * @return User
+     */
+    public function addCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    {
+        $this->CentreInterets[] = $centreInteret;
+    
+        return $this;
+    }
+
+    /**
+     * Remove centreInteret
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $centreInteret
+     */
+    public function removeCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
+    {
+        $this->CentreInterets->removeElement($centreInteret);
     }
 }
