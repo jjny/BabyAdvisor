@@ -1,0 +1,27 @@
+Mémo commande
+
+Récupérer les fichiers du dépot distant ou envoyer ses modifications:
+
+	git add <Fichier que tu as créé>
+	git commit -m "Mon message" (Pour le mémoriser en local)
+	git fetch <Lien GitHub>
+	git pull <Lien GitHub> <Nom de la branche (master)>
+// Si besoin de mettre ses fichiers sur le distant
+	git push <Lien GitHub> <Nom de la branche (master)>
+
+En cas de conflit :
+	
+	git status
+// Regarder les fichier en confli et les modifier selon ce que l'on veut
+// Si les fichiers sont à supprimer :
+	git rm --cached <Chemin du fichier à supprimé puis son nom>
+// Si les fichiers ne sont pas à envoyer sur GitHub :
+	git checkout <Chemin du fichier à ignoré puis son nom>
+	git commit -m "Correctif"
+
+Pour la base de donnée :
+
+	php bin/console doctrine:database:create // Pour créer la base
+	php bin/console doctrine:schema:update //Pour voir si les modification n'ont pas fait d'erreur
+	php bin/console doctrine:schema:update --force //Pour appliquer les modifications à la base
+	php bin/console doctrine:generate:entities <Nom du bundle> //pour créer les getter et setter des entitée

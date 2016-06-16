@@ -51,8 +51,7 @@ class Note
     private $NbCom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Notes", cascade={"remove"})
      */ 
     protected $Article;
 

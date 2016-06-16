@@ -1,0 +1,132 @@
+body{
+    font-family: Lato !important;
+}
+a{
+    color: #000000 !important;
+    text-decoration: none;
+}
+a:hover, button:hover{
+    text-decoration: none !important;
+}
+button{
+    background-color: transparent;
+}
+#navigation-bar{
+    background-color: #ffffff;
+    min-height: 200px;
+    border-bottom: transparent;
+}
+#navbar-up{
+    margin-top:20px;
+}
+#logo{
+    
+}
+#logo img{
+    max-width: 320px;
+}
+#right-bar button{
+    font-size:14px;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    margin-top: 0px;
+    margin-left: 13px;
+}
+#right-bar #now{
+    color: #ed855c;
+}
+#right-bar #best-notes{
+    color: #f1a82c;
+}
+#right-bar #new-article{
+    color: #ef9129;
+}
+#navbar-bottom{
+    
+}
+#left-bar{
+    float: left;
+    margin-top: 10px;
+}
+#left-bar a{
+    margin-right: 29px;
+}
+#left-bar button{
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    padding-left: 1px;
+    opacity: 0.8;
+}
+#user-bar{
+    margin-top: 14px;
+}
+.helloUser{
+    padding-left: 5px;
+    margin-left: 10px;
+    position: relative;
+    top: 5px;
+}
+#user-bar button{
+    font-size: 13px;
+    opacity: 0.8;
+    margin-left:10px;
+}
+#main-content{
+    margin-top:190px;
+    overflow-y: scroll;
+    margin-bottom: 144px;
+    padding-right: 0px;
+}
+.content-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.footer{
+    background-color: #333333;
+    color: #ffffff;
+    padding: 22px 0px 10px 0px;
+}
+.footer a{
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.footer table{
+    width: 100%;
+    table-layout: fixed;
+}
+.footer table td {
+  width: 33%;
+}
+#social{
+    margin-bottom: 20px;
+    margin-left: 11px;
+}
+#social img{
+    width: 1.7em;
+    height: auto;
+    margin: 0px 25px;
+}
+#contact a{
+    margin: 0px 17px;
+}
+#centreFooter{
+    text-align: center;
+}
+#centreFooter p{
+    font-size: 11px;
+    font-weight: 100;
+    margin-top: 5px;
+}
+#legal a{
+    float:right;
+    position: relative;
+    top: 20px;
+}
+/********* CONNEXION ************/
+/*#formConnexion{
+    margin: 40px 0px;
+}*/

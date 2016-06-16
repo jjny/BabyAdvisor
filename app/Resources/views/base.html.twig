@@ -7,9 +7,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 
         {% stylesheets
@@ -20,39 +23,39 @@
         {% javascripts
             '@BabyAdvisorBundle/Resources/public/js/*' %}
           <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}#}
+        {% endjavascripts %}
    
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
+    <nav id="navigation-bar" class="navbar navbar-default navbar-fixed-top">
+                <div id="navbar-up" class="container">
 
-                 <a href="{{ path ('homepage') }}">
-                    <img src="{{ asset('images/ba_logo_xs.jpg') }}" class=""><span class="glyphicons glyphicons-hand-left"></span></img>
+                 <a id="logo" href="{{ path ('homepage') }}">
+                    <img src="{{ asset('images/logo-babyAdvisor.png') }}" class=""><span class="glyphicons glyphicons-hand-left"></span></img>
                 </a>
 
-                  <div class="navbar-right">
+                  <div id="right-bar" class="navbar-right">
 
-                 <a href="#">
-                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
+                 <a id="now-anchor" href="#now-section">
+                    <button id="now" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
+                </a>
+
+                       <a id="best-notes-anchor" href="#best-notes-section">
+                    <button id="best-notes" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
                 </a>
 
                        <a href="#">
-                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
-                </a>
-
-                       <a href="#">
-                    <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Ajouter un article </button>
+                    <button id="new-article" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Ajouter un article </button>
 
                 </a>
 
                     </div>
                 </div>
 
-                   <div class="container">
-
+        <div id="navbar-bottom" class="container">
+            <div id="left-bar">
 
                  <a href="#">
                     <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les activités</button>
@@ -67,20 +70,20 @@
 
                 </a>
 
-
+            </div>
                   
-                <div class="navbar-right">
+                <div id="user-bar" class="navbar-right">
 
-                      {% if is_granted("ROLE_USER") %}
+                 {% if is_granted("ROLE_USER") %}
 
                       <table>
 
                         <tr>
                             <td  rowspan="2">
-                         <img src="{{ asset('images/girl-icon.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
+                         <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
-                        <td>
-                         <p>Bonjour truc </p>
+                        <td colspan="2">
+                         <p class="helloUser">Bonjour truc </p>
                          </td>
 
                          </tr>
@@ -110,10 +113,10 @@
 
                         <tr>
                             <td  rowspan="2">
-                         <img src="{{ asset('images/girl-icon.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
+                         <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
-                        <td>
-                         <p>Bonjour Administrateur</p>
+                        <td colspan="2" >
+                         <p class="helloUser" >Bonjour Administrateur</p>
                          </td>
 
                          </tr>
@@ -149,7 +152,7 @@
                           <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Inscription </button>
                       </a>
                           
-                       {% endif %}
+                       {% endif %} 
 
                    </div>
                     
@@ -157,16 +160,40 @@
 
                 </div>
             </nav>
-
+        <div id="main-content" class="container">
+            <div class="content-container">
         {% block body %}
 
         {% endblock %}
+            </div>
+            </div>
        
 
-        <footer class="footer">
-         
-         
-          
+        <footer class="footer navbar-fixed-bottom">
+           <div class="container">
+            <table>
+            <tr>
+                <td id="left-footer">
+                    <div id="social">
+                        <a href="" rel="" target=""><img src="{{ asset('images/fb-logo.png') }}" alt="" /></a>
+                        <a href="" rel="" target=""><img src="{{ asset('images/twitter-logo.png') }}" alt="" /></a>
+                        <a href="" rel="" target=""><img src="{{ asset('images/instagram-logo.png') }}" alt="" /></a>
+                    </div>
+                    <div id="contact">
+                        <a href="" rel="" target="">Contacts</a>
+                        <a href="" rel="" target="">Qui sommes nous</a>
+                    </div>
+              </td>
+              <td id="centreFooter">
+                <a href="{{ path ('homepage') }}" rel=""><img src="{{ asset('images/logo-babyAdvisor.png') }}" alt="" width="170"/></a>
+                <p>© Copyright 2016</p>
+              </td>
+              <td id="legal">
+                <a href="" rel="" target="">Mentions legales</a>
+              </td>
+            </tr>
+        </table> 
+        </div>       
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link type="text/javascript" href="{{ asset('js/bootstrap.js') }}">

@@ -21,9 +21,14 @@ class Tranche_age
     private $Libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="TrancheAge")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="TranchesAge")
      */
     private $Articles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="TranchesAge")
+     */
+    private $Users;
 
     /**
      * Set libelle
@@ -98,5 +103,39 @@ class Tranche_age
     public function getArticles()
     {
         return $this->Articles;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \BabyAdvisorBundle\Entity\User $user
+     *
+     * @return Tranche_age
+     */
+    public function addUser(\BabyAdvisorBundle\Entity\User $user)
+    {
+        $this->Users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \BabyAdvisorBundle\Entity\User $user
+     */
+    public function removeUser(\BabyAdvisorBundle\Entity\User $user)
+    {
+        $this->Users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->Users;
     }
 }

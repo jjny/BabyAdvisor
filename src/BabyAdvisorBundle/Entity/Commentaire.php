@@ -31,14 +31,12 @@ class Commentaire
     private $Signale;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Commentaires", cascade={"remove"})
      */ 
     protected $User;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Commentaires", cascade={"remove"})
      */ 
     protected $Article;
 

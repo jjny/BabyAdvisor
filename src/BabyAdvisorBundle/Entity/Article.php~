@@ -3,7 +3,7 @@ namespace BabyAdvisorBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BabyAdvisorBundle\Repository\ArticleRepository")
  * @ORM\Table(name="Article")
  */
 class Article
@@ -58,38 +58,37 @@ class Article
     protected $Categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="Horaire", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Horaire", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Horaires;
 
     /**
-     * @ORM\OneToMany(targetEntity="Activite", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Activite", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Activites;
 
     /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Photos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Note", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Notes;
 
     /**
-     * @ORM\OneToMany(targetEntity="Notation", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Notation", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Notations;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="id", cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="Article", cascade={"remove", "persist"})
      */
     protected $Commentaires;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="idUser", cascade={"remove"})
-     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Articles", cascade={"remove"})
      */ 
     protected $User;
 
