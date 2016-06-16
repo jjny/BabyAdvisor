@@ -17,3 +17,7 @@ membres:
 admin_suppresion:
     path:     /adminSuppresion
     defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }  
+
+recherche:
+    path:     /recherche
+    defaults: { _controller: BabyAdvisorBundle:Home:recherche }

@@ -16,11 +16,29 @@ class ArticleRepository extends EntityRepository
 			->join('A.Notes', 'N')
 			->addSelect('N')
 			->orderBy('N.MoyGen');
-        /*$this->getEntityManager()
-            ->createQuery(
-                "SELECT a FROM Article a JOIN a.Note n ORDER BY n.moy_en ASC"
-            );*/
         $query->setMaxResults($nb);
         return $query->getQuery()->getResult();
     }
+
+    public function findLastArticles($nb)
+    {
+    	$query = $this->createQueryBuilder('A')
+			->select('A')
+			->orderBy('A.DateMaJ');
+        $query->setMaxResults($nb);
+        return $query->getQuery()->getResult();
+    }
+
+    public function findArticlesOrderBy($orderBy)
+    {
+    	$query = $this->createQueryBuilder('A')
+    		->select('A')
+    		->orderBy('A.'.$orderBy);
+    	return $query->getQuery()->getResult();
+    }
+
+    /*public function filterResult($value='')
+    {
+    	# code...
+    }*/
 }

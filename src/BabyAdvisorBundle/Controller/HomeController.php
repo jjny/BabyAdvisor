@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function indexAction()
     {
         $em = $this->container->get('doctrine')->getManager();
-        $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle(9);
+        $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findArticlesOrderBy('DateMaJ');
 
     	if ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
     		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig');
@@ -30,5 +30,11 @@ class HomeController extends Controller
                 ));
     	}
         
+    }
+    public function rechercheAction()
+    {
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:recherche.html.twig'
+            );
     }
 }
