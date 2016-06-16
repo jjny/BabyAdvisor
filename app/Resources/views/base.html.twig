@@ -65,7 +65,7 @@
                     <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les lieux </button>
                 </a>
 
-                       <a href="{{ path ('membres') }}">
+                       <a id="advisors" href="{{ path ('membres') }}">
                     <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les advisors </button>
 
                 </a>
@@ -171,28 +171,46 @@
 
         <footer class="footer navbar-fixed-bottom">
            <div class="container">
-            <table>
-            <tr>
-                <td id="left-footer">
-                    <div id="social">
-                        <a href="" rel="" target=""><img src="{{ asset('images/fb-logo.png') }}" alt="" /></a>
-                        <a href="" rel="" target=""><img src="{{ asset('images/twitter-logo.png') }}" alt="" /></a>
-                        <a href="" rel="" target=""><img src="{{ asset('images/instagram-logo.png') }}" alt="" /></a>
-                    </div>
-                    <div id="contact">
+                <table id="footerNormal">
+                <tr>
+                    <td id="left-footer">
+                        <div id="social">
+                            <a href="" rel="" target=""><img src="{{ asset('images/fb-logo.png') }}" alt="" /></a>
+                            <a href="" rel="" target=""><img src="{{ asset('images/twitter-logo.png') }}" alt="" /></a>
+                            <a href="" rel="" target=""><img src="{{ asset('images/instagram-logo.png') }}" alt="" /></a>
+                        </div>
+                        <div id="contact">
+                            <a href="" rel="" target="">Contacts</a>
+                            <a href="" rel="" target="">Qui sommes nous</a>
+                        </div>
+                  </td>
+                  <td id="centreFooter">
+                    <a href="{{ path ('homepage') }}" rel=""><img src="{{ asset('images/logo-babyAdvisor.png') }}" alt="" width="170"/></a>
+                    <p>© Copyright 2016</p>
+                  </td>
+                  <td id="legal">
+                    <a href="" rel="" target="">Mentions legales</a>
+                  </td>
+                </tr>
+            </table>
+            <div id="footerMini">
+                <div id="social">
+                            <a href="" rel="" target=""><img src="{{ asset('images/fb-logo.png') }}" alt="" /></a>
+                            <a href="" rel="" target=""><img src="{{ asset('images/twitter-logo.png') }}" alt="" /></a>
+                            <a href="" rel="" target=""><img src="{{ asset('images/instagram-logo.png') }}" alt="" /></a>
+                        </div>
+                <div id="contact">
                         <a href="" rel="" target="">Contacts</a>
                         <a href="" rel="" target="">Qui sommes nous</a>
-                    </div>
-              </td>
-              <td id="centreFooter">
-                <a href="{{ path ('homepage') }}" rel=""><img src="{{ asset('images/logo-babyAdvisor.png') }}" alt="" width="170"/></a>
-                <p>© Copyright 2016</p>
-              </td>
-              <td id="legal">
-                <a href="" rel="" target="">Mentions legales</a>
-              </td>
-            </tr>
-        </table> 
+                </div>   
+                <div id="mentLeg">
+                    <a href="" rel="" target="">Mentions legales</a>
+                </div>
+                <div id="logoFooter">
+                    <a href="{{ path ('homepage') }}" rel=""><img src="{{ asset('images/logo-babyAdvisor.png') }}" alt="" width="170"/></a>
+                    <p>© Copyright 2016</p>
+                </div>
+            </div>
         </div>       
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
