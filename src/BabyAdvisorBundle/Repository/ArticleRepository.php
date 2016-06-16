@@ -39,6 +39,6 @@ class ArticleRepository extends EntityRepository
 
     /*public function filterResult($value='')
     {
-    	# code...
+    	
     }*/
 }
