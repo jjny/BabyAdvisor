@@ -12,6 +12,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 
         {% stylesheets
@@ -37,11 +38,11 @@
 
                   <div id="right-bar" class="navbar-right">
 
-                 <a href="#">
+                 <a id="now-anchor" href="#now-section">
                     <button id="now" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
                 </a>
 
-                       <a href="#">
+                       <a id="best-notes-anchor" href="#best-notes-section">
                     <button id="best-notes" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
                 </a>
 
@@ -159,13 +160,16 @@
 
                 </div>
             </nav>
-
+        <div id="main-content" class="container">
+            <div class="content-container">
         {% block body %}
 
         {% endblock %}
+            </div>
+            </div>
        
 
-        <footer class="footer">
+        <footer class="footer navbar-fixed-bottom">
            <div class="container">
             <table>
             <tr>
