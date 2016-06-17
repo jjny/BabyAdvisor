@@ -4,7 +4,7 @@ namespace BabyAdvisorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use BabyAdvisorBundle\Entity\Article;
+use BabyAdvisorBundle\Entity\Tranche_age;
 
 class HomeController extends Controller
 {
@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function indexAction()
     {
         $em = $this->container->get('doctrine')->getManager();
-        $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findArticlesOrderBy('DateMaJ');
+        $topArticle = $em->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId(1);
 
     	if ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
     		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig');

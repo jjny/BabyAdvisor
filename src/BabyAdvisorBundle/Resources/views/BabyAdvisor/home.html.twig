@@ -79,4 +79,12 @@
             </li>
         </ul>
     </div>
+
+    <ul class="pagination">
+   		{% for p in topArticle %}
+    	<li>
+      		<p>{{p.libelle}}</p>
+    	</li>
+  		{% endfor %}
+	</ul>
 {% endblock %}

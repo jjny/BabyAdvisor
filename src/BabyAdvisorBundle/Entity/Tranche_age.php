@@ -3,7 +3,7 @@ namespace BabyAdvisorBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BabyAdvisorBundle\Repository\Tranche_ageRepository")
  * @ORM\Table(name="Tranche_age")
  */
 class Tranche_age
