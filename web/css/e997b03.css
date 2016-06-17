@@ -384,19 +384,7 @@ button{
     -moz-column-gap: 1em; /* Firefox */
     column-gap: 1em;
 }
-#form-inscription .row2{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-     -webkit-column-count: 1; /* Chrome, Safari, Opera */
-    -moz-column-count: 1; /* Firefox */
-    column-count: 1;
-    text-align: center;
-}
-#form-inscription .row2>label{
-    margin-bottom: 5px;
-}
+
 #form-inscription .left, #form-inscription .center, #form-inscription .right{
     display: inline-block;
 }
@@ -407,37 +395,113 @@ button{
     text-transform: uppercase;
     margin-left: 5px;
 }
-#form-inscription .row2 label{
-   /* float:left; */
-    margin-right:20px;
-}
 #form-inscription #inscription_nombreEnfant, #form-inscription #inscription_ageEnfant{
     border: none;
     box-shadow: none;
     padding: 0;
 }
-#form-inscription .row2 input, #form-inscription .row2 label{
-    margin:0;
-    padding: 0;
-}
-#form-inscription #inscription_nombreEnfant label, #form-inscription #inscription_ageEnfant label{
+#form-inscription #inscription_nombreEnfant label, #form-inscription #inscription_trancheAge label, #form-inscription #inscription_centreInterets label{
    text-transform: lowercase;
     margin-right: 25px;
 }
-#form-inscription #inscription_nombreEnfant input, #form-inscription #inscription_ageEnfant input{
-   /* position: relative;
-    top: -3px;
-    left: -290px;*/
+#form-inscription #inscription_nombreEnfant input, #form-inscription #inscriptio_anniv input, #form-inscription #interets input{
      margin-right: 6px;
+}
+#form-inscription #row3{
+    margin-top:30px;
 }
 .valider #inscription_Valider{
     display:block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+.valider #inscription_Valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
 }
 /*****CONNEXION******/
 #formConnexion{
-   
+       margin-top: 30px; 
+}
+
+#formConnexion .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+#formConnexion .left, #formConnexion .right{
+    display: inline-block;
+}
+#formConnexion label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formConnexion .valider{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formConnexion .valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+@media only screen and (max-width: 991px) {
+    #form-inscription, #formConnexion{
+    margin-top: 50px; 
+    }
+}
+@media only screen and (max-width: 767px){
+    #form-inscription, #formConnexion{
+        margin-top: 40px; 
+        margin-bottom: 40px; 
+    }
+    #form-inscription .row, #formConnexion .row{
+         -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+    }
+    #form-inscription #interets{
+        float:none !important;
+    }
+    #form-inscription #inscriptio_anniv{
+        margin-bottom: 20px;
+    }
+}
+@media only screen and (max-width: 474px){
+    #form-inscription, #formConnexion{
+        margin-bottom: 50px; 
+    }
+    #form-inscription form, #formConnexion form{
+        margin-left: 20px;
+        margin-right:20px;
+    } 
+    #form-inscription .row, #formConnexion .row{
+         -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+    #formConnexion .row{
+        margin-bottom: 20px;
+    }
+    #formConnexion #password{
+        width: 80%;
+    }
 }
 #banner{
     width:100%;

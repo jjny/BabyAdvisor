@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div id="form-inscription" class="form-group container home col-md-10 col-md-offset-1">
+    <div id="form-inscription" class="form-group container home col-md-10 col-md-offset-1 col-sm-12">
 
 <div>
             {% for message in app.session.flashbag.get('info') %}
@@ -42,24 +42,20 @@
                 {{ form_widget(form.motDePasseConfirmation) }}
             </div>
         </div>
-        <div class="row2">
-            {{ form_label(form.nombreEnfant) }}
-            {{ form_widget(form.nombreEnfant) }}
+        <div id="row3" class="row">
+            <div class="left">
+                {{ form_label(form.nombreEnfant) }}
+                {{ form_widget(form.nombreEnfant) }}
+            </div>
+            <div id="inscriptio_anniv" class="center">
+
+
+            </div>
+            <div  id="interets" class="right">
+                {{ form_label(form.centreInterets) }}
+                {{ form_widget(form.centreInterets) }}
+            </div>
         </div>
-        <div class="row2">
-            {{ form_label(form.ageEnfant) }}
-            {{ form_widget(form.ageEnfant) }}
-        </div>
-
-        <div id="inscriptio_anniv" >
-            
-
-        </div>
-
-        
-        {{ form_label(form.centreInterets) }}
-        {{ form_widget(form.centreInterets) }}
-
         {{ form_widget(form._token) }}
         
         <div class="valider">
@@ -86,8 +82,10 @@
                 $( "#inscriptio_anniv" ).empty();
 
                 if(test> 0){
-                    $('{{ form_label(form.trancheAge) }}{{ form_widget(form.trancheAge) }}  ').appendTo("#inscriptio_anniv"); 
+                    $('{{ form_label(form.trancheAge) }}{{ form_widget(form.trancheAge) }}  ').appendTo("#inscriptio_anniv");
+                    $("#interets").css({'float':'right'});
                 }
+                else $("#interets").css({'float':'none'});
 
             });
 
