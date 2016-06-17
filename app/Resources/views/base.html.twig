@@ -74,7 +74,7 @@
                   
                 <div id="user-bar" class="navbar-right">
 
-                 {% if is_granted("ROLE_USER") %}
+                 {% if app.session.get('userRole') =='ROLE_USER' %}
 
                       <table>
 
@@ -108,7 +108,7 @@
 
                         </table>
 
-                        {% elseif is_granted("ROLE_ADMIN") %}
+                        {% elseif app.session.get('userRole') =='ROLE_ADMIN' %}
                     <table>
 
                         <tr>

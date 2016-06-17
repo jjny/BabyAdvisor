@@ -4,22 +4,36 @@ namespace BabyAdvisorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use BabyAdvisorBundle\Entity\Article;
+use BabyAdvisorBundle\Entity\Commentaire;
+
 
 class HomeController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->container->get('doctrine')->getManager();
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findArticlesOrderBy('DateMaJ');
+            $session = $request->getSession();
+         $session->start();
 
-    	if ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
-    		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig');
+    	if ($session->get('userRole')=='ROLE_ADMIN'){
+
+        $em = $this->container->get('doctrine')->getManager();
+        $commentaireSignal= $em->getRepository('BabyAdvisorBundle:Commentaire')->findBy(
+              array('Signale' => '1')
+                );
+
+    		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig', array(
+
+                'commentaires' => $commentaireSignal));
     	}
-    	elseif ($securityContext = $this->container->get('security.authorization_checker')->isGranted('ROLE_USER')){
+    	elseif ($session->get('userRole')=='ROLE_USER'){
+        
     		return $this->render('BabyAdvisorBundle:BabyAdvisor:homeMembre.html.twig');
     	}
     	else{
