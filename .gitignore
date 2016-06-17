@@ -41,3 +41,4 @@ Temporary Items
 
 vendor/*
 var/*
+app/config/parameters.yml
