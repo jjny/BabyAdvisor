@@ -69,6 +69,7 @@ class Tranche_age
     public function __construct()
     {
         $this->Articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -114,7 +115,7 @@ class Tranche_age
      */
     public function addUser(\BabyAdvisorBundle\Entity\User $user)
     {
-        $this->Users[] = $user;
+        $this->Users->add($user);
 
         return $this;
     }

@@ -565,4 +565,52 @@ class Article
     {
         return $this->User;
     }
+
+    /**
+     * Set cP
+     *
+     * @param string $cP
+     *
+     * @return Article
+     */
+    public function setCP($cP)
+    {
+        $this->CP = $cP;
+
+        return $this;
+    }
+
+    /**
+     * Get cP
+     *
+     * @return string
+     */
+    public function getCP()
+    {
+        return $this->CP;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Article
+     */
+    public function setVille($ville)
+    {
+        $this->Ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->Ville;
+    }
 }

@@ -15,9 +15,15 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type as Type;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use BabyAdvisorBundle\Entity\Centre_interet;
+use BabyAdvisorBundle\Entity\Tranche_age;
 
 class inscriptionType extends AbstractType {
 
@@ -28,32 +34,43 @@ class inscriptionType extends AbstractType {
             ->add('prenom', TextType::class, array('label' => 'Prénom', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('pseudo', TextType::class, array('label' => 'Pseudo', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('email', EmailType::class, array('label' => 'Email', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
+            ->add('cp', NumberType::class, array('label' => 'Code postal', 'attr' => array('class' => 'form-control', 'placeholder' => '', 'maxlenght' => 5, 'size' => 5), 'scale' => 0))
             ->add('motDePasse', PasswordType::class, array('label' => 'Mot de passe', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
              ->add('motDePasseConfirmation', PasswordType::class, array('label' => 'Confirmez votre mot de passe', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
 
-             ->add('nombreEnfant', ChoiceType::class, array('label' => 'Combien d\'enfant savez vous', 'attr' => array('class' => 'form-control', 'placeholder' => ''),'choices' => array(
+             ->add('nombreEnfant', ChoiceType::class, array( 'label' => 'Combien d\'enfant avez vous', 'attr' => array('class' => 'form-control', 'placeholder' => ''),
+                    'data' => 0,'choices' => array(
 																	        		'0' => 0,
 																	        		'1' => 1,
 																	        		'2' => 2,
-    				),'multiple' => true,'expanded' => true))
+    				),'expanded' => true))
 
-             ->add('ageEnfant', ChoiceType::class, array('label' => 'Quelle age ont nos vos enfants', 'attr' => array('class' => 'form-control', 'placeholder' => ''),'choices' => array(
-																	        		'pas d\'enfant' => null,
-																	        		'moins d\'un an' => 0,
-																	        		'+ 1 an' => 1,
-																	        		'+ 2 ans' => 2,
-																	        		'+ 3 ans' => 3,
-																	        		'+ 4 ans' => 4,
-																	        		'+ 5 ans' => 5,
-																	        		'6-8 ans' => 6,
-																	        		'8-10 ans' => 7,
-    				),'multiple' => true,'expanded' => true))
+            // ->add('anniv', TextType::class, array('label' => 'anniversaire', 'attr' => array('class' => 'form-control', 'placeholder' => ''), "full_name"=> "inscription[anniv][]"))
+             ->add('anniv', TextType::class, array('label' => 'anniversaire', 'attr' => array('class' => 'form-control','placeholder' => '')))
+
+             
+             ->add('trancheAge', EntityType::class, array(
+                        'label' => 'Tranche d\'age',
+                        'class' => 'BabyAdvisorBundle:Tranche_age',
+                        'choice_label' => 'Libelle',
+                        'multiple' => true,
+                        'expanded' => true,
+        ))
+
+
+             ->add('centreInterets', EntityType::class, array(
+                        'class' => 'BabyAdvisorBundle:Centre_interet',
+                        'choice_label' => 'Libelle',
+                        'multiple' => true,
+                        'expanded' => true,
+        ))
+
+             //$options['data']->centre_interet
+
+
             ->add('Valider', SubmitType::class);
-
-
-               $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
-            // ... adding the name field if needed
-        });
     }
+
+
 
 }
