@@ -6,38 +6,26 @@
 
 
     <div id="formConnexion" class="form-group container home col-md-8 col-md-offset-2">
-        <div class="alert alert-warning" role="alert">
-            <p> • login / pass = admin / admin </p>
-            <p> • login / pass USER = licence / licence</p>
+
+            <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
         </div>
 
-         {% if error %}
+        <form action="{{ path('login') }}" method="post">
 
-            <div class="alert alert-danger">{{ error.message }}</div>
+           
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
 
-          {% endif %}
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password) }}
 
-
-           <form action="{{ path('login_check') }}" method="post">
-
-           <label for="username">Username:</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="_password" />
-
-                {#
-                    If you want to control the URL the user
-                    is redirected to on success (more details below)
-                    <input type="hidden" name="_target_path" value="/account" />
-                #}
-
-                <button type="submit">login</button>
-
-              
+        {{ form_widget(form._token) }}
 
 
-       
+        {{ form_widget(form.Connexion) }}
        
 
         </form>

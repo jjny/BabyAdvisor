@@ -21,15 +21,11 @@ class InscriptionController extends Controller
         $em = $this->container->get('doctrine')->getManager();
         $users= $em->getRepository('BabyAdvisorBundle:User')->findAll();
         
-       
-        //print_r($users);
-        //die("fdf");
         $form = $this->createForm('ConnexionBundle\Form\Type\inscriptionType');
 
         $session = $request->getSession();
          $session->start();
           $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.{8,16})(?!.*[\s])/';
-         //$arrayUsers = get_object_vars($users);
 
         if ($request->isMethod('POST'))
         {
@@ -53,7 +49,7 @@ class InscriptionController extends Controller
 
                         
                     } else {
-                         $session->getFlashBag()->add('info', 'ok');
+                         $session->getFlashBag()->add('info', 'Vous pouvez dés à présent vous connecter');
 
                          $age = $_POST['inscription']['trancheAge'];
                          $interet = $_POST['inscription']['centreInterets'];
@@ -118,19 +114,12 @@ class InscriptionController extends Controller
                          $em->persist($user);
                          $em->flush();
 
-                        return $this->render(
-                            'ConnexionBundle:connexion:inscription.html.twig',
-                            array(
-                                'form' => $form->createView()
-                            )
-                        );
+                        return $this->redirectToRoute('homepage');
                     }     
                  }
             }
             
         }
-
-       // $session->getFlashBag()->add('info', 'crash');
 
         return $this->render(
             'ConnexionBundle:connexion:inscription.html.twig',
