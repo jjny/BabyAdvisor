@@ -4,11 +4,16 @@
 
 {% block body %}
 
-
     <div id="form-inscription" class="form-group container home col-md-10 col-md-offset-1">
 
-
-    <form action="#" method="post">
+<div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+        </div>
+        
+        
+    <form action="{{ path('inscription') }}" method="post" enctype="multipart/form-data">
        <div class="row">
            <div class="left">
                 {{ form_label(form.nom) }}
@@ -46,13 +51,54 @@
             {{ form_widget(form.ageEnfant) }}
         </div>
 
+        <div id="inscriptio_anniv" >
+            
+
+        </div>
+
+        
+        {{ form_label(form.centreInterets) }}
+        {{ form_widget(form.centreInterets) }}
+
+        {{ form_widget(form._token) }}
+        
         <div class="valider">
             {{ form_widget(form.Valider) }}
         </div>
     </form>
 
 
-    </div>
+</div>
 
 
 {% endblock %}
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            
+
+            $("input[name='inscription[nombreEnfant]']").change(function(){
+                var test =$('input[name="inscription[nombreEnfant]"]:checked').val();
+               //alert(test);
+
+                $( "#inscriptio_anniv" ).empty();
+
+                if(test> 0){
+                    $('{{ form_label(form.trancheAge) }}{{ form_widget(form.trancheAge) }}  ').appendTo("#inscriptio_anniv"); 
+                }
+
+            });
+
+
+           
+        });
+
+
+
+
+
+    </script>
+{% endblock %}
+
