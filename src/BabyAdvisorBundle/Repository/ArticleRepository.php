@@ -1,6 +1,8 @@
 <?php
 namespace BabyAdvisorBundle\Repository;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 /**
  * FolderRepository
  *
@@ -9,15 +11,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-	public function findTopArticle($nb)
+	public function findTopArticle()
     {
+		$rsm = new ResultSetMappingBuilder($this->getEntityManager());
+		$rsm->addRootEntityFromClassMetadata('BabyAdvisorBundle:Article', 'A');
+		$rsm->addJoinedEntityFromClassMetadata('BabyAdvisorBundle\Entity\Categorie', 'C', 'A', 'Categories', array('id' => 'categorie_id'));
+
+		 
+		$sql = 'SELECT *
+				FROM article 
+				INNER JOIN article_categorie ON article_categorie.article_id = article.id 
+				INNER JOIN categorie ON categorie.id = article_categorie.categorie_id 
+				INNER JOIN note ON note.article_id = article.id 
+				ORDER BY note.moy_gen DESC';
+		 
+		$query = $this->_em->createNativeQuery($sql, $rsm);
+		 
+		return $query->getResult();
+        //exit(dump($projects));
+
+
+    	/*$this->_em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
         $query = $this->createQueryBuilder('A')
 			->select('A')
 			->join('A.Notes', 'N')
-			->addSelect('N')
+			->join('A.Categories', 'C')
+			->addSelect('N, C')
 			->orderBy('N.MoyGen');
         $query->setMaxResults($nb);
-        return $query->getQuery()->getResult();
+        exit(dump($query->getSql()));*/
+        //return $query->getQuery()->getResult();
     }
 
     public function findLastArticles($nb)

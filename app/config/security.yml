@@ -1,21 +1,28 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+    always_authenticate_before_granting: true
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    #providers:
+    #    in_memory:
+    #        memory:
+    #            users:
+    #                admin:
+    #                    password: admin
+    #                    roles: 'ROLE_ADMIN'
+    #                licence:
+    #                    password: licence
+    #                    roles: 'ROLE_USER'
+
     providers:
-        in_memory:
-            memory:
-                users:
-                    admin:
-                        password: admin
-                        roles: 'ROLE_ADMIN'
-                    licence:
-                        password: licence
-                        roles: 'ROLE_USER'
+        main:
+            entity:
+                class:  BabyAdvisor\BabyAdvisorBundle\Entity\User
+                property: Pseudo
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext                    
+        Symfony\Component\Security\Core\User\User: plaintext  
+        BabyAdvisor\BabyAdvisorBundle\Entity\User: plaintext                  
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -26,16 +33,18 @@ security:
         main:
             pattern:   ^/
             anonymous: true
-            provider:  in_memory
-            form_login:
-                login_path: /login
-                check_path: /login_check
-                default_target_path: /
-            logout:
-                path:   /logout
-                target: /
+            provider: main
+            #provider:  in_memory
+            #form_login:
+            #    login_path: /login
+            #    check_path: /login_check
+            #    default_target_path: /
+            #logout:
+            #    path:   /logout
+            #    target: /
+            
+            
 
-        
                     
             # activate different ways to authenticate
 

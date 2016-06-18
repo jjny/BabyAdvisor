@@ -32,3 +32,5 @@ BEGIN
     end if;
 END;//
 DELIMITER ;
+
+INSERT INTO `categorie`(`nom_cat`) VALUES ("Sportive"), ("Artistique"), ("Plein air"), ("Pédagogique"), ("Spectacle"), ("Exposition");

@@ -2,14 +2,21 @@ inscription:
     path:     /inscription
     defaults: { _controller: ConnexionBundle:Inscription:index }
 
+inscription_check:
+    path:     /inscription_check
+    defaults: { _controller: ConnexionBundle:Inscription:checkInsciption}    
+
+
 login:
     path:     /login
     defaults: { _controller: ConnexionBundle:Connexion:login }
 
 login_check:
     path:    /login_check
+    defaults: { _controller: ConnexionBundle:Connexion:loginCheck }
 
 logout:
     path:    /logout  
+    defaults: { _controller: ConnexionBundle:Connexion:logout }
 
     

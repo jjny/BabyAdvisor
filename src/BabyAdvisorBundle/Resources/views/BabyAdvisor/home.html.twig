@@ -14,52 +14,54 @@
         <a class="section-title" href="">
             <img src="{{ asset('images/now.png') }}" alt="" />
         </a>
-      <ul class="list-activites">
+      	<ul class="list-activites">
             <li>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
-          <li class="middle-element">
+          	<li class="middle-element">
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
-          <li>
+            <li>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
-          <li>
+            <li>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
-          <li class="middle-element">
+            <li class="middle-element">
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
-          <li>
+            <li>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                <h4 class="title-activite">title</h4>
+                <p clas="details-activite">category - date - lieu</p>
             </li>
         </ul>
     </div>
     <div id="best-notes-section" class="home-section">
         <a class="section-title" href=""><img src="{{ asset('images/title-best-notes.png') }}" alt="" /></a>
         <ul class="list-activites">
-            <li>
+        	{% for key, tA in topArticle if key < 3 %}
+            <li{% if key == 1 %} class="middle-element" {% endif %}>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
+                    <h4 class="title-activite">{{tA.Titre}}</h4>
+                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.NomCat}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
                         <img src="{{ asset('images/3.png') }}" />
                     </div>
                     <a class="partegez" href="">partagez !</a>
             </li>
-            <li class="middle-element">
+            {% endfor %}
+            <!--<li class="middle-element">
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                     <h4 class="title-activite">title</h4>
                     <p clas="details-activite">category - date - lieu</p>
@@ -76,7 +78,8 @@
                         <img src="{{ asset('images/5.png') }}" />
                     </div>
                     <a class="partegez" href="">partagez !</a>
-            </li>
+            </li>-->
         </ul>
     </div>
+
 {% endblock %}

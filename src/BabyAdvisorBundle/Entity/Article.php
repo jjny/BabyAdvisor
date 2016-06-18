@@ -26,6 +26,16 @@ class Article
     private $Adresse;
 
     /**
+     * @ORM\Column(type="string", length=5, nullable=true)
+     */
+    private $CP;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $Ville;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $Description;
@@ -554,5 +564,53 @@ class Article
     public function getUser()
     {
         return $this->User;
+    }
+
+    /**
+     * Set cP
+     *
+     * @param string $cP
+     *
+     * @return Article
+     */
+    public function setCP($cP)
+    {
+        $this->CP = $cP;
+
+        return $this;
+    }
+
+    /**
+     * Get cP
+     *
+     * @return string
+     */
+    public function getCP()
+    {
+        return $this->CP;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Article
+     */
+    public function setVille($ville)
+    {
+        $this->Ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->Ville;
     }
 }
