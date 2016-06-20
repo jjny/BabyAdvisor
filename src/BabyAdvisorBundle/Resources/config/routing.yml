@@ -24,4 +24,8 @@ recherche:
 
 view_article:
     path:     /article/{id}
-    defaults: { _controller: BabyAdvisorBundle:Home:view }
+    defaults: { _controller: BabyAdvisorBundle:Home:viewArticles }
+
+activities:
+    path:     /activites
+    defaults: { _controller: BabyAdvisorBundle:Home:viewActivities }
