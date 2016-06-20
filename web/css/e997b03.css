@@ -449,14 +449,14 @@ button{
     text-transform: uppercase;
     margin-left: 5px;
 }
-#formConnexion .valider{
+#formConnexion .valider #connexion_Connexion{
     display:block;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
     padding: 4px 20px;
 }
-#formConnexion .valider:hover{
+#formConnexion .valider #connexion_Connexion:hover{
     background-color: #566FA5;
     color: #ffffff;
     box-shadow: white;

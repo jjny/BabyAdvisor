@@ -37,9 +37,9 @@
                     <h4 class="title-activite">{{tA.Titre}}</h4>
                     <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} -{% endfor %} {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
-                        <h3>1</h3>
-                        <!-- if (note == 1) add id "un", if note =2 add id "deux" , etc...-->
-                        <object id="un" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+                        <h3>{%for n in tA.Notes %}{{n.MoyGen}}{% endfor %}</h3>
+                        <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
+                        <object id="trois" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
         Note de l'article <!-- fallback image in CSS -->
     </object>
                     </div>
