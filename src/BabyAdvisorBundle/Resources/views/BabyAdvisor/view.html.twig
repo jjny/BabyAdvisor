@@ -8,7 +8,22 @@
 	
 {% block body %}
     <div>
-        {% for c in article.categories%}{{dump(c)}}{% endfor %}
-    </div>
+        <p>{{article.titre}} - {{article.adresse ~ ' ' ~ article.CP ~ ' ' ~ article.ville}}</p>
+        <p>{{article.description}}</p>
+        <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
 
+        <p>{% for c in article.categories %}{{c.libelle}} - {% endfor %}{% for t in article.TranchesAge %}{{t.libelle}} - {% endfor %} créé le : {{article.DateCrea|date("m/d/Y")}}{% if not(article.DateCrea == article.DateMaJ) %} - modifié le : {{article.DateMaJ|date("m/d/Y")}}{% endif %}</p>
+        <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
+    </div>
+    <div>
+        {% for n in article.Notes %}
+            Propreté : {{n.MoyPropre}}<br>
+            Accéssibilité : {{n.MoyAcce}}<br>
+            Encadrement : {{n.MoyEncad}}<br>
+            Equipement : {{n.MoyEquip}}<br>
+            Ambiance : {{n.MoyAmbiance}}
+        {% endfor %}</div>
+    <div>
+        {% for c in article.commentaires %}{{c.Texte}}<br>{{c.user}} - {{c.DateCom|date("m/d/Y")}}{% endfor %}
+    </div>
 {% endblock %}
