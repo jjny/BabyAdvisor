@@ -52,36 +52,39 @@ class InscriptionController extends Controller
                         
                     } else {
                          $session->getFlashBag()->add('info', 'Vous pouvez dés à présent vous connecter');
-
-                         $age = $_POST['inscription']['trancheAge'];
+                        if($_POST['inscription']['nombreEnfant']!=0){
+                            $age = $_POST['inscription']['trancheAge'];
+                        } else {
+                            $age = null;
+                        }  
                          $interet = $_POST['inscription']['centreInterets'];
                          $pseudoNew = $_POST['inscription']['pseudo'];
 
-
+                         $em2 = $this->container->get('doctrine')->getManager();
                           $user = new User();
                              $where = null;
                              
-                            
-                            foreach($age as $id)
-                            {
-                                if(is_null($where))
+                            if($age!=null){
+                                foreach($age as $id)
                                 {
-                                    $where = $id;
+                                    if(is_null($where))
+                                    {
+                                        $where = $id;
+                                    }
+                                    else
+                                    {
+                                        $where .= ',' . $id;
+                                    }
                                 }
-                                else
-                                {
-                                    $where .= ',' . $id;
+                               
+                               
+                                 $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
+                               
+                                foreach ($age2 as  $a) {
+                                    $user ->addTranchesAge($a);
                                 }
-                            }
-                            
 
-                            $em2 = $this->container->get('doctrine')->getManager();
-                             $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
-                           
-                            foreach ($age2 as  $a) {
-                                $user ->addTranchesAge($a);
-                            }
-
+                            } 
                             $where = null;
                             foreach($interet as $id)
                             {
@@ -108,7 +111,9 @@ class InscriptionController extends Controller
                          $user ->setPassword($_POST['inscription']['motDePasse']);
                          $user ->setNom($_POST['inscription']['nom']);
                          $user ->setPrenom($_POST['inscription']['prenom']);
-                         $user ->setCodePostal($_POST['inscription']['cp']);
+                         $user ->setCP($_POST['inscription']['cp']);
+                         $user ->setAdresse($_POST['inscription']['adresse']);
+                         $user ->setVille($_POST['inscription']['ville']);
                          $user ->setRole('ROLE_USER');
 
 

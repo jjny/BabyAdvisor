@@ -30,7 +30,7 @@ class ArticleRepository extends EntityRepository
 		return $query->getResult();
     }
 
-    public function findLastArticles($nb)
+    public function findLastArticles()
     {
     	$rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addRootEntityFromClassMetadata('BabyAdvisorBundle:Article', 'A');

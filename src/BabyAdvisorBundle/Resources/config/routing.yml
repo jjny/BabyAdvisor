@@ -21,3 +21,7 @@ admin_suppresion:
 recherche:
     path:     /recherche
     defaults: { _controller: BabyAdvisorBundle:Home:recherche }
+
+signalement:
+    path:     /signalement
+    defaults: { _controller: BabyAdvisorBundle:Home:signaler }    

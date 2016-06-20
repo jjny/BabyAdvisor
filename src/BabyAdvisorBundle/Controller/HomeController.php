@@ -19,10 +19,9 @@ class HomeController extends Controller
         $em = $this->container->get('doctrine')->getManager();
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle();
 
-         $form_signaler = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
         //exit(dump($em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger())));
+        $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles();
 
-        $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles(6);
         //exit(dump($lastArticle));
 
         $session = $request->getSession();
@@ -51,8 +50,7 @@ class HomeController extends Controller
                 'BabyAdvisorBundle:BabyAdvisor:home.html.twig',
                 array(
                     'topArticle' => $topArticle,
-                    'lastArticle' => $lastArticle,
-                    'form' => $form_signaler->createView()
+                    'lastArticle' => $lastArticle
                 ));
     	}
         
@@ -63,4 +61,16 @@ class HomeController extends Controller
             'BabyAdvisorBundle:BabyAdvisor:recherche.html.twig'
             );
     }
+
+    public function signalerAction()
+    {
+         $form_signaler = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
+
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:confirmationSignalement.html.twig',
+                array(
+                    'form' => $form_signaler->createView()
+                ));
+    }
+
 }

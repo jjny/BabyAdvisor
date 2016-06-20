@@ -41,9 +41,19 @@ class User
     private $Prenom;
 
     /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $Adresse;
+
+    /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
-    private $CodePostal;
+    private $CP;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $Ville;
 
     /** 
      *@ORM\Column(type="string", length=12) 
@@ -547,5 +557,77 @@ class User
     public function removeCentreInteret(\BabyAdvisorBundle\Entity\Centre_interet $centreInteret)
     {
         $this->CentreInterets->removeElement($centreInteret);
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return User
+     */
+    public function setAdresse($adresse)
+    {
+        $this->Adresse = $adresse;
+    
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->Adresse;
+    }
+
+    /**
+     * Set cP
+     *
+     * @param string $cP
+     *
+     * @return User
+     */
+    public function setCP($cP)
+    {
+        $this->CP = $cP;
+    
+        return $this;
+    }
+
+    /**
+     * Get cP
+     *
+     * @return string
+     */
+    public function getCP()
+    {
+        return $this->CP;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return User
+     */
+    public function setVille($ville)
+    {
+        $this->Ville = $ville;
+    
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->Ville;
     }
 }

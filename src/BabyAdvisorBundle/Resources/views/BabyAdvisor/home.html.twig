@@ -30,34 +30,9 @@
             <li {% if key == 1 or key == 4 %} class="middle-element" {% endif %}>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                 <h4 class="title-activite">{{lA.Titre}}</h4>
-                <p clas="details-activite">category - date - lieu</p>
+                <p clas="details-activite">{% for cat in lA.Categories %}{{cat.Libelle}} -{% endfor %} {{lA.DateMaJ|date("d/m/Y")}} - {{lA.ville}}</p>
             </li>
             {% endfor %}
-          	<!--<li class="middle-element">
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
-                <p clas="details-activite">category - date - lieu</p>
-            </li>
-            <li>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
-                <p clas="details-activite">category - date - lieu</p>
-            </li>
-            <li>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
-                <p clas="details-activite">category - date - lieu</p>
-            </li>
-            <li class="middle-element">
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
-                <p clas="details-activite">category - date - lieu</p>
-            </li>
-            <li>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
-                <p clas="details-activite">category - date - lieu</p>
-            </li>-->
         </ul>
     </div>
     <div id="best-notes-section" class="home-section">
@@ -67,21 +42,14 @@
             <li{% if key == 1 %} class="middle-element" {% endif %}>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                     <h4 class="title-activite">{{tA.Titre}}</h4>
-                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
+                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} -{% endfor %} {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
                         <img src="{{ asset('images/3.png') }}" />
                     </div>
                     <a class="partegez" href="">partagez !</a>
+                    <a href="{{path ('signalement')}}"><button type="button">Signaler</button> </a>
 
-                    <form action="#" method="post">
-
-                    {{ form_widget(form._token) }}
-
-
-                    {{ form_widget(form.Signaler) }}
-                   
-
-                    </form>
+                    
 
 
             </li>
