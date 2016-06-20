@@ -21,8 +21,7 @@ class Photo
     private $NomPhoto;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="idArticle", cascade={"remove"})
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Photos", cascade={"remove"})
      */ 
     protected $Article;
 

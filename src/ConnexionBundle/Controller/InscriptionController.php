@@ -29,10 +29,12 @@ class InscriptionController extends Controller
 
         if ($request->isMethod('POST'))
         {
+
             $form->handleRequest($request);
 
             if ($form->isValid())
             {  
+                //die("test");
                 foreach ($users as $u) {
                     if($u->getPseudo()==$_POST['inscription']['pseudo']){
 
@@ -45,7 +47,7 @@ class InscriptionController extends Controller
                          $session->getFlashBag()->add('info', 'Le mot de passe doit contenir entre 8 et 16 carctéres avec au moins  1 lettre,1 chiffre et 1 majuscule');
 
                     }elseif ($_POST['inscription']['motDePasse']!=$_POST['inscription']['motDePasseConfirmation']) {
-                        $session->getFlashBag()->add('info', 'La confirmation du mot de pass est différent');
+                        $session->getFlashBag()->add('info', 'La confirmation du mot de passe est différent');
 
                         
                     } else {
@@ -120,6 +122,8 @@ class InscriptionController extends Controller
             }
             
         }
+
+        $session->getFlashBag()->add('info', 'test');
 
         return $this->render(
             'ConnexionBundle:connexion:inscription.html.twig',

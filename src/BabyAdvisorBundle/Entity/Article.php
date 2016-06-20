@@ -36,7 +36,7 @@ class Article
     private $Ville;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $Description;
 
@@ -62,7 +62,7 @@ class Article
     private $TranchesAge;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Categorie", inversedBy="Articles")
+     * @ORM\ManyToMany(targetEntity="Centre_interet", inversedBy="Articles")
      * @ORM\JoinTable(name="article_categorie")
      */
     protected $Categories;
@@ -302,40 +302,6 @@ class Article
     public function getTranchesAge()
     {
         return $this->TranchesAge;
-    }
-
-    /**
-     * Add category
-     *
-     * @param \BabyAdvisorBundle\Entity\Categorie $category
-     *
-     * @return Article
-     */
-    public function addCategory(\BabyAdvisorBundle\Entity\Categorie $category)
-    {
-        $this->Categories[] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Remove category
-     *
-     * @param \BabyAdvisorBundle\Entity\Categorie $category
-     */
-    public function removeCategory(\BabyAdvisorBundle\Entity\Categorie $category)
-    {
-        $this->Categories->removeElement($category);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->Categories;
     }
 
     /**
@@ -612,5 +578,39 @@ class Article
     public function getVille()
     {
         return $this->Ville;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $category
+     *
+     * @return Article
+     */
+    public function addCategory(\BabyAdvisorBundle\Entity\Centre_interet $category)
+    {
+        $this->Categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \BabyAdvisorBundle\Entity\Centre_interet $category
+     */
+    public function removeCategory(\BabyAdvisorBundle\Entity\Centre_interet $category)
+    {
+        $this->Categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->Categories;
     }
 }

@@ -7,6 +7,14 @@
 {% endblock %}
 	
 {% block body %}
+
+         <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+           
+        </div>
+
     <div class="media">
         <img id="banner" src="{{ asset('images/banner-babyAdvisor.jpg') }}" alt="Plus besoin de chasses au tresor pour vos bonnes adresses !" />
     </div>
@@ -14,13 +22,18 @@
         <a class="section-title" href="">
             <img src="{{ asset('images/now.png') }}" alt="" />
         </a>
+
+
+
       	<ul class="list-activites">
-            <li>
+            {% for key, lA in lastArticle%}
+            <li {% if key == 1 or key == 4 %} class="middle-element" {% endif %}>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                <h4 class="title-activite">title</h4>
+                <h4 class="title-activite">{{lA.Titre}}</h4>
                 <p clas="details-activite">category - date - lieu</p>
             </li>
-          	<li class="middle-element">
+            {% endfor %}
+          	<!--<li class="middle-element">
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                 <h4 class="title-activite">title</h4>
                 <p clas="details-activite">category - date - lieu</p>
@@ -44,7 +57,7 @@
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                 <h4 class="title-activite">title</h4>
                 <p clas="details-activite">category - date - lieu</p>
-            </li>
+            </li>-->
         </ul>
     </div>
     <div id="best-notes-section" class="home-section">
@@ -54,7 +67,7 @@
             <li{% if key == 1 %} class="middle-element" {% endif %}>
                 <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                     <h4 class="title-activite">{{tA.Titre}}</h4>
-                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.NomCat}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
+                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
                         <img src="{{ asset('images/3.png') }}" />
                     </div>
@@ -73,24 +86,6 @@
 
             </li>
             {% endfor %}
-            <!--<li class="middle-element">
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
-                    <div class="note-activite">
-                        <img src="{{ asset('images/4.png') }}" />
-                    </div>
-                    <a class="partegez" href="">partagez !</a>
-            </li>
-            <li>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">title</h4>
-                    <p clas="details-activite">category - date - lieu</p>
-                    <div class="note-activite">
-                        <img src="{{ asset('images/5.png') }}" />
-                    </div>
-                    <a class="partegez" href="">partagez !</a>
-            </li>-->
         </ul>
     </div>
 

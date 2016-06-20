@@ -16,7 +16,7 @@ class Commentaire
     private $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $Texte;
 
