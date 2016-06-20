@@ -30,7 +30,7 @@ class ArticleRepository extends EntityRepository
 		return $query->getResult();
     }
 
-    public function findLastArticles($nb)
+    public function findLastArticles()
     {
     	$rsm = new ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addRootEntityFromClassMetadata('BabyAdvisorBundle:Article', 'A');
@@ -46,11 +46,6 @@ class ArticleRepository extends EntityRepository
 
         $query = $this->_em->createNativeQuery($sql, $rsm);
         return $query->getResult();
-        /*$query = $this->createQueryBuilder('A')
-			->select('A')
-			->orderBy('A.DateMaJ');
-        $query->setMaxResults($nb);
-        return $query->getQuery()->getResult();*/
     }
 
     public function findArticlesOrderBy($orderBy)
