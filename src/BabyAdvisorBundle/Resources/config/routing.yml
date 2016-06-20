@@ -21,3 +21,7 @@ admin_suppresion:
 recherche:
     path:     /recherche
     defaults: { _controller: BabyAdvisorBundle:Home:recherche }
+
+view_article:
+    path:     /article/{id}
+    defaults: { _controller: BabyAdvisorBundle:Home:view }
