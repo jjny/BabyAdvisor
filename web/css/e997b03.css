@@ -540,8 +540,15 @@ list-activites li {
     margin-bottom: 0px;
     padding-bottom: 10px;
 }
-.note-activite img{
-    display:block;
+.note-activite h3{
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    color: #ef9129;
+    font-weight: bold;
+    font-size: 30px;
+}
+.note-activite object{
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
