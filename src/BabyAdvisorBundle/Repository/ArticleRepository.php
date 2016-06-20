@@ -15,41 +15,42 @@ class ArticleRepository extends EntityRepository
     {
 		$rsm = new ResultSetMappingBuilder($this->getEntityManager());
 		$rsm->addRootEntityFromClassMetadata('BabyAdvisorBundle:Article', 'A');
-		$rsm->addJoinedEntityFromClassMetadata('BabyAdvisorBundle\Entity\Categorie', 'C', 'A', 'Categories', array('id' => 'categorie_id'));
+		$rsm->addJoinedEntityFromClassMetadata('BabyAdvisorBundle\Entity\Centre_interet', 'C', 'A', 'Categories', array('id' => 'centre_interet_id'));
+        $rsm->addJoinedEntityFromClassMetadata('BabyAdvisorBundle\Entity\Note', 'N', 'A', 'Notes', array('id' => 'article_id'));
 
 		 
 		$sql = 'SELECT *
 				FROM article 
 				INNER JOIN article_categorie ON article_categorie.article_id = article.id 
-				INNER JOIN categorie ON categorie.id = article_categorie.categorie_id 
-				INNER JOIN note ON note.article_id = article.id 
+				INNER JOIN centre_interet ON centre_interet.id = article_categorie.centre_interet_id 
+                INNER JOIN note ON note.article_id = article.id 
 				ORDER BY note.moy_gen DESC';
 		 
 		$query = $this->_em->createNativeQuery($sql, $rsm);
-		 
 		return $query->getResult();
-        //exit(dump($projects));
-
-
-    	/*$this->_em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
-        $query = $this->createQueryBuilder('A')
-			->select('A')
-			->join('A.Notes', 'N')
-			->join('A.Categories', 'C')
-			->addSelect('N, C')
-			->orderBy('N.MoyGen');
-        $query->setMaxResults($nb);
-        exit(dump($query->getSql()));*/
-        //return $query->getQuery()->getResult();
     }
 
     public function findLastArticles($nb)
     {
-    	$query = $this->createQueryBuilder('A')
+    	$rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addRootEntityFromClassMetadata('BabyAdvisorBundle:Article', 'A');
+        $rsm->addJoinedEntityFromClassMetadata('BabyAdvisorBundle\Entity\Centre_interet', 'C', 'A', 'Categories', array('id' => 'centre_interet_id'));
+
+         
+        $sql = 'SELECT *
+                FROM article 
+                INNER JOIN article_categorie ON article_categorie.article_id = article.id 
+                INNER JOIN centre_interet ON centre_interet.id = article_categorie.centre_interet_id 
+                INNER JOIN note ON note.article_id = article.id
+                ORDER BY article.date_ma_j DESC';
+
+        $query = $this->_em->createNativeQuery($sql, $rsm);
+        return $query->getResult();
+        /*$query = $this->createQueryBuilder('A')
 			->select('A')
 			->orderBy('A.DateMaJ');
         $query->setMaxResults($nb);
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getResult();*/
     }
 
     public function findArticlesOrderBy($orderBy)

@@ -26,6 +26,11 @@ class Centre_interet
     private $Users;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="Categories")
+     */
+    private $Articles;
+
+    /**
      * Set libelle
      *
      * @param string $libelle
@@ -102,4 +107,38 @@ class Centre_interet
         return $this->Users;
     }
 
+
+    /**
+     * Add article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     *
+     * @return Centre_interet
+     */
+    public function addArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \BabyAdvisorBundle\Entity\Article $article
+     */
+    public function removeArticle(\BabyAdvisorBundle\Entity\Article $article)
+    {
+        $this->Articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->Articles;
+    }
 }

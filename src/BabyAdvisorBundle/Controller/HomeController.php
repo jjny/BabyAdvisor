@@ -18,7 +18,8 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle();
-        //exit(dump($em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger())));
+        $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles(6);
+        //exit(dump($lastArticle));
         $session = $request->getSession();
         $session->start();
 
@@ -41,7 +42,8 @@ class HomeController extends Controller
     		return $this->render(
                 'BabyAdvisorBundle:BabyAdvisor:home.html.twig',
                 array(
-                    'topArticle' => $topArticle 
+                    'topArticle' => $topArticle,
+                    'lastArticle' => $lastArticle
                 ));
     	}
         
