@@ -31,13 +31,15 @@
         <ul class="list-activites">
         	{% for key, tA in topArticle if key < 3 %}
             <li{% if key == 1 %} class="middle-element" {% endif %}>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
+            	<a href="{{path ('view_article', {'id': tA.id})}}">
+                	<img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                     <h4 class="title-activite">{{tA.Titre}}</h4>
                     <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} -{% endfor %} {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
                         <img src="{{ asset('images/3.png') }}" />
                     </div>
                     <a class="partegez" href="">partagez !</a>
+                </a>
             </li>
             {% endfor %}
         </ul>

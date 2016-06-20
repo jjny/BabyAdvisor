@@ -59,15 +59,30 @@ class HomeController extends Controller
             );
     }
 
-    public function viewAction($id)
+    public function viewArticlesAction($id)
     {
         $em = $this->container->get('doctrine')->getManager();
         $articleView = $em->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id' => $id));
         //exit(dump($articleView));
         return $this->render(
-            'BabyAdvisorBundle:BabyAdvisor:view.html.twig',
+            'BabyAdvisorBundle:BabyAdvisor:viewArticle.html.twig',
             array(
                 'article' => $articleView 
+                )
+            );
+    }
+
+    public function viewActivitiesAction()
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $allArticle = $em->getRepository('BabyAdvisorBundle:Article')->findAll();
+        $allActivite = $em->getRepository('BabyAdvisorBundle:Activite')->findBy(array(), array('Article' => 'ASC', 'Libelle' => 'ASC'));
+        //exit(dump($allActivite));
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:viewActivities.html.twig',
+            array(
+                'activite' => $allActivite,
+                'article' => $allArticle
                 )
             );
     }
