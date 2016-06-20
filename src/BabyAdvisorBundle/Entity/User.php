@@ -41,9 +41,19 @@ class User
     private $Prenom;
 
     /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $Adresse;
+
+    /**
      * @ORM\Column(type="string", length=5, nullable=true)
      */
-    private $CodePostal;
+    private $CP;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $Ville;
 
     /** 
      *@ORM\Column(type="string", length=12) 

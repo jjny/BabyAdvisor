@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle();
-        $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles(6);
+        $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles();
         //exit(dump($lastArticle));
         $session = $request->getSession();
         $session->start();
