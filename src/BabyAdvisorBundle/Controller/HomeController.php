@@ -22,6 +22,9 @@ class HomeController extends Controller
         $session = $request->getSession();
         $session->start();
 
+        dump($topArticle);
+        die();
+
     	if ($session->get('userRole')=='ROLE_ADMIN'){
 
         $em = $this->container->get('doctrine')->getManager();
