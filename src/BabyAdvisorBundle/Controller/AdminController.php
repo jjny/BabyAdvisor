@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function confirmationAction()
     {
 
-         $form = $this->createForm('BabyAdvisorBundle\Form\Type\confirmationType');
+         $form = $this->createForm('BabyAdvisorBundle\Form\Type\supprimerType');
 
 
     return $this->render('BabyAdvisorBundle:BabyAdvisor:adminSuppresion.html.twig', array(

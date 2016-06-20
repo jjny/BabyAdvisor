@@ -18,12 +18,13 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle();
+         $form_signaler = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
         //exit(dump($em->getConfiguration()->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger())));
         $session = $request->getSession();
         $session->start();
 
-        dump($topArticle);
-        die();
+       // dump($topArticle);
+        //die();
 
     	if ($session->get('userRole')=='ROLE_ADMIN'){
 
@@ -44,7 +45,8 @@ class HomeController extends Controller
     		return $this->render(
                 'BabyAdvisorBundle:BabyAdvisor:home.html.twig',
                 array(
-                    'topArticle' => $topArticle 
+                    'topArticle' => $topArticle, 
+                    'form' => $form_signaler->createView()
                 ));
     	}
         

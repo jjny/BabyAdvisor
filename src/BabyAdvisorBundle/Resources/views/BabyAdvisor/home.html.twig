@@ -59,6 +59,18 @@
                         <img src="{{ asset('images/3.png') }}" />
                     </div>
                     <a class="partegez" href="">partagez !</a>
+
+                    <form action="#" method="post">
+
+                    {{ form_widget(form._token) }}
+
+
+                    {{ form_widget(form.Signaler) }}
+                   
+
+                    </form>
+
+
             </li>
             {% endfor %}
             <!--<li class="middle-element">
