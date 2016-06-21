@@ -7,10 +7,21 @@
 {% endblock %}
 	
 {% block body %}
-    <div>
-        <h2>{{article.titre}} - </h2>
-        <h4>{{article.adresse ~ ' ' ~ article.CP ~ ' ' ~ article.ville}}</h4>
+    <div class="article">
         
+        <!-- TITRE -->
+       <div class="entete">
+        <h2>{{article.titre}}   
+            <span>{{article.adresse ~ ' ' ~ article.CP ~ ' ' ~ article.ville}}</span>
+        </h2>
+        <p>
+            <span class="soustitre">{% for c in article.categories %}{{c.libelle}} - {% endfor %}
+            {% for t in article.TranchesAge %}{{t.libelle}} - {% endfor %}
+            </span>
+            <span class="date" >créé le {{article.DateCrea|date("m/d/Y")}}{% if not(article.DateCrea == article.DateMaJ) %} - modifié le : {{article.DateMaJ|date("m/d/Y")}}{% endif %}
+            </span>
+        </p>
+    </div>
         
         <!-- CAROUSEL IMG -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -22,34 +33,13 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-            </div>
-          </div>
+          <img class="first-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="First slide">
         </div>
         <div class="item active">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
+          <img class="second-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Second slide">
         </div>
         <div class="item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
+          <img class="third-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Third slide">
         </div>
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -62,28 +52,62 @@
       </a>
     </div>
         
-        <!-- DESCRIPTION -->
-        <p>{{article.description}}</p>
-        <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
-
-        
-        <p>{% for c in article.categories %}{{c.libelle}} - {% endfor %}
-            {% for t in article.TranchesAge %}{{t.libelle}} - {% endfor %} créé le : {{article.DateCrea|date("m/d/Y")}}{% if not(article.DateCrea == article.DateMaJ) %} - modifié le : {{article.DateMaJ|date("m/d/Y")}}{% endif %}</p>
-        <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
-    
-        <!-- MAP -->
-
-    <!-- NOTES -->
-    <div class="notes">
-        {% for n in article.Notes %}
-            Propreté : {{n.MoyPropre}}<br>
-            Accéssibilité : {{n.MoyAcce}}<br>
-            Encadrement : {{n.MoyEncad}}<br>
-            Equipement : {{n.MoyEquip}}<br>
-            Ambiance : {{n.MoyAmbiance}}
-        {% endfor %}
-</div>
-        
+       
+    <div class="bottom-page">    
+         <!-- DESCRIPTION left -->
+        <div class="description col-md-8  ">
+            <p>{{article.description}}</p>
+            <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
+            <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
+        </div>
+       
+        <!-- NOTES right -->
+        <div class="notes col-md-4  ">
+           <div class="note-article">
+             <h3>{%for n in article.Notes %}{{n.MoyGen}}{% endfor %}</h3>
+                        <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
+             <object id="trois" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+        Note de l'article <!-- fallback image in CSS -->
+            </object>
+        </div> 
+        <div class="list-moyen-container">    
+            <ul class="list-moyen">
+                {% for n in article.Notes %}
+                    <li><img src="{{ asset('images/notes_proprete.png') }}"/>
+                        Propreté  {{n.MoyPropre}}
+                        <object id="trois" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+            Note de l'article <!-- fallback image in CSS -->
+                        </object>
+                    </li>
+                    <li><img src="{{ asset('images/notes_accesibilite.png') }}"/>
+                        Accéssibilité  {{n.MoyAcce}}
+                        <object id="deux" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+            Note de l'article <!-- fallback image in CSS -->
+                        </object>
+                    </li>
+                    <li><img src="{{ asset('images/notes_encadrement.png') }}"/>
+                        Encadrement  {{n.MoyEncad}}
+                        <object id="trois" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+            Note de l'article <!-- fallback image in CSS -->
+                        </object>
+                        </li>
+                    <li><img src="{{ asset('images/notes_equipement.png') }}"/>
+                        Equipement  {{n.MoyEquip}}
+                        <object id="cinque" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+            Note de l'article <!-- fallback image in CSS -->
+                        </object>
+                        </li>
+                    <li><img src="{{ asset('images/notes_ambiance.png') }}"/>
+                        Ambiance  {{n.MoyAmbiance}}
+                        <object id="un" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+            Note de l'article <!-- fallback image in CSS -->
+                        </object>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+ </div> 
         <!-- COMMENTAIRES -->
     <div>
         {% for c in article.commentaires %}{{c.Texte}}<br>{{c.user}} - {{c.DateCom|date("m/d/Y")}}{% endfor %}

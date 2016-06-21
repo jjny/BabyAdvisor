@@ -1,0 +1,106 @@
+#banner{
+    width:100%;
+    height:auto;
+}
+.home-section{
+     margin:30px 0px;
+}
+.section-title img{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.list-activites {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 20px 0px;
+    width: 100%;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+list-activites li {
+    display: inline-block;
+    width: 100%;
+}
+.list-activites .cover{
+    width:100%
+}
+.list-activites p {
+    border-bottom: 1px solid #000000;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+.note-activite h3{
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    color: #ef9129;
+    font-weight: bold;
+    font-size: 30px;
+}
+.note-activite object{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partegez{
+    color: #ffffff !important;
+    background-color: #f1a82c;
+    text-align: center;
+    display: block;
+    padding: 3px 0px;
+}
+@media only screen and (max-width: 991px) and (min-width: 768px){
+    #now-section .list-activites {
+        -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+    }
+    .note-activite img{
+        max-width: 235px;
+        height: auto;
+    }
+}
+@media only screen and (max-width: 767px){
+    .media{
+        display:none;
+    }
+       #now-section .list-activites {
+            -webkit-column-count: 1; /* Chrome, Safari, Opera */
+            -moz-column-count: 1; /* Firefox */
+            column-count: 1;
+        }
+        .note-activite img{
+            max-width: 154px;
+            height: auto;
+        }
+}
+@media only screen and (max-width: 447px){
+    #main-content{
+        margin-top: 210px;
+    }
+}
+@media only screen and (max-width: 374px){
+    #main-content{
+        margin-top: 210px;
+    }
+    .section-title img{
+        max-width: 300px;
+        height: auto;
+    }
+    .home-section h4, .home-section p{
+        text-align: center;
+    }
+    #best-notes-section .list-activites {
+            -webkit-column-count: 1; /* Chrome, Safari, Opera */
+            -moz-column-count: 1; /* Firefox */
+            column-count: 1;
+        }
+    #best-notes-section .list-activites li{
+        margin-bottom:20px;
+    }
+}
