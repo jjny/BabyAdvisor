@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Article{% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+    <div>
+        <p>
+            {% for a in article %}
+                {% if not a.Activites|length == 0 %}
+                    {{a.titre}}<br>
+                    {% for elt in a.Activites %} 
+                        -- {{elt.libelle}} - {{elt.tarif}}<br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+{% endblock %}

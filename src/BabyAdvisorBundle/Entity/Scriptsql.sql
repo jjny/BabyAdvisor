@@ -31,6 +31,26 @@ BEGIN
         end;
     end if;
 END;//
+
+CREATE TRIGGER `BabyAdvisor`.`Article_AFTER_UPDATE` AFTER UPDATE ON `Article` FOR EACH ROW
+BEGIN
+	IF (NEW.signale == 1) THEN
+		BEGIN
+			INSERT INTO estsignale (user_id, object_name, id_object)
+			VALUES (NEW.user_id, 'Article', NEW.id);
+		END;
+	End if;
+END;//
+
+CREATE TRIGGER `BabyAdvisor`.`Commentaire_AFTER_UPDATE` AFTER UPDATE ON `commentaire` FOR EACH ROW
+BEGIN
+	IF (NEW.signale == 1) THEN
+		BEGIN
+			INSERT INTO estsignale (user_id, object_name, id_object)
+			VALUES (NEW.user_id, 'commentaire', NEW.id);
+		END;
+	End if;
+END;//
 DELIMITER ;
 
 INSERT INTO `centre_interet`(`libelle`) VALUES ("Sportive"), ("Artistique"), ("Plein air"), ("Pédagogique"), ("Spectacle"), ("Exposition");

@@ -1,0 +1,111 @@
+.article .entete{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.article h2>span{
+    font-size: 16px;
+    padding-left: 10px;
+}
+.article .soustitre{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.article .date{
+    font-style: italic;
+}
+.article .carousel-inner img{
+    max-height: 500px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.article .carousel-control{
+    background-image: none !important;
+}
+.article .bottom-page{
+     margin-top: 20px;
+    margin-bottom: 20px;
+}
+.article .description{
+    margin-top: 20px;
+}
+.article .description p{
+    width: 95%;
+    font-size: 16px;
+    line-height: 150%;
+}
+.article .note-article h3{
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    color: #ef9129;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 5px;
+}
+.article .note-article object{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 7px;
+}
+.article .list-moyen{
+    list-style-type: none;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 88%;
+}
+.article .list-moyen li{
+    padding:5px 0px;
+}
+.article .list-moyen li>img{
+    max-height: 50px;
+    padding-right: 12px;
+}
+.article .list-moyen .list-moyen-svg{
+    max-width:60px;
+    padding-left: 10px;
+}
+@media only screen and (max-width: 991px) {
+    .article{
+        margin-top: 50px; 
+    }
+    .article .description {
+        margin-bottom: 20px;
+    }
+    .article .description p{
+        width: 100%;
+    }
+    .article .note-article{
+        margin-bottom: 10px;
+    }
+    .article .note-article object{
+        max-width: 300px;
+    }
+    .article .list-moyen{
+        text-align: center;
+        padding-left: 0px;
+        width:100%;
+    }
+    .article .list-moyen li>img{
+        max-height: 50px;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .article{
+        margin-top: 20px; 
+    }
+}
+@media only screen and (max-width: 474px){
+    .article{
+        margin-top: 50px; 
+    }
+    .article h2>span{
+        margin-top:10px;
+        display: block;
+    }
+}
