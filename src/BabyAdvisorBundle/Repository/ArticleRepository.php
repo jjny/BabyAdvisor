@@ -46,11 +46,6 @@ class ArticleRepository extends EntityRepository
 
         $query = $this->_em->createNativeQuery($sql, $rsm);
         return $query->getResult();
-        /*$query = $this->createQueryBuilder('A')
-			->select('A')
-			->orderBy('A.DateMaJ');
-        $query->setMaxResults($nb);
-        return $query->getQuery()->getResult();*/
     }
 
     public function findArticlesOrderBy($orderBy)

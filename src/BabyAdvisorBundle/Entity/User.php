@@ -569,7 +569,6 @@ class User
     public function setAdresse($adresse)
     {
         $this->Adresse = $adresse;
-    
         return $this;
     }
 
@@ -593,7 +592,6 @@ class User
     public function setCP($cP)
     {
         $this->CP = $cP;
-    
         return $this;
     }
 
@@ -617,7 +615,6 @@ class User
     public function setVille($ville)
     {
         $this->Ville = $ville;
-    
         return $this;
     }
 

@@ -37,9 +37,12 @@ class HomeController extends Controller
               array('Signale' => '1')
                 );
 
-    		return $this->render('BabyAdvisorBundle:BabyAdvisor:admin.html.twig', array(
-
-                'commentaires' => $commentaireSignal));
+    		return $this->render(
+                'BabyAdvisorBundle:BabyAdvisor:admin.html.twig', 
+                array(
+                    'commentaires' => $commentaireSignal
+                    )
+                );
     	}
     	elseif ($session->get('userRole')=='ROLE_USER'){
         
@@ -51,7 +54,8 @@ class HomeController extends Controller
                 array(
                     'topArticle' => $topArticle,
                     'lastArticle' => $lastArticle
-                ));
+                    )
+                );
     	}
         
     }
@@ -71,6 +75,19 @@ class HomeController extends Controller
                 array(
                     'form' => $form_signaler->createView()
                 ));
+    }
+
+    public function viewAction($id)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $articleView = $em->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id' => $id));
+        //exit(dump($articleView));
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:view.html.twig',
+            array(
+                'article' => $articleView 
+                )
+            );
     }
 
 }

@@ -25,3 +25,8 @@ recherche:
 signalement:
     path:     /signalement
     defaults: { _controller: BabyAdvisorBundle:Home:signaler }    
+
+view_article:
+    path:     /article/{id}
+    defaults: { _controller: BabyAdvisorBundle:Home:view }
+
