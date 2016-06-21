@@ -30,3 +30,6 @@ view_article:
     path:     /article/{id}
     defaults: { _controller: BabyAdvisorBundle:Home:view }
 
+ajouter_article:
+    path:     /ajouter_article
+    defaults: { _controller: BabyAdvisorBundle:Home:ajouterArticle }
