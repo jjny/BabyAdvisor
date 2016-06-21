@@ -8,11 +8,13 @@
 	
 {% block body %}
 
-	 <div class="container home">
-	  <p> liste des membres</p>
-
-	  </div >
-
-
+	<div class="container home">
+		<p> liste des membres</p>
+		<p>
+			{% for u in users %}
+				{{u.Pseudo}}<br>
+			{% endfor %}
+		</p>
+	</div >
 
 {% endblock %}

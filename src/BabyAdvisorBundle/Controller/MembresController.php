@@ -12,6 +12,14 @@ class MembresController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BabyAdvisorBundle:BabyAdvisor:membres.html.twig');
+    	$em = $this->container->get('doctrine')->getManager();
+        $allUser = $em->getRepository('BabyAdvisorBundle:User')->findAll();
+        //exit(dump($allActivite));
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:membres.html.twig',
+            array(
+                'users' => $allUser
+                )
+            );
     }
 }
