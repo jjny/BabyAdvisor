@@ -7,6 +7,14 @@
 {% endblock %}
 	
 {% block body %}
+
+         <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+           
+        </div>
+
     <div class="media">
         <img id="banner" src="{{ asset('images/banner-babyAdvisor.jpg') }}" alt="Plus besoin de chasses au tresor pour vos bonnes adresses !" />
     </div>
@@ -14,6 +22,9 @@
         <a class="section-title" href="">
             <img src="{{ asset('images/now.png') }}" alt="" />
         </a>
+
+
+
       	<ul class="list-activites">
             {% for key, lA in lastArticle%}
 
@@ -45,7 +56,10 @@
     </object>
                     </div>
                     <a class="partegez" href="">partagez !</a>
-                </a>
+
+                    <a href="{{path ('signalement')}}"><button type="button">Signaler</button> </a>
+
+                    
             </li>
             {% endfor %}
         </ul>

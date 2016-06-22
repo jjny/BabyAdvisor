@@ -34,6 +34,8 @@ class inscriptionType extends AbstractType {
             ->add('prenom', TextType::class, array('label' => 'Prénom', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('pseudo', TextType::class, array('label' => 'Pseudo', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('email', EmailType::class, array('label' => 'Email', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
+             ->add('adresse', TextType::class, array('label' => 'Adresse', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
+              ->add('ville', TextType::class, array('label' => 'Ville', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('cp', NumberType::class, array('label' => 'Code postal', 'attr' => array('class' => 'form-control', 'placeholder' => '', 'maxlenght' => 5, 'size' => 5), 'scale' => 0))
             ->add('motDePasse', PasswordType::class, array('label' => 'Mot de passe', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
              ->add('motDePasseConfirmation', PasswordType::class, array('label' => 'Confirmez votre mot de passe', 'attr' => array('class' => 'form-control', 'placeholder' => '')))

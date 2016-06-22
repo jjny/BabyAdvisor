@@ -29,10 +29,12 @@ class InscriptionController extends Controller
 
         if ($request->isMethod('POST'))
         {
+
             $form->handleRequest($request);
 
             if ($form->isValid())
             {  
+                //die("test");
                 foreach ($users as $u) {
                     if($u->getPseudo()==$_POST['inscription']['pseudo']){
 
@@ -45,41 +47,44 @@ class InscriptionController extends Controller
                          $session->getFlashBag()->add('info', 'Le mot de passe doit contenir entre 8 et 16 carctéres avec au moins  1 lettre,1 chiffre et 1 majuscule');
 
                     }elseif ($_POST['inscription']['motDePasse']!=$_POST['inscription']['motDePasseConfirmation']) {
-                        $session->getFlashBag()->add('info', 'La confirmation du mot de pass est différent');
+                        $session->getFlashBag()->add('info', 'La confirmation du mot de passe est différent');
 
                         
                     } else {
                          $session->getFlashBag()->add('info', 'Vous pouvez dés à présent vous connecter');
-
-                         $age = $_POST['inscription']['trancheAge'];
+                        if($_POST['inscription']['nombreEnfant']!=0){
+                            $age = $_POST['inscription']['trancheAge'];
+                        } else {
+                            $age = null;
+                        }  
                          $interet = $_POST['inscription']['centreInterets'];
                          $pseudoNew = $_POST['inscription']['pseudo'];
 
-
+                         $em2 = $this->container->get('doctrine')->getManager();
                           $user = new User();
                              $where = null;
                              
-                            
-                            foreach($age as $id)
-                            {
-                                if(is_null($where))
+                            if($age!=null){
+                                foreach($age as $id)
                                 {
-                                    $where = $id;
+                                    if(is_null($where))
+                                    {
+                                        $where = $id;
+                                    }
+                                    else
+                                    {
+                                        $where .= ',' . $id;
+                                    }
                                 }
-                                else
-                                {
-                                    $where .= ',' . $id;
+                               
+                               
+                                 $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
+                               
+                                foreach ($age2 as  $a) {
+                                    $user ->addTranchesAge($a);
                                 }
-                            }
-                            
 
-                            $em2 = $this->container->get('doctrine')->getManager();
-                             $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
-                           
-                            foreach ($age2 as  $a) {
-                                $user ->addTranchesAge($a);
-                            }
-
+                            } 
                             $where = null;
                             foreach($interet as $id)
                             {
@@ -106,7 +111,9 @@ class InscriptionController extends Controller
                          $user ->setPassword($_POST['inscription']['motDePasse']);
                          $user ->setNom($_POST['inscription']['nom']);
                          $user ->setPrenom($_POST['inscription']['prenom']);
-                         $user ->setCodePostal($_POST['inscription']['cp']);
+                         $user ->setCP($_POST['inscription']['cp']);
+                         $user ->setAdresse($_POST['inscription']['adresse']);
+                         $user ->setVille($_POST['inscription']['ville']);
                          $user ->setRole('ROLE_USER');
 
 
@@ -120,6 +127,7 @@ class InscriptionController extends Controller
             }
             
         }
+
 
         return $this->render(
             'ConnexionBundle:connexion:inscription.html.twig',

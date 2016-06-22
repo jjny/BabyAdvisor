@@ -19,27 +19,19 @@
 </metadata>
 <g>
 	<g>
-		
 			<text class="unEtoile" transform="matrix(1 0 0 1 68.2484 28.7802)"  font-family="'MonkeyHatDEMO'" fill="#566FA5">*</text>
 	</g>
-    <g>
-		
-			<text class="deuxEtoile" transform="matrix(1 0 0 1 98.5815 28.7804)" fill="#566FA5" font-family="'MonkeyHatDEMO'">*</text>
+    <g>		
+			<text class="deuxEtoile" transform="matrix(1 0 0 1 98.5815 28.7804)" fill="#566FA5" font-family="MonkeyHatDEMO">*</text>
 	</g>
-    <g>
-		
-			<text  class="troisEtoile" transform="matrix(1 0 0 1 129.2482 28.7805)" fill="#566FA5" font-family="'MonkeyHatDEMO'">*</text>
+    <g>		
+			<text  class="troisEtoile" transform="matrix(1 0 0 1 129.2482 28.7805)" fill="#566FA5" font-family="MonkeyHatDEMO">*</text>
 	</g>
-    <g>
-		
+    <g>		
 			<text class="quatreEtoile" transform="matrix(1 0 0 1 160.7343 28.7802)" fill="#566FA5" font-family="'MonkeyHatDEMO'">*</text>
 	</g>
-    <g>
-		
+    <g>		
 			<text class="cinqueEtoile" transform="matrix(1 0 0 1 191.4999 28.7799)" fill="#566FA5" font-family="'MonkeyHatDEMO'">*</text>
 	</g>
-	
-	
-	
 </g>
 </svg>

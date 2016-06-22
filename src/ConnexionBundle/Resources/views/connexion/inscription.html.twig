@@ -6,10 +6,11 @@
 
     <div id="form-inscription" class="form-group container home col-md-10 col-md-offset-1 col-sm-12">
 
-<div>
+        <div>
             {% for message in app.session.flashbag.get('info') %}
                 <p class="alert alert-danger" role="alert">{{ message }}</p>
             {% endfor %}
+           
         </div>
         
         
@@ -28,10 +29,26 @@
                 {{ form_widget(form.pseudo) }}
            </div>
         </div>
+
+         <div class="row">
+            <div class="left">
+                {{ form_label(form.adresse) }}
+                {{ form_widget(form.adresse) }}
+            </div>
+            <div class="center">
+                {{ form_label(form.ville) }}
+                {{ form_widget(form.ville) }}
+            </div>
+            <div class="right">
+                {{ form_label(form.cp) }}
+                {{ form_widget(form.cp) }} 
+            </div>
+            
         <div class="row">
             <div class="left">
                 {{ form_label(form.email) }}
                 {{ form_widget(form.email) }}
+
             </div>
             <div class="center">
                 {{ form_label(form.motDePasse) }}
@@ -41,6 +58,8 @@
                 {{ form_label(form.motDePasseConfirmation) }}
                 {{ form_widget(form.motDePasseConfirmation) }}
             </div>
+
+           
         </div>
         <div id="row3" class="row">
             <div class="left">

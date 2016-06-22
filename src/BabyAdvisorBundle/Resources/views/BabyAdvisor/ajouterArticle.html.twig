@@ -1,0 +1,122 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Ajouter un article {% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+
+	 <div class="container home form-group">
+
+     <p>ajouter un article</p>
+
+       <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+        </div>
+
+        <form action="{{ path ('ajouter_article') }}" method="post" enctype="multipart/form-data">
+
+           
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre) }}
+
+        {{ form_label(form.adresse) }}
+        {{ form_widget(form.adresse) }}
+
+        {{ form_label(form.ville) }}
+        {{ form_widget(form.ville) }}
+
+        {{ form_label(form.cp) }}
+        {{ form_widget(form.cp) }}
+
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+
+        {{ form_label(form.centreInterets) }}
+        {{ form_widget(form.centreInterets) }}
+    
+        {{ form_label(form.trancheAge) }}
+        {{ form_widget(form.trancheAge) }}
+
+        {{ form_row(form.horaires) }}
+
+
+        
+        <button type="button" id="ajouter_horaire"  name="button"> + horaires </button>
+
+        </br>
+
+         {{ form_label(form.photos) }}
+        {{ form_widget(form.photos) }}
+
+
+         
+
+      
+
+
+        {{ form_widget(form._token) }}
+
+
+        {{ form_widget(form.Ajouter) }}
+       
+
+        </form>
+
+	  
+
+        	
+	  </div >
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var $container = $('div#ajouter_article_horaires');
+
+
+            var index = $container.find(':input').length;
+
+
+            $("#ajouter_horaire").click(function(e){         
+                   addHoraire($container);
+                   e.preventDefault(); 
+                    return false;      
+            });
+
+
+           
+    function addHoraire($container) {
+      var template = $container.attr('data-prototype')
+        .replace(/__name__label__/g, 'Horaire n°' + (index+1))
+        .replace(/__name__/g,        index)
+      ;
+      var $prototype = $(template);
+
+      $container.append($prototype);
+      index++;
+    }
+
+
+
+
+           
+        });
+
+
+
+
+
+
+
+    </script>
+{% endblock %}

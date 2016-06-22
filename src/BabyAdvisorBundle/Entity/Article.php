@@ -1,9 +1,9 @@
 <?php
 namespace BabyAdvisorBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-
 /**
  * @ORM\Entity(repositoryClass="BabyAdvisorBundle\Repository\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="Article")
  */
 class Article
@@ -612,5 +612,19 @@ class Article
     public function getCategories()
     {
         return $this->Categories;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        $this->setDateMaJ(new \DateTime(date('Y-m-d H:i:s')));
+
+        if($this->getDateCrea() == null)
+        {
+            $this->setDateCrea(new \DateTime(date('Y-m-d H:i:s')));
+        }
     }
 }

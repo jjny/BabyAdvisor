@@ -1,8 +1,6 @@
-svg{
-    font-family: ;
+svg{    
     font-size:28px;
-    letter-spacing:6;
 }
 svg text{
-     fill="#566FA5";
+     fill: #566FA5;
 }

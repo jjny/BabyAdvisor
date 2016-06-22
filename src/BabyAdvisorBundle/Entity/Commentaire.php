@@ -4,6 +4,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="Commentaire")
  */
 class Commentaire
@@ -168,5 +169,17 @@ class Commentaire
     public function getArticle()
     {
         return $this->Article;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps()
+    {
+        if($this->getDateCom() == null)
+        {
+            $this->setDateCom(new \DateTime(date('Y-m-d H:i:s')));
+        }
     }
 }
