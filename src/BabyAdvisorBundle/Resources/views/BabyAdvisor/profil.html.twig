@@ -8,11 +8,42 @@
 	
 {% block body %}
 
-	 <div class="container home">
-	  <p> page profil</p>
-
-	  </div >
-
-
+	<div class="container home">
+		<h1>Information personnel</h1>
+		<p>{{userInfo.nom}} {{userInfo.prenom}}
+		{{userInfo.AdresseMail}}</p>
+		<h1>Adresse :</h1>
+		<p>{{userInfo.Adresse}} {{userInfo.CP}} {{userInfo.Ville}}</p>
+		<h1>Vos centre d'intérêt :</h1>
+		<ul>
+			{% for ci in userInfo.CentreInterets %}
+				<li>{{ci.Libelle}}</li>
+			{% endfor %}
+		</ul>
+		<h1>Tranche d'age de votre/vos enfants :</h1>
+		<ul>
+			{% for tA in userInfo.TranchesAge %}
+				<li>{{tA.Libelle}}</li>
+			{% endfor %}
+		</ul>
+		<h1>Vos articles :</h1>
+		<ul>
+			{% for A in userInfo.Articles %}
+				<li><a href="{{path ('view_article', {'id': A.id})}}">{{A.Titre}}</a></li>
+			{% endfor %}
+		</ul>
+		<h1>Vos commentaires :</h1>
+		<ul>
+			{% for C in userInfo.Commentaires %}
+				<li><a href="{{path ('view_commentaire', {'id': C.id})}}">{{C.Texte}}</a></li>
+			{% endfor %}
+		</ul>
+		<h1>Vos signalements :</h1>
+		<ul>
+			{% for s in signalement %}
+				<li>{{s.ObjectName}}</li>
+			{% endfor %}
+		</ul>
+	</div>
 
 {% endblock %}

@@ -63,7 +63,7 @@ class HomeController extends Controller
     {
         $em = $this->container->get('doctrine')->getManager();
         $articleView = $em->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id' => $id));
-        //exit(dump($articleView));
+
         return $this->render(
             'BabyAdvisorBundle:BabyAdvisor:viewArticle.html.twig',
             array(
