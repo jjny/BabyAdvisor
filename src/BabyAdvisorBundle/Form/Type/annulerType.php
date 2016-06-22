@@ -8,17 +8,17 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type as Type;
 
-class supprimerType extends AbstractType {
+class annulerType extends AbstractType {
 
    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-              ->add('supprimer', ChoiceType::class, array('label' => 'Voulez-vous vraiment supprimer ce post ?',
+              ->add('annuler', ChoiceType::class, array('label' => 'Voulez-vous vraiment annuler le signalement de ce post ?',
 				    'choices'  => array(
 				        'Oui' => true,
 				        'Non' => false),
 				    'expanded' => true))
-            ->add('Supprimer', SubmitType::class);
+            ->add('Valider', SubmitType::class);
     }
 
     }

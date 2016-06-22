@@ -22,20 +22,17 @@
                 <tr>
                     <th>signalement de</th>
                     <th>signaler par</th>
-                    <th>Etat</th>
                     <th>Actions</th>
                 </tr>
+                {% for s in posts %}
                 <tr>
                     <td>
-                        type :article, commentaire, photo <br/>
-                        son id <br/>
-                        id du créateur du post 
+                        type : {{s.ObjectName}} <br/>
+                        id : {{s.IdObject}}
                     </td>
-                    <td>                          	
-                        id de l'advisor          
-                    </td>
-                    <td>                          	
-                        traité                              
+                    <td>  
+                        pseudo : {{s.User.Pseudo}} <br/>                        	
+                        id : {{s.User.id}}           
                     </td>
                     <td>
                         <div class="btn-group">
@@ -49,14 +46,21 @@
                                     </form>
 								</li>
                                 <li>
-                                    <form method="post" action="{{path ('admin_suppresion')}}">
+                                    <form method="post" action="{{path ('admin_suppresion', {'type': s.ObjectName, 'id': s.IdObject} ) }}">
                                         <button class="btn btn-xs btn-block">Supprimer</button>
                                     </form>
 								</li>
+                                <li>
+                                    <form method="post" action="{{path ('admin_annuler', {'type': s.ObjectName, 'id': s.IdObject})}}">
+                                        <button class="btn btn-xs btn-block">Annuler signalement</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
 					</td>
-                </tr>               
+                </tr>  
+
+                {% endfor %}             
             </table>
 
              <table id="tableSignalements" class="table articlesTable">
@@ -93,7 +97,7 @@
                                     </form>
 								</li>
                                 <li>
-                                    <form method="post" action="{{path ('admin_suppresion')}}">
+                                    <form method="post" action="#">
                                         <button class="btn btn-xs btn-block">Supprimer</button>
                                     </form>
 								</li>
@@ -134,7 +138,7 @@
                                     </form>
 								</li>
                                 <li>
-                                    <form method="post" action="{{path ('admin_suppresion')}}">
+                                    <form method="post" action="#">
                                         <button class="btn btn-xs btn-block">Supprimer</button>
                                     </form>
 								</li>
@@ -175,7 +179,7 @@
                                     </form>
 								</li>
                                 <li>
-                                    <form method="post" action="{{path ('admin_suppresion')}}">
+                                    <form method="post" action="#">
                                         <button class="btn btn-xs btn-block">Supprimer</button>
                                     </form>
 								</li>
@@ -215,7 +219,7 @@
                                     </form>
 								</li>
                                 <li>
-                                    <form method="post" action="{{path ('admin_suppresion')}}">
+                                    <form method="post" action="#">
                                         <button class="btn btn-xs btn-block">Supprimer</button>
                                     </form>
 								</li>
