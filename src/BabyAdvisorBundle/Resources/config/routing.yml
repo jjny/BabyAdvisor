@@ -40,4 +40,8 @@ activities:
 
 noter_article:
     path:     /noter_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:noterArticle }    
+    defaults: { _controller: BabyAdvisorBundle:Home:noterArticle }  
+
+commenter_article:
+    path:     /commenter_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }       
