@@ -22,9 +22,9 @@ recherche:
     path:     /recherche
     defaults: { _controller: BabyAdvisorBundle:Home:recherche }
 
-signalement:
-    path:     /signalement
-    defaults: { _controller: BabyAdvisorBundle:Home:signaler }    
+signaler_article:
+    path:     /signaler_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }    
 
 view_article:
     path:     /article/{id}
