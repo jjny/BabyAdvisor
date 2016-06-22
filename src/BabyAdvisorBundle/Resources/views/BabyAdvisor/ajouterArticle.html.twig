@@ -8,9 +8,9 @@
 	
 {% block body %}
 
-	 <div class="container home form-group">
+	 <div id="ajout-article" class="container home form-group col-md-10 col-md-offset-1 col-sm-12">
 
-     <p>ajouter un article</p>
+     <h2>Ajouter un article</h2>
 
        <div>
             {% for message in app.session.flashbag.get('info') %}
@@ -20,80 +20,86 @@
 
         <form action="{{ path ('ajouter_article') }}" method="post" enctype="multipart/form-data">
 
-           
-        {{ form_label(form.titre) }}
-        {{ form_widget(form.titre) }}
-
-        {{ form_label(form.adresse) }}
-        {{ form_widget(form.adresse) }}
-
-        {{ form_label(form.ville) }}
-        {{ form_widget(form.ville) }}
-
-        {{ form_label(form.cp) }}
-        {{ form_widget(form.cp) }}
-
-        {{ form_label(form.description) }}
-        {{ form_widget(form.description) }}
-
-        {{ form_label(form.centreInterets) }}
-        {{ form_widget(form.centreInterets) }}
-    
-        {{ form_label(form.trancheAge) }}
-        {{ form_widget(form.trancheAge) }}
-
-        {{ form_row(form.horaires) }}
-
-
+        <div class="row"> 
+            <div class="left">
+            {{ form_label(form.titre) }}
+            {{ form_widget(form.titre) }}
+            </div>
+        </div>
+            
+            
+        <div class="row">
+            <div class="left">
+                {{ form_label(form.adresse) }}
+                {{ form_widget(form.adresse) }}
+            </div>
+            <div class="code center">
+                {{ form_label(form.cp) }}
+                {{ form_widget(form.cp) }} 
+            </div>
+            <div class="right">
+                {{ form_label(form.ville) }}
+                {{ form_widget(form.ville) }}
+            </div>
+        </div>      
         
-        <button type="button" id="ajouter_horaire"  name="button"> + horaires </button>
-
+        <div class="row">
+            <div class="left">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div  id="interets" class="left">
+            {{ form_label(form.centreInterets) }}
+            {{ form_widget(form.centreInterets) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="left">
+            {{ form_label(form.trancheAge) }}
+            {{ form_widget(form.trancheAge) }}
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="horaires left">
+            {{ form_row(form.horaires) }}
+            <button class="button-ajout" type="button" id="ajouter_horaire"  name="button"> + horaires </button>
+            </div>
+        </div>
         </br>
 
-         {{ form_label(form.photos) }}
-        {{ form_widget(form.photos) }}
+         <div class="row">
+             <div class="left">
+            {{ form_label(form.photos) }}
+            {{ form_widget(form.photos) }}
+             </div>
+         </div>
 
-
-         
-
-      
-
+         <div class="valider">
+             {{ form_label(form.Ajouter) }}
+            {{ form_widget(form.Ajouter) }}
+         </div>
 
         {{ form_widget(form._token) }}
-
-
-        {{ form_widget(form.Ajouter) }}
-       
-
         </form>
-
-	  
-
-        	
 	  </div >
-
-
-
 {% endblock %}
-
-
 
 {% block javascripts %}
     <script type="text/javascript">
         $(document).ready(function(){
             var $container = $('div#ajouter_article_horaires');
-
-
             var index = $container.find(':input').length;
-
 
             $("#ajouter_horaire").click(function(e){         
                    addHoraire($container);
                    e.preventDefault(); 
                     return false;      
             });
-
-
            
     function addHoraire($container) {
       var template = $container.attr('data-prototype')
@@ -104,19 +110,7 @@
 
       $container.append($prototype);
       index++;
-    }
-
-
-
-
-           
+    }      
         });
-
-
-
-
-
-
-
     </script>
 {% endblock %}

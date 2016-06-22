@@ -34,6 +34,19 @@ $(document).ready(function(){
      }, 500);
     });
 });
+
+function displayHome(){
+    $('#menu').css({"display":"block"});
+    $('#main-content').css({"display":"block"}); 
+    $('#close').css({"display":"none"});
+    $('#menu-panel').css({"display":"none"});
+}
+function displayMenu(){
+    $('#menu').css({"display":"none"});
+    $('#main-content').css({"display":"none"}); 
+    $('#close').css({"display":"block"});
+    $('#menu-panel').css({"display":"block"});
+}
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.

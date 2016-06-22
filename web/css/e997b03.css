@@ -1,3 +1,4 @@
+/* PAGE ARTICLE */
 .article .entete{
     text-align: center;
     margin-top: 20px;
@@ -69,8 +70,98 @@
     max-width:60px;
     padding-left: 10px;
 }
+/*PAGE AJOUTER ARTICLE */
+#ajout-article form{
+    margin-top: 20px;
+}
+#ajout-article .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 26px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+#ajout-article .left, #ajout-article .center, #ajout-article .right{
+    display: inline-block;
+}
+#ajout-article label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#ajout-article #ajouter_article_titre{
+    width: 160%;
+}
+#ajout-article #ajouter_article_description{
+    width: 280%;
+}
+#ajout-article .code {
+    width: 40%;
+}
+#ajout-article #interets{
+    width: 250%;
+}
+#ajout-article #ajouter_article_trancheAge{
+    width: 250%;
+}
+#ajout-article #ajouter_article_horaires{
+    width: 250%;
+}
+#ajout-article #ajouter_article_nombreEnfant label, #ajout-article #ajouter_article_trancheAge label, #ajout-article #ajouter_article_centreInterets label, #ajout-article #ajouter_article_horaires label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#ajout-article #ajouter_article_nombreEnfant input, ##ajout-article #interets input{
+     margin-right: 6px;
+}
+#ajout-article .horaires>div{
+    margin-bottom: 8px;
+}
+#ajout-article #ajouter_article_horaires label[for$='HeureDeb'], #ajout-article #ajouter_article_horaires label[for$='HeureFin']{
+    display: inline-block;
+    padding: 6px 0px;
+    margin-right: 5px;
+    margin-left: 0px;
+}
+#ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 2px 0px;
+    width: 10%;
+}
+#ajout-article .button-ajout{
+    border-radius: 5px;
+    padding: 2px 14px;
+    font-size: 12px;
+}
+#ajout-article .button-ajout:hover{
+    background-color: #287296;
+    color: #ffffff;
+    box-shadow: white;
+}
+#ajout-article #ajouter_article_photos{
+    font-size: 12px;
+}
+#ajout-article .valider button{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#ajout-article .valider button:hover{
+    background-color: #F39213;
+    color: #ffffff;
+    box-shadow: white;
+}
+/* RESPONSIVE */
 @media only screen and (max-width: 991px) {
-    .article{
+    .article,#ajout-article{
         margin-top: 50px; 
     }
     .article .description {
@@ -96,17 +187,60 @@
 }
 
 @media only screen and (max-width: 767px){
-    .article{
+    .article, #ajout-article{
         margin-top: 20px; 
+    }
+    #ajout-article .row{
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 240%;
+    }
+    #ajout-article #interets{
+       width: 102%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 102%;
     }
 }
 @media only screen and (max-width: 474px){
     .article{
         margin-top: 50px; 
     }
+    #ajout-article{
+        margin-top: 0px; 
+        margin-bottom: 50px;
+    }
+    #ajout-article h2, #ajout-article form{
+        margin-left: 20px;
+        margin-right:20px;
+    }
     .article h2>span{
         margin-top:10px;
         display: block;
+    }
+    #ajout-article #ajouter_article_titre{
+        width: 150%;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 150%;
+    }
+    #ajout-article #interets{
+       width: 96%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 70%;
+    }
+    #ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+        width: 40%;
     }
 }
 body{
@@ -173,7 +307,7 @@ button{
     opacity: 0.8;
 }
 #user-bar{
-    margin-top: 14px;
+    margin-top: 0px;
 }
 .helloUser{
     padding-left: 5px;
@@ -191,6 +325,7 @@ button{
     /*overflow-y: scroll;*/
     margin-bottom: 144px;
     padding-right: 0px;
+    display: block;
 }
 .content-container{
     margin-top: 20px;
@@ -240,6 +375,46 @@ button{
 }
 #footerMini{
     display:none;
+}
+#close{
+    display:none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu-panel{
+    display:none;
+    margin-top:190px;
+    margin-bottom: 144px;
+    padding-right: 0px;
+}
+#menu{
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu:hover, #close:hover{
+    opacity: 0.6;
+}
+#login-bar, #action-bar, #activite-bar{
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+#login-bar button, #activite-bar button{
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#activite-bar{
+    margin-top: 20px;
+}
+#activite-bar button{
+    font-size: 16px;
 }
 /********* RESPONSIVE ************/
 @media only screen and (max-width: 991px) and (min-width: 768px){
@@ -301,6 +476,9 @@ button{
         max-width: 490px;
         margin-bottom: 105px;
     }
+    #navigation-bar {
+        min-height: 130px;
+    }
     #navbar-up {
         margin-top: 5px;
     }
@@ -332,10 +510,8 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
-    /*#advisors{
-        display: none;
-    }*/
     #left-bar, #user-bar{
         margin-top: 0px;
     }
@@ -371,12 +547,21 @@ button{
         font-size: 9px;
         margin-top: 0px;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
 }
 @media only screen and (max-width: 374px){
     .container {
         max-width: 650px;
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    #navigation-bar {
+        min-height: 130px;
     }
     #main-content{
         padding-left: 0px;
@@ -414,6 +599,7 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
     #advisors{
         display: none;
@@ -471,6 +657,15 @@ button{
     #footerNormal{
         display:none;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
+    #menu, #close{
+    left: 20px;
+    }
 }
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -505,6 +700,15 @@ button{
     font-size: 12px;
     text-transform: uppercase;
     margin-left: 5px;
+}
+#form-inscription .code {
+    width: 40%;
+}
+#form-inscription #interets{
+    width: 250%;
+}
+#form-inscription #inscription_trancheAge{
+    width: 250%;
 }
 #form-inscription #inscription_nombreEnfant, #form-inscription #inscription_ageEnfant{
     border: none;
@@ -550,7 +754,7 @@ button{
     -moz-column-gap: 1em; /* Firefox */
     column-gap: 1em;
 }
-#formConnexion .left, #formConnexion .right{
+#formConnexion .left, #formConnexion .centre, #formConnexion .right{
     display: inline-block;
 }
 #formConnexion label{
@@ -560,7 +764,11 @@ button{
     text-transform: uppercase;
     margin-left: 5px;
 }
-#formConnexion .valider #connexion_Connexion{
+#formConnexion .valider{
+    position: relative;
+    top: 26px;
+}
+#formConnexion .valider #connexion_Connexion, #formConnexion #inscription button{
     display:block;
     margin-left: auto;
     margin-right: auto;
@@ -572,9 +780,26 @@ button{
     color: #ffffff;
     box-shadow: white;
 }
+ #formConnexion #inscription button:hover{
+    background-color: #F5A814;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** RESPONSIVE ****/
 @media only screen and (max-width: 991px) {
     #form-inscription, #formConnexion{
     margin-top: 50px; 
+    }
+    #form-inscription #row3{
+         -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+    #form-inscription #interets{
+        width: 270%;
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 130%;
     }
 }
 @media only screen and (max-width: 767px){
@@ -587,11 +812,14 @@ button{
         -moz-column-count: 2; /* Firefox */
         column-count: 2;
     }
-    #form-inscription #interets{
-        float:none !important;
-    }
     #form-inscription #inscriptio_anniv{
         margin-bottom: 20px;
+    }
+    #form-inscription #interets{
+       width: 185%
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 84%;
     }
 }
 @media only screen and (max-width: 474px){
@@ -607,11 +835,20 @@ button{
         -moz-column-count: 1; /* Firefox */
         column-count: 1;
     }
+    #formConnexion form{
+        margin-bottom:100px;
+    }
     #formConnexion .row{
         margin-bottom: 20px;
     }
     #formConnexion #password{
         width: 80%;
+    }
+    #form-inscription #interets{
+       width: 105%
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 92%;
     }
 }
 #banner{

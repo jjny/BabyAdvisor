@@ -20,25 +20,23 @@
             {{ form_label(form.username) }}
             {{ form_widget(form.username) }}
                  </div>
-             <div class="right">
+             <div class="centre">
             {{ form_label(form.password) }}
             {{ form_widget(form.password) }}
                  </div>
+            <div class="valider right">
+                {{ form_widget(form.Connexion) }}
+            </div>
         </div>
-        {{ form_widget(form._token) }}
-
-        <div class="valider">
-        {{ form_widget(form.Connexion) }}
-       </div>
-
+            {{ form_widget(form._token) }}
         </form>
 
       
 
-         <a href="{{ path ('inscription') }}">
-                    <button><span class="glyphicons glyphicons-hand-left"></span> Vous n'avez pas encore de compte ? Inscrivez-vous </button>
-
-                </a>
+         <a id="inscription" href="{{ path ('inscription') }}">
+                    <button>
+                        <span class="glyphicons glyphicons-hand-left"></span> Vous n'avez pas encore de compte ? Inscrivez-vous ! </button>
+        </a>
 
 
     </div>

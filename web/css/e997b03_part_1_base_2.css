@@ -62,7 +62,7 @@ button{
     opacity: 0.8;
 }
 #user-bar{
-    margin-top: 14px;
+    margin-top: 0px;
 }
 .helloUser{
     padding-left: 5px;
@@ -80,6 +80,7 @@ button{
     /*overflow-y: scroll;*/
     margin-bottom: 144px;
     padding-right: 0px;
+    display: block;
 }
 .content-container{
     margin-top: 20px;
@@ -129,6 +130,46 @@ button{
 }
 #footerMini{
     display:none;
+}
+#close{
+    display:none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu-panel{
+    display:none;
+    margin-top:190px;
+    margin-bottom: 144px;
+    padding-right: 0px;
+}
+#menu{
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu:hover, #close:hover{
+    opacity: 0.6;
+}
+#login-bar, #action-bar, #activite-bar{
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+#login-bar button, #activite-bar button{
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#activite-bar{
+    margin-top: 20px;
+}
+#activite-bar button{
+    font-size: 16px;
 }
 /********* RESPONSIVE ************/
 @media only screen and (max-width: 991px) and (min-width: 768px){
@@ -190,6 +231,9 @@ button{
         max-width: 490px;
         margin-bottom: 105px;
     }
+    #navigation-bar {
+        min-height: 130px;
+    }
     #navbar-up {
         margin-top: 5px;
     }
@@ -221,10 +265,8 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
-    /*#advisors{
-        display: none;
-    }*/
     #left-bar, #user-bar{
         margin-top: 0px;
     }
@@ -260,12 +302,21 @@ button{
         font-size: 9px;
         margin-top: 0px;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
 }
 @media only screen and (max-width: 374px){
     .container {
         max-width: 650px;
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    #navigation-bar {
+        min-height: 130px;
     }
     #main-content{
         padding-left: 0px;
@@ -303,6 +354,7 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
     #advisors{
         display: none;
@@ -359,5 +411,14 @@ button{
     }
     #footerNormal{
         display:none;
+    }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
+    #menu, #close{
+    left: 20px;
     }
 }
