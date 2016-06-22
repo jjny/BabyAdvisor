@@ -57,7 +57,9 @@ class ajouterArticleType extends AbstractType {
                   'allow_delete' => true
 
                 ))
-            ->add('Ajouter', SubmitType::class);
+            ->add('Ajouter', SubmitType::class,array(
+                        'label' => "Ajouter l'article",
+            ));
     }
 
     }

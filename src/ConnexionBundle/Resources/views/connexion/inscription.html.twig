@@ -35,20 +35,20 @@
                 {{ form_label(form.adresse) }}
                 {{ form_widget(form.adresse) }}
             </div>
-            <div class="center">
-                {{ form_label(form.ville) }}
-                {{ form_widget(form.ville) }}
-            </div>
-            <div class="right">
+            <div class="code center">
                 {{ form_label(form.cp) }}
                 {{ form_widget(form.cp) }} 
             </div>
+            <div class="right">
+                {{ form_label(form.ville) }}
+                {{ form_widget(form.ville) }}
+            </div>
+        </div>
             
         <div class="row">
             <div class="left">
                 {{ form_label(form.email) }}
                 {{ form_widget(form.email) }}
-
             </div>
             <div class="center">
                 {{ form_label(form.motDePasse) }}
@@ -57,29 +57,30 @@
             <div class="right">
                 {{ form_label(form.motDePasseConfirmation) }}
                 {{ form_widget(form.motDePasseConfirmation) }}
-            </div>
-
-           
+            </div> 
         </div>
+        
         <div id="row3" class="row">
             <div class="left">
                 {{ form_label(form.nombreEnfant) }}
                 {{ form_widget(form.nombreEnfant) }}
             </div>
-            <div id="inscriptio_anniv" class="center">
-
-
-            </div>
+            <div id="inscriptio_anniv" class="center"></div>
+        </div>
+        
+        <div class="row">
             <div  id="interets" class="right">
                 {{ form_label(form.centreInterets) }}
                 {{ form_widget(form.centreInterets) }}
             </div>
+            
         </div>
-        {{ form_widget(form._token) }}
         
         <div class="valider">
             {{ form_widget(form.Valider) }}
         </div>
+        
+        {{ form_widget(form._token) }}
     </form>
 
 
@@ -102,9 +103,7 @@
 
                 if(test> 0){
                     $('{{ form_label(form.trancheAge) }}{{ form_widget(form.trancheAge) }}  ').appendTo("#inscriptio_anniv");
-                    $("#interets").css({'float':'right'});
                 }
-                else $("#interets").css({'float':'none'});
 
             });
 

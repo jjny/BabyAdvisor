@@ -1,3 +1,4 @@
+/* PAGE ARTICLE */
 .article .entete{
     text-align: center;
     margin-top: 20px;
@@ -69,8 +70,98 @@
     max-width:60px;
     padding-left: 10px;
 }
+/*PAGE AJOUTER ARTICLE */
+#ajout-article form{
+    margin-top: 20px;
+}
+#ajout-article .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 26px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+#ajout-article .left, #ajout-article .center, #ajout-article .right{
+    display: inline-block;
+}
+#ajout-article label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#ajout-article #ajouter_article_titre{
+    width: 160%;
+}
+#ajout-article #ajouter_article_description{
+    width: 280%;
+}
+#ajout-article .code {
+    width: 40%;
+}
+#ajout-article #interets{
+    width: 250%;
+}
+#ajout-article #ajouter_article_trancheAge{
+    width: 250%;
+}
+#ajout-article #ajouter_article_horaires{
+    width: 250%;
+}
+#ajout-article #ajouter_article_nombreEnfant label, #ajout-article #ajouter_article_trancheAge label, #ajout-article #ajouter_article_centreInterets label, #ajout-article #ajouter_article_horaires label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#ajout-article #ajouter_article_nombreEnfant input, ##ajout-article #interets input{
+     margin-right: 6px;
+}
+#ajout-article .horaires>div{
+    margin-bottom: 8px;
+}
+#ajout-article #ajouter_article_horaires label[for$='HeureDeb'], #ajout-article #ajouter_article_horaires label[for$='HeureFin']{
+    display: inline-block;
+    padding: 6px 0px;
+    margin-right: 5px;
+    margin-left: 0px;
+}
+#ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 2px 0px;
+    width: 10%;
+}
+#ajout-article .button-ajout{
+    border-radius: 5px;
+    padding: 2px 14px;
+    font-size: 12px;
+}
+#ajout-article .button-ajout:hover{
+    background-color: #287296;
+    color: #ffffff;
+    box-shadow: white;
+}
+#ajout-article #ajouter_article_photos{
+    font-size: 12px;
+}
+#ajout-article .valider button{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#ajout-article .valider button:hover{
+    background-color: #F39213;
+    color: #ffffff;
+    box-shadow: white;
+}
+/* RESPONSIVE */
 @media only screen and (max-width: 991px) {
-    .article{
+    .article,#ajout-article{
         margin-top: 50px; 
     }
     .article .description {
@@ -96,16 +187,59 @@
 }
 
 @media only screen and (max-width: 767px){
-    .article{
+    .article, #ajout-article{
         margin-top: 20px; 
+    }
+    #ajout-article .row{
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 240%;
+    }
+    #ajout-article #interets{
+       width: 102%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 102%;
     }
 }
 @media only screen and (max-width: 474px){
     .article{
         margin-top: 50px; 
     }
+    #ajout-article{
+        margin-top: 0px; 
+        margin-bottom: 50px;
+    }
+    #ajout-article h2, #ajout-article form{
+        margin-left: 20px;
+        margin-right:20px;
+    }
     .article h2>span{
         margin-top:10px;
         display: block;
+    }
+    #ajout-article #ajouter_article_titre{
+        width: 150%;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 150%;
+    }
+    #ajout-article #interets{
+       width: 96%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 70%;
+    }
+    #ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+        width: 40%;
     }
 }
