@@ -67,8 +67,8 @@
             <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
             <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
             <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Noter l'article </button></a>
-            <a href="{{ path ('homepage') }}"> <button>Commenter l'article</button> </a>
-            <a href="#"> <button>Signaler l'article </button></a>
+            <a href="{{ path ('commenter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Commenter l'article</button> </a>
+            <a href="{{ path ('signaler_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Signaler l'article </button></a>
         </div>
        
         <!-- NOTES right -->
@@ -120,7 +120,11 @@
  </div> 
         <!-- COMMENTAIRES -->
     <div>
-        {% for c in article.commentaires %}{{c.Texte}}<br>{{c.user}} - {{c.DateCom|date("m/d/Y")}}{% endfor %}
+        {% for c in article.Commentaires %}{{c.Texte}}<br>
+            {% for u in c.User %}
+        {{u.Pseudo}} - 
+            {% endfor %}
+        {% endfor %}
         </div>
 </div>
 {% endblock %}

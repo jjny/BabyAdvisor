@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Commenter un article {% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+
+	 <div class="container home form-group">
+
+       <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+        </div>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+
+           
+        {{ form_label(form.texte) }}
+        {{ form_widget(form.texte) }}
+
+
+        {{ form_widget(form._token) }}
+
+
+        {{ form_widget(form.Valider) }}
+       
+
+        </form>
+
+	  
+
+        	
+	  </div >
+
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+
+
+
+
+    </script>
+{% endblock %}

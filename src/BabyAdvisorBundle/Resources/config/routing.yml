@@ -22,9 +22,9 @@ recherche:
     path:     /recherche
     defaults: { _controller: BabyAdvisorBundle:Home:recherche }
 
-signalement:
-    path:     /signalement
-    defaults: { _controller: BabyAdvisorBundle:Home:signaler }    
+signaler_article:
+    path:     /signaler_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }    
 
 view_article:
     path:     /article/{id}
@@ -40,4 +40,8 @@ activities:
 
 noter_article:
     path:     /noter_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:noterArticle }    
+    defaults: { _controller: BabyAdvisorBundle:Home:noterArticle }  
+
+commenter_article:
+    path:     /commenter_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }       
