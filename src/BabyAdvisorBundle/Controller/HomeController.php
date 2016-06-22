@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use BabyAdvisorBundle\Entity\Article;
 use BabyAdvisorBundle\Entity\Horaire;
 use BabyAdvisorBundle\Entity\Commentaire;
+use BabyAdvisorBundle\Entity\Notation;
 
 class HomeController extends Controller
 {
@@ -205,19 +206,11 @@ class HomeController extends Controller
                                             $em->flush();
 
 
-                                            
-
-
-
                                         }
-
-
-
 
                                     }
                             }
                         }        
-
 
 
                         return $this->render(
@@ -232,6 +225,108 @@ class HomeController extends Controller
                         $session->getFlashBag()->add('info', 'Vous devez vous connecter afin d\'ajouter un nouvel article'); 
                         return $this->redirectToRoute('login');
                     }
+
+    }
+
+
+      public function noterArticleAction(Request $request, $idArticle){
+
+        $session = $request->getSession();
+
+        if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER'){
+
+
+                        $form = $this->createForm('BabyAdvisorBundle\Form\Type\noterArticleType');
+
+                          if ($request->isMethod('POST'))
+                        {
+
+                            $form->handleRequest($request);
+
+                            if ($form->isValid())
+                            {  
+
+                                if ($_POST['noter_article']['proprete']<0 && $_POST['noter_article']['proprete']>5 && $_POST['noter_article']['accessibilite']<0 && $_POST['noter_article']['accessibilite']>5 && $_POST['noter_article']['encadrement']<0 && $_POST['noter_article']['encadrement']>5 && $_POST['noter_article']['ambiance']<0 && $_POST['noter_article']['ambiance']>5 && $_POST['noter_article']['equipement']<0 && $_POST['noter_article']['equipement']>5) {   
+                                        $session->getFlashBag()->add('info', 'Les notes doivent être comprises entre 0 et 5'); 
+                                }else{
+
+
+                                    $em2 = $this->container->get('doctrine')->getManager();
+                                    $note = new Notation();
+                                    $userId=$session->get('userId');
+                                    $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
+
+                                    $article= $em2->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id'=>$idArticle));
+
+                                    $tabNotation=$em2->getRepository('BabyAdvisorBundle:Notation')->findAll();
+
+                                   // dump($tabNotation);
+                                    
+
+                                    $test=false;
+
+                                    foreach ($tabNotation as $n) {
+                                        if($n->getUser()->getId()==$userId && $n->getArticle()->getId()==$idArticle){
+                                            $test=true;
+                                            break;
+
+                                        }
+                                        
+                                    }
+
+
+                                   // die();
+
+                                    if($test==false){
+
+                                    
+                                    $note->setProprete($_POST['noter_article']['proprete']);
+                                    $note->setAccessibilite($_POST['noter_article']['accessibilite']);
+                                    $note->setEncadrement($_POST['noter_article']['encadrement']);
+                                    $note->setAmbiance($_POST['noter_article']['ambiance']);
+                                    $note->setEquipement($_POST['noter_article']['equipement']);
+                                    $note->setUser($user);
+                                    $note->setArticle($article);
+
+                                    $em = $this->getDoctrine()->getManager();
+                                    $em->persist($note);
+                                    $em->flush();
+
+                                     $session->getFlashBag()->add('info', 'Vos notes ont bien été prises en compte'); 
+
+
+                                     //return $this->redirectToRoute('view_article', array('id' => $idArticle));
+                                     
+                                        
+                                      }
+                                      else{
+                                         $session->getFlashBag()->add('info', 'Vous avez déjà voté pour cet article'); 
+
+                                      }
+
+                                            return $this->redirectToRoute('view_article',
+                                                    array(
+                                                        'id' => $idArticle
+                                                    ));
+                                        }
+ 
+                                }
+                            }
+                                
+
+
+                        return $this->render(
+                            'BabyAdvisorBundle:BabyAdvisor:noterArticle.html.twig',
+                                array(
+                                    'form' => $form->createView()
+                                ));
+
+
+        }//fin if role
+        else{
+            $session->getFlashBag()->add('info', 'Vous devez vous connecter afin de noter un article'); 
+            return $this->redirectToRoute('login');
+        }
 
     }
 

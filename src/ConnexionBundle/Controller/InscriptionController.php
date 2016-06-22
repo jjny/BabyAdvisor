@@ -128,7 +128,6 @@ class InscriptionController extends Controller
             
         }
 
-        $session->getFlashBag()->add('info', 'test');
 
         return $this->render(
             'ConnexionBundle:connexion:inscription.html.twig',

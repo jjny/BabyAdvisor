@@ -8,6 +8,13 @@
 	
 {% block body %}
     <div class="article">
+
+         <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+           
+        </div>
         
         <!-- TITRE -->
        <div class="entete">
@@ -59,6 +66,9 @@
             <p>{{article.description}}</p>
             <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
             <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
+            <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Noter l'article </button></a>
+            <a href="{{ path ('homepage') }}"> <button>Commenter l'article</button> </a>
+            <a href="#"> <button>Signaler l'article </button></a>
         </div>
        
         <!-- NOTES right -->

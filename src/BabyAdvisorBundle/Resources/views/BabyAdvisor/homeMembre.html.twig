@@ -9,6 +9,14 @@
 {% block body %}
 
 	 <div class="container home">
+
+	 <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+           
+        </div>
+        
 	  <p> membre home</p>
 
 	  </div >

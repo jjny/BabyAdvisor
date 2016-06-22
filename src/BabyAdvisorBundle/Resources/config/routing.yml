@@ -37,3 +37,7 @@ ajouter_article:
 activities:
     path:     /activites
     defaults: { _controller: BabyAdvisorBundle:Home:viewActivities }
+
+noter_article:
+    path:     /noter_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:noterArticle }    
