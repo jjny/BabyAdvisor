@@ -21,7 +21,7 @@ class Activite
     private $Libelle;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $Tarif;
 

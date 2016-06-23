@@ -9,13 +9,11 @@
 {% block body %}
 
 	 <div class="container home">
-	  <p> admin page</p>
 
  		<button id="allBtn" class="btn btn-xs "><a href="#">Tous les signalements</a> </button>
         <button id="articleBtn" class="btn btn-xs active "><a href="#">Articles</a> </button>
         <button id="commentaireBtn" class="btn btn-xs active "><a href="#">Commentaires</a> </button>
         <button id="photoBtn" class="btn btn-xs active "><a href="#">Photos</a> </button>
-        <button id="advisorBtn" class="btn btn-xs active "><a href="#">Advisors</a> </button>
 
 
 	  <table id="tableSignalements" class="table allTable">
@@ -41,8 +39,18 @@
                             </button>
 							<ul class="dropdown-menu">
                                 <li>
-									<form method="post" action="#">
+									
+                                    {% if s.ObjectName== "Article" %}
+                                    <form method="post" action="{{path ('view_article', {'id': s.IdObject} ) }}">
+                                    {% elseif s.ObjectName== "Commentaire" %}
+                                    <form method="post" action="#">
+                                    {% elseif s.ObjectName== "Photo" %}
+                                    <form method="post" action="#">
+                                    {% else %}
+                                    <form method="post" action="#">
+                                    {% endif %}
                                         <button class="btn btn-xs btn-block">Voir</button>
+                                    
                                     </form>
 								</li>
                                 <li>
@@ -64,172 +72,147 @@
             </table>
 
              <table id="tableSignalements" class="table articlesTable">
-                <tr>
-                    <th>signalement de</th>
-                    <th>signaler par</th>
-                    <th>Etat</th>
-                    <th>Actions</th>
-                </tr>
-                        <tr>
-                            <td>
-                                Aritcle <br/>
-                                idArticle <br/>
-                                idUser :créateur du post 
-                            </td>
-                            <td>                          	
-                            	idUser:signaleur du post
-                                
-                            </td>
-                            <td>                          	
-                            	traité
-                                
+                
+                    <tr>
+                        <th>signalement de</th>
+                        <th>signaler par</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for s in posts %}
+                    {% if s.ObjectName== "Article" %}
+                            <tr>
+                               <td>
+                        type : {{s.ObjectName}} <br/>
+                        id : {{s.IdObject}}
+                    </td>
+                    <td>  
+                        pseudo : {{s.User.Pseudo}} <br/>                            
+                        id : {{s.User.id}}           
                     </td>
 
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Voir   <span class="caret"></span>                        
-                            </button>
-							<ul class="dropdown-menu">
-                                <li>
-									<form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Voir</button>
-                                    </form>
-								</li>
-                                <li>
-                                    <form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Supprimer</button>
-                                    </form>
-								</li>
-                            </ul>
-                        </div>
-					</td>
-                </tr>               
+                        <td>
+                             <div class="btn-group">
+                                <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Voir   <span class="caret"></span>                        
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <form method="post" action="{{path ('view_article', {'id': s.IdObject} ) }}">
+                                            <button class="btn btn-xs btn-block">Voir</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form method="post" action="{{path ('admin_suppresion', {'type': s.ObjectName, 'id': s.IdObject} ) }}">
+                                            <button class="btn btn-xs btn-block">Supprimer</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form method="post" action="{{path ('admin_annuler', {'type': s.ObjectName, 'id': s.IdObject})}}">
+                                            <button class="btn btn-xs btn-block">Annuler signalement</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+    					</td>
+                    </tr>
+                    {% endif %}   
+                {% endfor %}               
             </table>
 
              <table id="tableSignalements" class="table commentairesTable">
+               
                 <tr>
                     <th>signalement de</th>
                     <th>signaler par</th>
-                    <th>Etat</th>
+
                     <th>Actions</th>
                 </tr>
+                {% for s in posts %}
+                    {% if s.ObjectName== "commentaire" %}
                 <tr>
-                    <td>
-                        Commentaire <br/>
-                        son id <br/>
-                        id du créateur du post 
+                     <td>
+                        type : {{s.ObjectName}} <br/>
+                        id : {{s.IdObject}}
                     </td>
-                    <td>                          	
-                        idUser:signaleur du post       
-                    </td>
-                    <td>                          	
-                        traité                              
+                    <td>  
+                        pseudo : {{s.User.Pseudo}} <br/>                            
+                        id : {{s.User.id}}           
                     </td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Voir   <span class="caret"></span>                        
-                            </button>
-							<ul class="dropdown-menu">
-                                <li>
-									<form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Voir</button>
-                                    </form>
-								</li>
-                                <li>
-                                    <form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Supprimer</button>
-                                    </form>
-								</li>
-                            </ul>
-                        </div>
+                                <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Voir   <span class="caret"></span>                        
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <form method="post" action="#">
+                                            <button class="btn btn-xs btn-block">Voir</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form method="post" action="{{path ('admin_suppresion', {'type': s.ObjectName, 'id': s.IdObject} ) }}">
+                                            <button class="btn btn-xs btn-block">Supprimer</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form method="post" action="{{path ('admin_annuler', {'type': s.ObjectName, 'id': s.IdObject})}}">
+                                            <button class="btn btn-xs btn-block">Annuler signalement</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
 					</td>
-                </tr>               
+                </tr>    
+                    {% endif %}   
+                {% endfor %}             
             </table>
 
             <table id="tableSignalements" class="table photosTable">
-                <tr>
-                    <th>signalement de</th>
-                    <th>signaler par</th>
-                    <th>Etat</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>
-                        Photo <br/>
-                        son id <br/>
-                        id du créateur du post 
+                  
+                    <tr>
+                        <th>signalement de</th>
+                        <th>signaler par</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for s in posts %}
+                    {% if s.ObjectName== "Photo" %}
+                    <tr>
+                         <td>
+                        type : {{s.ObjectName}} <br/>
+                        id : {{s.IdObject}}
                     </td>
-                    <td>                          	
-                        idUser:signaleur du post        
+                    <td>  
+                        pseudo : {{s.User.Pseudo}} <br/>                            
+                        id : {{s.User.id}}           
                     </td>
-                    <td>                          	
-                        traité                              
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Voir   <span class="caret"></span>                        
-                            </button>
-							<ul class="dropdown-menu">
-                                <li>
-									<form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Voir</button>
-                                    </form>
-								</li>
-                                <li>
-                                    <form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Supprimer</button>
-                                    </form>
-								</li>
-                            </ul>
-                        </div>
-					</td>
-                </tr>               
+                        <td>
+                            <div class="btn-group">
+                                    <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Voir   <span class="caret"></span>                        
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <form method="post" action="#">
+                                                <button class="btn btn-xs btn-block">Voir</button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form method="post" action="{{path ('admin_suppresion', {'type': s.ObjectName, 'id': s.IdObject} ) }}">
+                                                <button class="btn btn-xs btn-block">Supprimer</button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form method="post" action="{{path ('admin_annuler', {'type': s.ObjectName, 'id': s.IdObject})}}">
+                                                <button class="btn btn-xs btn-block">Annuler signalement</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+    					</td>
+                    </tr> 
+                    {% endif %}   
+                {% endfor %}                
             </table>
-
-            <table id="tableSignalements" class="table advisorsTable">
-                <tr>
-                    <th>signalement de</th>
-                    <th>signaler par</th>
-                    <th>Etat</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>
-                        son pseudo <br/>
-                        son id <br/> 
-                    </td>
-                    <td>                          	
-                        idUser:signaleur        
-                    </td>
-                    <td>                          	
-                        signalé x fois                             
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Voir   <span class="caret"></span>                        
-                            </button>
-							<ul class="dropdown-menu">
-                                <li>
-									<form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Voir</button>
-                                    </form>
-								</li>
-                                <li>
-                                    <form method="post" action="#">
-                                        <button class="btn btn-xs btn-block">Supprimer</button>
-                                    </form>
-								</li>
-                            </ul>
-                        </div>
-					</td>
-                </tr>               
-            </table>
-
-
 
 	  </div >
 
@@ -243,7 +226,6 @@
             $('.articlesTable').hide();
             $('.commentairesTable').hide();
             $('.photosTable').hide();
-            $('.advisorsTable').hide();
 
         });
 
@@ -257,7 +239,6 @@
                 $('.allTable').hide();
                 $('.commentairesTable').hide();
                 $('.photosTable').hide();
-                $('.advisorsTable').hide();
 
             }
 
@@ -267,7 +248,6 @@
                 $('.articlesTable').hide();
                 $('.commentairesTable').hide();
                 $('.photosTable').hide();
-                $('.advisorsTable').hide();
             }
 
             if(idButton=="commentaireBtn"){
@@ -276,7 +256,6 @@
                 $('.articlesTable').hide();
                 $('.allTable').hide();
                 $('.photosTable').hide();
-                $('.advisorsTable').hide();
             }
 
              if(idButton=="photoBtn"){
@@ -285,16 +264,6 @@
                 $('.articlesTable').hide();
                 $('.allTable').hide();
                 $('.commentairesTable').hide();
-                $('.advisorsTable').hide();
-            }
-
-             if(idButton=="advisorBtn"){
-               // $('#tableDemandes').addClass('allTable').removeClass('articlesTable');
-                $('.advisorsTable').show();
-                $('.articlesTable').hide();
-                $('.allTable').hide();
-                $('.commentairesTable').hide();
-                $('.photosTable').hide();
             }
 
         });

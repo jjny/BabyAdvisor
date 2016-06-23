@@ -33,26 +33,28 @@ class ajouterArticleType extends AbstractType {
             ->add('ville', TextType::class, array('label' => 'Ville', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
             ->add('cp', NumberType::class, array('label' => 'Code postal', 'attr' => array('class' => 'form-control', 'placeholder' => '', 'maxlenght' => 5, 'size' => 5), 'scale' => 0))
             ->add('description', TextareaType::class, array('label' => 'Description', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
-            ->add('trancheAge', EntityType::class, array(
+            ->add('tranchesAge', EntityType::class, array(
                         'label' => 'Tranche d\'age',
                         'class' => 'BabyAdvisorBundle:Tranche_age',
                         'choice_label' => 'Libelle',
                         'multiple' => true,
                         'expanded' => true,
                ))
-             ->add('centreInterets', EntityType::class, array(
+             ->add('categories', EntityType::class, array(
                         'class' => 'BabyAdvisorBundle:Centre_interet',
                         'choice_label' => 'Libelle',
                         'multiple' => true,
                         'expanded' => true,
                ))
-             ->add('photos', FileType::class, array(
-                        'label' => 'Ajouter des photos',
-                        'multiple' => true,
-                        'required' => false
-               ))
+             
              ->add('horaires', CollectionType::class, array(
                   'entry_type'   => horairesType::class,
+                  'allow_add'    => true,
+                  'allow_delete' => true
+
+                ))
+              ->add('activites', CollectionType::class, array(
+                  'entry_type'   => activitesType::class,
                   'allow_add'    => true,
                   'allow_delete' => true
 

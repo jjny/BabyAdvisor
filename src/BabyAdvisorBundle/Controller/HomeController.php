@@ -9,7 +9,8 @@ use BabyAdvisorBundle\Entity\Article;
 use BabyAdvisorBundle\Entity\Horaire;
 use BabyAdvisorBundle\Entity\Commentaire;
 use BabyAdvisorBundle\Entity\EstSignale;
-
+use BabyAdvisorBundle\Entity\Activite;
+use BabyAdvisorBundle\Entity\Photo;
 
 
 class HomeController extends Controller
@@ -124,6 +125,78 @@ class HomeController extends Controller
     }
 
 
+
+
+
+ public function signalerCommentaireAction(Request $request, $idCommentaire)
+    {
+        $session = $request->getSession();
+         $em = $this->container->get('doctrine')->getManager();
+         $form = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
+         $userId=$session->get('userId');
+
+         if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER'){
+             if ($request->isMethod('POST')){
+                $form->handleRequest($request);
+                if ($form->isValid()){  
+                        if($_POST["signaler"]["signaler"]==1){
+                            
+                            $em2 = $this->container->get('doctrine')->getManager();
+                            $commentaireSignale= $em2->getRepository('BabyAdvisorBundle:Commentaire')->findOneBy(array('id'=>$idCommentaire));
+                            $tabSignale=$em2->getRepository('BabyAdvisorBundle:EstSignale')->findAll();
+                            $test=false;
+
+                            if($tabSignale!=null){
+                                foreach ($tabSignale as $s) {
+                                    if($s->getUser()->getId()==$userId && $s->getIdObject()==$idCommentaire){
+                                        $test=true;
+                                        break;
+                                    }
+                                }
+                            }
+                    
+
+
+                            if($test==false){
+                                $commentaireSignale->setSignale(1);
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($commentaireSignale);
+                                $em->flush();
+                                $session->getFlashBag()->add('info', 'Le commentaire a été signalé');
+                            }
+                            else{
+                                $session->getFlashBag()->add('info', 'Vous avez déjà signalé ce commentaire');
+                            }   
+                            return $this->redirectToRoute('view_article',array(
+                                                        'id' => $commentaireSignale->getArticle()->getId()));
+       
+                         }
+                         else{
+                            $session->getFlashBag()->add('info', 'Le commentaire n\'a pas été signalé'); 
+                            return $this->redirectToRoute('view_article',array(
+                                                                 'id' => $commentaireSignale->getArticle()->getId()));
+
+                             }
+
+                    }
+                }
+        }
+        else{
+             $session->getFlashBag()->add('info', 'Vous devez vous connecter afin de pouvoir signaler un article');return $this->redirectToRoute('login');
+        }    
+
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:confirmationSignalement.html.twig',
+                array(
+                    'form' => $form->createView()
+                ));
+    }
+
+
+
+
+
+
     public function viewArticlesAction($id)
     {
         $em = $this->container->get('doctrine')->getManager();
@@ -162,14 +235,33 @@ class HomeController extends Controller
                                     $em2 = $this->container->get('doctrine')->getManager();
                                     $article = new Article();
 
-                                    $interet = $_POST['ajouter_article']['centreInterets'];
-                                    $age = $_POST['ajouter_article']['trancheAge'];
+                                    $interet = $_POST['ajouter_article']['categories'];
+                                    $age = $_POST['ajouter_article']['tranchesAge'];
                                    // $horaires = $_POST['ajouter_article']['horaires'];
+                                   // $activites = $_POST['ajouter_article']['activites'];
                                     $listHoraire=array();
+                                    $listActivite=array();
                                     $userId=$session->get('userId');
                                     $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
 
-                                    
+                                    if(isset($_POST['ajouter_article']['activites'])){
+                                        $activites = $_POST['ajouter_article']['activites'];
+
+                                        foreach($activites as $a)
+                                            {                                           
+                                                $activite = new Activite();
+                                                $activite->setLibelle($a['libelle']);
+                                                $activite->setTarif($a['tarif']);
+                                                $activite->setArticle($article);
+                                                array_push($listActivite, $activite);    
+                                                
+                                            }
+
+                                            foreach ($listActivite as  $l) {
+                                              $article ->addActivite($l);
+                                            } 
+
+                                    }    
 
 
                                     /*foreach($horaires as $key)
@@ -238,6 +330,9 @@ class HomeController extends Controller
 
                                          //   $dateCurrent=date("YYYY-MM-DD H:i:s"); 
                                            //$dateCurrent2 = \DateTime::createFromFormat('YYYY-MM-DD', $dateCurrent);
+
+                                            $photo= new Photo();
+                                            $photo->setArticle($article);
                                          
 
                                             $article->setTitre($_POST['ajouter_article']['titre']);
@@ -247,14 +342,14 @@ class HomeController extends Controller
                                             $article->setCP($_POST['ajouter_article']['cp']);
                                             $article->setSignale(false);
                                             $article->setUser($user);
-
-                                           // $article->setDateCrea($dateCurrent);
+                                            $article->addPhoto($photo);
 
                                             $em = $this->getDoctrine()->getManager();
                                             $em->persist($article);
-
-
                                             $em->flush();
+
+                                             $session->getFlashBag()->add('info', 'Votre nouvel article a bien été rajouté'); 
+                                            return $this->redirectToRoute('homepage');
 
 
                                         }
@@ -463,5 +558,172 @@ class HomeController extends Controller
                 )
             );
     }
+
+
+    public function modifierCommentaireAction(Request $request,$idArticle, $idCommentaire){
+
+        $session = $request->getSession();
+        
+        $em2 = $this->container->get('doctrine')->getManager();
+        $commentaire= $em2->getRepository('BabyAdvisorBundle:Commentaire')->findOneBy(array('id'=>$idCommentaire));
+
+        $form = $this->createForm('BabyAdvisorBundle\Form\Type\commenterArticleType', $commentaire);
+        
+        if ($request->isMethod('POST'))
+        {
+                $form->handleRequest($request);
+                if ($form->isValid())
+                {  
+                    $commentaire->setTexte($_POST['commenter_article']['texte']);
+                    $em2->persist($commentaire);
+                    $em2->flush();
+
+                    $session->getFlashBag()->add('info', 'Votre commentaire a bien été modifié');
+
+                    return $this->redirectToRoute('view_article', array(
+                                                                'id' => $idArticle )); 
+                }
+        }
+
+        return $this->render('BabyAdvisorBundle:BabyAdvisor:commenterArticle.html.twig',
+                                array(
+                                    'form' => $form->createView()
+                                ));
+    }
+
+    public function modifierArticleAction(Request $request,$idArticle){
+
+        $session = $request->getSession();
+        
+        $em2 = $this->container->get('doctrine')->getManager();
+        $article= $em2->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id'=>$idArticle));
+
+        $form = $this->createForm('BabyAdvisorBundle\Form\Type\ajouterArticleType', $article);
+
+        if ($request->isMethod('POST'))
+                        {
+
+                            $form->handleRequest($request);
+
+                            if ($form->isValid())
+                            {  
+
+                                if (strlen($_POST['ajouter_article']['cp']) >5 || strlen($_POST['ajouter_article']['cp'])<5) {   
+                                        $session->getFlashBag()->add('info', 'le code postal doit contenir 5 chiffres'); 
+                                }else{
+
+
+                                    $em2 = $this->container->get('doctrine')->getManager();
+
+                                    $interet = $_POST['ajouter_article']['categories'];
+                                    $age = $_POST['ajouter_article']['tranchesAge'];
+                                   // $activites = $_POST['ajouter_article']['activites'];
+                                    $listHoraire=array();
+                                    $listActivite=array();
+                                    $userId=$session->get('userId');
+                                    $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
+                                    $articleModifie=new Article();
+
+                                     if(isset($_POST['ajouter_article']['activites'])){
+                                        $activites = $_POST['ajouter_article']['activites'];
+
+                                        foreach($activites as $a)
+                                            {                                           
+                                                $activite = new Activite();
+                                                $activite->setLibelle($a['libelle']);
+                                                $activite->setTarif($a['tarif']);
+                                                $activite->setArticle($article);
+                                                array_push($listActivite, $activite);    
+                                                
+                                            }
+
+                                            foreach ($listActivite as  $l) {
+                                              $articleModifie->addActivite($l);
+                                            }    
+                                    }    
+
+
+                                            $where = null;
+                                             
+                                            if($age!=null){
+                                                foreach($age as $id)
+                                                {
+                                                    if(is_null($where))
+                                                    {
+                                                        $where = $id;
+                                                    }
+                                                    else
+                                                    {
+                                                        $where .= ',' . $id;
+                                                    }
+                                                }
+                                               
+                                               
+                                                 $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
+                                               
+                                                foreach ($age2 as  $a) {
+                                                    $articleModifie->addTranchesAge($a);
+                                                }
+
+
+                                                 $where = null;
+                                            foreach($interet as $id)
+                                            {
+                                                if(is_null($where))
+                                                {
+                                                    $where = $id;
+                                                }
+                                                else
+                                                {
+                                                    $where .= ',' . $id;
+                                                }
+                                            }
+                                            
+                                             $interet2 = $em2->getRepository('BabyAdvisorBundle:Centre_interet')->findCentreInteretbyId($where);
+
+                                             foreach ($interet2 as  $in) {
+                                                $articleModifie->addCategory($in);
+                                            }
+                                         
+
+                                            $articleModifie->setTitre($_POST['ajouter_article']['titre']);
+                                            $articleModifie->setAdresse($_POST['ajouter_article']['adresse']);
+                                            $articleModifie->setDescription($_POST['ajouter_article']['description']);
+                                            $articleModifie->setVille($_POST['ajouter_article']['ville']);
+                                            $articleModifie->setCP($_POST['ajouter_article']['cp']);
+                                            $articleModifie->setSignale($article->getSignale());
+                                            $articleModifie->setUser($user);
+
+
+                                            $activiteSupp=$article->getActivites();
+
+
+                                            $em = $this->getDoctrine()->getManager();
+                                            $em3 = $this->container->get('doctrine')->getManager();
+
+                                            if(isset($activiteSupp)){
+                                                 $em3->remove($activiteSupp);
+                                            }
+
+                                            $em->remove($article);
+                                            $em->persist($articleModifie);
+                                            $em->flush();
+
+                                             $session->getFlashBag()->add('info', 'Votre article a bien été modifié'); 
+                                            return $this->redirectToRoute('view_article', array(
+                                                                'id' => $articleModifie->getId())); 
+
+
+                                        }
+
+                                    }
+                            }
+                        }  
+
+         return $this->render('BabyAdvisorBundle:BabyAdvisor:ajouterArticle.html.twig',
+                                array(
+                                    'form' => $form->createView()
+                                ));
+    }     
 
 }

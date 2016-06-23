@@ -15,7 +15,7 @@ class AdminController extends Controller
     /**
      * @Route("/")
      */
-    public function confirmationAction(Request $request,$type, $id)
+    public function supprimerAction(Request $request,$type, $id)
     {
         $session = $request->getSession();
         if($session->get('userRole')=='ROLE_ADMIN'){
@@ -36,7 +36,7 @@ class AdminController extends Controller
 
 
                                  }
-                                 elseif ($type=="Commentaire") {
+                                 elseif ($type=="commentaire") {
                                     $commentaire= $em2->getRepository('BabyAdvisorBundle:Commentaire')->findOneBy(array('id'=>$id));
 
                                     $em2->remove($commentaire);

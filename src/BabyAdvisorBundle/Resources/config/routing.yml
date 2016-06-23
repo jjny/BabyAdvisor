@@ -16,7 +16,7 @@ membres:
 
 admin_suppresion:
     path:     /adminSuppresion/{type}/{id}
-    defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }
+    defaults: { _controller: BabyAdvisorBundle:Admin:supprimer }
 
 admin_annuler:
     path:     /adminAnnuler/{type}/{id}
@@ -24,11 +24,15 @@ admin_annuler:
 
 recherche:
     path:     /recherche
-    defaults: { _controller: BabyAdvisorBundle:Home:recherche }
+    defaults: { _controller: BabyAdvisorBundle:Recherche:index }
 
 signaler_article:
     path:     /signaler_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }    
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }
+
+signaler_commentaire:
+    path:     /signaler_commentaire/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerCommentaire }         
 
 view_article:
     path:     /article/{id}
@@ -48,4 +52,12 @@ noter_article:
 
 commenter_article:
     path:     /commenter_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }       
+    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }
+
+modifier_commentaire:
+    path:     /modifier_commentaire/{idArticle}/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Home:modifierCommentaire }   
+
+modifier_article:
+    path:     /modifier_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:modifierArticle }               

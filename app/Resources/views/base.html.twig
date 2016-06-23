@@ -86,7 +86,7 @@
                          <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
                         <td colspan="2">
-                         <p class="helloUser">Bonjour truc </p>
+                         <p class="helloUser">Bonjour {{app.session.get('userPseudo') }} </p>
                          </td>
 
                          </tr>
@@ -119,22 +119,12 @@
                          <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
                         <td colspan="2" >
-                         <p class="helloUser" >Bonjour Administrateur</p>
+                         <p class="helloUser" >Bonjour {{app.session.get('userPseudo') }}</p>
                          </td>
 
                          </tr>
                          <tr>
-                           <td>
-                         <a href="#">
-                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Les signalements </button>
-                        </a>
-                         </td>
-
-                           <td>
-                             <a href="#">
-                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> L'historique</button>
-                        </a>
-                         </td>
+                          
                          <td>
                            <a href="{{ path ('logout') }}">
                           <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Déconnexion </button>
@@ -176,7 +166,7 @@
                          <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
                         <td colspan="2">
-                         <p class="helloUser">Bonjour truc </p>
+                         <p class="helloUser">Bonjour {{app.session.get('userPseudo') }} </p>
                          </td>
 
                          </tr>

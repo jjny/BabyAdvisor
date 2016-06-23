@@ -1,19 +1,44 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}BabyAdvisor - Recherche{% endblock %}
-
-{% block stylesheets %}
-		
+{% block title %}BabyAdvisor - Recherche
 {% endblock %}
 	
 {% block body %}
 
 	<div class="container home">
 	
-		<p> page profil</p>
+        <div id="search_bar">
+            <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
+                {{ form_label(form.trancheAge) }}
+                {{ form_widget(form.trancheAge) }}
+                {{ form_label(form.centreInterets) }}
+                {{ form_widget(form.centreInterets) }}
+                {{ form_label(form.ville) }}
+                {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
+                {{ form_widget(form.cp) }}
+                {{ form_label(form.localisation) }}
+                {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
+                {{ form_widget(form._token) }}
 
+                {{ form_widget(form.Valider) }}
+            </form>
+        </div>
+
+        <div id="contains"> 
+
+        {% if searchArticle is defined %}
+           {% for key, tA in searchArticle %}
+            <li>
+                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
+                    <h4 class="title-activite">{{tA.Titre}}</h4>
+                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
+                    <div class="note-activite">
+                        <img src="{{ asset('images/3.png') }}" />
+                    </div>
+                    <a class="partegez" href="">partagez !</a>
+            </li>
+            {% endfor %}
+        {% endif %}
+        </div>
 	</div>
-
-
-
 {% endblock %}

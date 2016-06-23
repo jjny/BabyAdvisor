@@ -41,6 +41,7 @@ class ConnexionController extends Controller
                     {
                         $session->set('userId', $u->getId());
                         $session->set('userRole', $u->getRole());
+                        $session->set('userPseudo', $u->getPseudo());
                         
 
                        return $this->redirectToRoute('homepage');

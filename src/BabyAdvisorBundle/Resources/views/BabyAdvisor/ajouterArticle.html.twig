@@ -18,7 +18,7 @@
             {% endfor %}
         </div>
 
-        <form action="{{ path ('ajouter_article') }}" method="post" enctype="multipart/form-data">
+        <form action="#" method="post" enctype="multipart/form-data">
 
         <div class="row"> 
             <div class="left">
@@ -52,30 +52,37 @@
         
         <div class="row">
             <div  id="interets" class="left">
-            {{ form_label(form.centreInterets) }}
-            {{ form_widget(form.centreInterets) }}
+            {{ form_label(form.categories) }}
+            {{ form_widget(form.categories) }}
             </div>
         </div>
         
         <div class="row">
             <div class="left">
-            {{ form_label(form.trancheAge) }}
-            {{ form_widget(form.trancheAge) }}
+            {{ form_label(form.tranchesAge) }}
+            {{ form_widget(form.tranchesAge) }}
             </div>
         </div>
+
+        <div class="row">
+            <div class="activites left">
+            {{ form_row(form.activites) }}
+            <button class="button-ajout" type="button" id="ajouter_activites"  name="button"> ajouter une activité </button>
+            </div>
+        </div>
+        </br>
             
         <div class="row">
             <div class="horaires left">
             {{ form_row(form.horaires) }}
-            <button class="button-ajout" type="button" id="ajouter_horaire"  name="button"> + horaires </button>
+            <button class="button-ajout" type="button" id="ajouter_horaire"  name="button"> ajouter un horaire </button>
             </div>
         </div>
         </br>
 
          <div class="row">
              <div class="left">
-            {{ form_label(form.photos) }}
-            {{ form_widget(form.photos) }}
+            
              </div>
          </div>
 
@@ -95,22 +102,42 @@
             var $container = $('div#ajouter_article_horaires');
             var index = $container.find(':input').length;
 
+            var $container_activite = $('div#ajouter_article_activites');
+            var index_activite = $container_activite.find(':input').length;
+
             $("#ajouter_horaire").click(function(e){         
                    addHoraire($container);
                    e.preventDefault(); 
                     return false;      
             });
-           
-    function addHoraire($container) {
-      var template = $container.attr('data-prototype')
-        .replace(/__name__label__/g, 'Horaire n°' + (index+1))
-        .replace(/__name__/g,        index)
-      ;
-      var $prototype = $(template);
 
-      $container.append($prototype);
-      index++;
-    }      
+            $("#ajouter_activites").click(function(e){         
+                   addActivite($container_activite);
+                   e.preventDefault(); 
+                    return false;      
+            });
+           
+            function addHoraire($container) {
+              var template = $container.attr('data-prototype')
+                .replace(/__name__label__/g, 'Horaire n°' + (index+1))
+                .replace(/__name__/g,        index)
+              ;
+              var $prototype = $(template);
+
+              $container.append($prototype);
+              index++;
+            }  
+
+            function addActivite($container_activite) {
+              var template = $container_activite.attr('data-prototype')
+                .replace(/__name__label__/g, 'Activité n°' + (index+1))
+                .replace(/__name__/g,        index)
+              ;
+              var $prototype = $(template);
+
+              $container_activite.append($prototype);
+              index++;
+            }     
         });
     </script>
 {% endblock %}
