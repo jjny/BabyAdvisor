@@ -43,9 +43,6 @@ button{
 #right-bar #new-article{
     color: #ef9129;
 }
-#navbar-bottom{
-    
-}
 #left-bar{
     float: left;
     margin-top: 10px;
@@ -165,12 +162,27 @@ button{
     margin-left: 10px;
     margin-right: 10px;
 }
-#activite-bar{
-    margin-top: 20px;
+#menu-panel div{
+    margin-bottom: 10px;
 }
-#activite-bar button{
-    font-size: 16px;
+#mon-compte a, #mon-compte img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
+#mon-compte img{
+    width: 12%;
+}
+#mon-compte a{
+    text-align: center;
+}
+#mon-compte button, activite-bar button{
+    font-size: 14px;
+}
+#login-bar button{
+    text-transform: uppercase;
+}
+
 /********* RESPONSIVE ************/
 @media only screen and (max-width: 991px) and (min-width: 768px){
     .container {
