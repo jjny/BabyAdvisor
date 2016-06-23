@@ -15,8 +15,12 @@ membres:
     defaults: { _controller: BabyAdvisorBundle:Membres:index }    
 
 admin_suppresion:
-    path:     /adminSuppresion
-    defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }  
+    path:     /adminSuppresion/{type}/{id}
+    defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }
+
+admin_annuler:
+    path:     /adminAnnuler/{type}/{id}
+    defaults: { _controller: BabyAdvisorBundle:Admin:annuler }     
 
 recherche:
     path:     /recherche

@@ -29,15 +29,13 @@ class HomeController extends Controller
 
     	if ($session->get('userRole')=='ROLE_ADMIN'){
 
-        $em = $this->container->get('doctrine')->getManager();
-        $commentaireSignal= $em->getRepository('BabyAdvisorBundle:Commentaire')->findBy(
-              array('Signale' => '1')
-                );
+            $em = $this->container->get('doctrine')->getManager();
+            $postsSignale= $em->getRepository('BabyAdvisorBundle:EstSignale')->findAll();
 
     		return $this->render(
                 'BabyAdvisorBundle:BabyAdvisor:admin.html.twig', 
                 array(
-                    'commentaires' => $commentaireSignal
+                    'posts' => $postsSignale
                     )
                 );
     	}
@@ -166,7 +164,7 @@ class HomeController extends Controller
 
                                     $interet = $_POST['ajouter_article']['centreInterets'];
                                     $age = $_POST['ajouter_article']['trancheAge'];
-                                    $horaires = $_POST['ajouter_article']['horaires'];
+                                   // $horaires = $_POST['ajouter_article']['horaires'];
                                     $listHoraire=array();
                                     $userId=$session->get('userId');
                                     $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
@@ -174,7 +172,7 @@ class HomeController extends Controller
                                     
 
 
-                                    foreach($horaires as $key)
+                                    /*foreach($horaires as $key)
                                         {                 
                                             foreach($key['Jour'] as $jour)
                                             {                                 
@@ -186,6 +184,7 @@ class HomeController extends Controller
                                                     array_push($listHoraire, $horaire);    
                                           }       
                                         }
+                                       */ 
 
 
 
