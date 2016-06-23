@@ -27,7 +27,7 @@
 
       	<ul class="list-activites">
             {% for key, lA in lastArticle%}
-
+           
             <li>
             	<a href="{{path ('view_article', {'id': lA.id})}}">
 	                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />

@@ -66,9 +66,7 @@
             <p>{{article.description}}</p>
             <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
             <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
-            <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Noter l'article </button></a>
-            <a href="{{ path ('commenter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Commenter l'article</button> </a>
-            <a href="{{ path ('signaler_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Signaler l'article </button></a>
+            
         </div>
        
         <!-- NOTES right -->
@@ -76,7 +74,7 @@
            <div class="note-article">
              <h3>{%for n in article.Notes %}{{n.MoyGen}}{% endfor %}</h3>
                         <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
-             <object id="trois" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+             <object id="deux" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
         Note de l'article <!-- fallback image in CSS -->
             </object>
         </div> 
@@ -117,14 +115,36 @@
             </ul>
         </div>
     </div>
- </div> 
+ 
         <!-- COMMENTAIRES -->
-    <div>
-        {% for c in article.Commentaires %}{{c.Texte}}<br>
-            {% for u in c.User %}
-        {{u.Pseudo}} - 
-            {% endfor %}
+    {% if app.session.get('userRole') =='ROLE_USER' %}
+    <div class="commentaires-section col-md-12">
+        <h4>Commentaires</h4>
+        {% for c in article.Commentaires %}
+            <div class="one-comment col-md-4 col-sm-12">
+                <table>
+                        <tr>
+                            <td  rowspan="2">
+                         <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
+                         </td>
+                        <td colspan="2">
+                        <h6>{{c.User.Pseudo}}</h6>
+                         </td>
+
+                         </tr>
+        </table>
+               
+                <p>{{c.Texte}}</p>
+            </div>
         {% endfor %}
         </div>
+    {% endif %}
+
+        <div id="button-bottom" class="col-md-12">
+            <a href="{{ path ('commenter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="commenter">Commenter l'article</button> </a>
+             <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="noter">Noter l'article </button></a>
+            <a href="{{ path ('signaler_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="signaler">Signaler l'article </button></a>
+        </div>
+    </div> 
 </div>
 {% endblock %}

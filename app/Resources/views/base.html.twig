@@ -79,7 +79,7 @@
 
                  {% if app.session.get('userRole') =='ROLE_USER' %}
 
-                      <table>
+                      <table style="margin-top: -15px">
 
                         <tr>
                             <td  rowspan="2">
@@ -112,7 +112,7 @@
                         </table>
 
                         {% elseif app.session.get('userRole') =='ROLE_ADMIN' %}
-                    <table>
+                    <table style="margin-top: -15px">
 
                         <tr>
                             <td  rowspan="2">
@@ -168,38 +168,39 @@
         <a id="close" onclick="displayHome()"><img src="{{ asset('images/close.png') }}" /></a>
     <div id="menu-panel">
         {% if app.session.get('userRole') =='ROLE_USER' %}
-
-                      <table>
-
-                        <tr>
-                            <td  rowspan="2">
-                         <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
-                         </td>
-                        <td colspan="2">
-                         <p class="helloUser">Bonjour truc </p>
-                         </td>
-
-                         </tr>
-                         <tr>
-                           <td>
-                         <a href="{{ path ('favoris') }}">
-                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Mes favoris </button>
-                        </a>
-                         </td>
-
-                           <td>
-                             <a href="{{ path ('profil') }}">
+<div id="mon-compte">
+        <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
+        
+         <a href="{{ path ('profil') }}">
                           <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Mon profil </button>
                         </a>
-                         </td>
-                         <td>
-                           <a href="{{ path ('logout') }}">
+        </div>
+        
+        
+                      <div id="login-bar">
+                          <a href="{{ path ('favoris') }}">
+                          <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Mes Favoris</button>
+                      </a>
+                             <a href="{{ path ('logout') }}">
                           <button class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Déconnexion </button>
-                        </a>
-                         </td>
-                           </tr>
+                      </a>
+                          </div>
+                       
+        <div id="activite-bar">
+             <a href="{{path ('activities')}}">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les activités</button>
+                </a>
 
-                        </table>
+                       <a href="#">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les lieux </button>
+                </a>
+
+                       <a id="advisors" href="{{ path ('membres') }}">
+                    <button class="btn btn-xs text-center navbar-btn"><span class="glyphicons glyphicons-hand-left"></span> Les advisors </button>
+
+                </a>
+
+        </div>
                         {% else %}
                         <div id="login-bar">
                           <a href="{{ path ('login') }}">

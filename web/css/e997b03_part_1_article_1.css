@@ -70,6 +70,62 @@
     max-width:60px;
     padding-left: 10px;
 }
+.article .commentaires-section{
+    margin: 10px 0px;
+}
+.article .commentaires-section h4{
+    padding-left: 15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.article .commentaires-section .one-comment{
+   /* border: 1px solid #b5b5b5;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 6px; 
+    margin-right: 6px; */
+}
+.article .commentaires-section .one-comment table{
+     margin-bottom: 20px;
+}
+.article .commentaires-section .one-comment img{
+    width: 75%;
+    margin-right: 12px;
+}
+.article .commentaires-section .one-comment h6{
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.article .commentaires-section .one-comment p{
+    font-size: 13px;
+}
+.article #button-bottom{
+    margin-top: 20px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 20em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 20em; /* Firefox */
+    column-gap: 20em;
+}
+.article #button-bottom button{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    border: none;
+}
+.article #button-bottom button#commenter{
+    color: #ed855c;
+}
+.article #button-bottom button#noter{
+    color: #f1a82c;
+}
+.article #button-bottom button#signaler{
+    color: #566fa5;
+}
+
 /*PAGE AJOUTER ARTICLE */
 #ajout-article form{
     margin-top: 20px;
@@ -206,6 +262,19 @@
     }
     #ajout-article #ajouter_article_horaires {
         width: 102%;
+    }
+    .article #button-bottom{
+         -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+        margin-top: 30px;
+    }
+    .article #button-bottom button {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 15px;
+        margin-top: 15px;
     }
 }
 @media only screen and (max-width: 474px){
