@@ -52,23 +52,31 @@
         {% endblock %}
 
         {% if searchArticle is defined %}
-        <ul class="list-activites">
+        <ul class="list-activitesRech">
            {% for key, tA in searchArticle %}
                 <li>
                 <a href="{{path ('view_article', {'id': tA.id})}}">
                     <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
                         <h4 class="title-activite">{{tA.Titre}}</h4>
                         <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
-                        <div class="note-activite">
-                            <img src="{{ asset('images/3.png') }}" />
+                    </a>  
+                        <div class="note-activiteRech">
+                             {%for n in tA.Notes %}
+                        <h3>{{n.MoyGen}}</h3>
+                        <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
+                        <object id="{{n.MoyGen}}" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+        Note de l'article <!-- fallback image in CSS -->
+    </object>
+                        {% endfor %}
                         </div>
-                        <a class="partegez" href="">partagez !</a>
-                      </a>  
-                </li>
-                 {% if tA.Adresse is defined and tA.CP is defined %}
+                        <a class="partegezRech" href="">partagez !</a>
+                      
+                {% if tA.Adresse is defined and tA.CP is defined %}
                     <div onload='getCoordinate("{{tA.Adresse}}", "{{tA.CP}}")'>          
                     </div>
                 {% endif %}
+            </li>
+                 
             {% endfor %}
             </ul>
         {% endif %}

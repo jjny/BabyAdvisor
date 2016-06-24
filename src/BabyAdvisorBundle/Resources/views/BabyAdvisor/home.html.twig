@@ -48,7 +48,7 @@
             	<a href="{{path ('view_article', {'id': lA.id})}}">
 	                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
 	                <h4 class="title-activite">{{lA.Titre}}</h4>
-	                <p clas="details-activite">{% for cat in lA.Categories %}{{cat.Libelle}} -{% endfor %} {{lA.DateMaJ|date("d/m/Y")}} - {{lA.ville}}</p>
+	                <p class="details-activite">{% for cat in lA.Categories %}{{cat.Libelle}} -{% endfor %} {{lA.DateMaJ|date("d/m/Y")}} - {{lA.ville}}</p>
                 </a>
             </li>
             {% endfor %}

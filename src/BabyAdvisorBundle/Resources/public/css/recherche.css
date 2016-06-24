@@ -38,15 +38,15 @@
     padding: 4px 30px;
     margin-right: 30px;
 }
-#ajout-article #ajouter_article_nombreEnfant label, #ajout-article #ajouter_article_trancheAge label, #ajout-article #ajouter_article_centreInterets label, #ajout-article #ajouter_article_horaires label{
+#recherche #recherche_tranchesAge label, #recherche #recherche_centreInterets label{
    text-transform: lowercase;
     margin-right: 25px;
 }
-#ajout-article #ajouter_article_nombreEnfant input, ##ajout-article #interets input{
+#recherche #recherche_tranchesAge input, #recherche #recherche_centreInterets input {
      margin-right: 6px;
 }
-#ajout-article .horaires>div{
-    margin-bottom: 8px;
+#recherche #recherche_centreInterets{
+    width: 110%;
 }
 .valider #recherche_localisation{
     background-color: #566FA5;
@@ -63,6 +63,53 @@
 #contains{
     clear: both;
     display: block;
-    margin-top:30px;
+    margin-top:90px;
     margin-bottom: 30px;
+}
+#map-canvas{
+    border: none !important;
+}
+.list-activitesRech {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 20px 0px;
+    width: 100%;
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+.list-activitesRech li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.list-activitesRech .cover{
+    width:100%
+}
+.list-activitesRech p {
+    border-bottom: 1px solid #000000;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+.note-activiteRech h3{
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    color: #ef9129;
+    font-weight: bold;
+    font-size: 30px;
+}
+.note-activiteRech object{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partegezRech{
+    color: #ffffff !important;
+    background-color: #f1a82c;
+    text-align: center;
+    display: block;
+    padding: 3px 0px;
 }
