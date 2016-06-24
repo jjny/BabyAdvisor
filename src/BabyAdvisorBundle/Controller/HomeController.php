@@ -220,58 +220,22 @@ class HomeController extends Controller
     public function ajouterArticleAction(Request $request){
         $session = $request->getSession();
 
-        if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER')
-        {
-            $form = $this->createForm('BabyAdvisorBundle\Form\Type\ajouterArticleType');
-            if ($request->isMethod('POST'))
-            {
-                $form->handleRequest($request);
-                if ($form->isValid())
-                {  
-                    if (strlen($_POST['ajouter_article']['cp']) >5 || strlen($_POST['ajouter_article']['cp'])<5) 
-                    {   
-                        $session->getFlashBag()->add('info', 'le code postal doit contenir 5 chiffres'); 
-                    }else{
-                        $em2 = $this->container->get('doctrine')->getManager();
-                        $article = new Article();
-                        $interet = $_POST['ajouter_article']['centreInterets'];
-                        $age = $_POST['ajouter_article']['trancheAge'];
-                        //$horaires = $_POST['ajouter_article']['horaires'];
-                        $listHoraire=array();
-                        $userId=$session->get('userId');
-                        $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
+        if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER'){
 
-                        // foreach($horaires as $key)
-                        // {                 
-                        //     foreach($key['Jour'] as $jour)
-                        //     {                                 
-                        //         $horaire = new Horaire();
-                        //         $horaire->setJour($jour);
-                        //         $horaire->setHeureDeb($key['HeureDeb']);
-                        //         $horaire->setHeureFin($key['HeureFin']);
-                        //         array_push($listHoraire, $horaire);    
-                        //     }       
-                        // }
-                        // foreach ($listHoraire as  $l) {
-                        //  $article ->addHoraire($l);
-                        //}    
-                        $where = null;
-                        if($age!=null)
+
+                        $form = $this->createForm('BabyAdvisorBundle\Form\Type\ajouterArticleType');
+
+                          if ($request->isMethod('POST'))
                         {
-                            foreach($age as $id)
-                            {
-                                if(is_null($where))
-                                {
-                                    $where = $id;
+
+                            $form->handleRequest($request);
+
+                            if ($form->isValid())
+                            {  
+
+                                if (strlen($_POST['ajouter_article']['cp']) >5 || strlen($_POST['ajouter_article']['cp'])<5) {   
+                                        $session->getFlashBag()->add('info', 'le code postal doit contenir 5 chiffres'); 
                                 }else{
-                                    $where .= ',' . $id;
-                                }
-                            }
-                            
-                            $age2 = $em2->getRepository('BabyAdvisorBundle:Tranche_age')->findTrancheAgebyId($where);
-                            foreach ($age2 as  $a)
-                            {
-                                $article ->addTranchesAge($a);
 
 
                                     $em2 = $this->container->get('doctrine')->getManager();
@@ -398,54 +362,24 @@ class HomeController extends Controller
 
                                     }
                             }
+                        }        
 
-                            $where = null;
-                            foreach($interet as $id)
-                            {
-                                if(is_null($where))
-                                {
-                                    $where = $id;
-                                }else{
-                                    $where .= ',' . $id;
-                                }
-                            }
-                            $interet2 = $em2->getRepository('BabyAdvisorBundle:Centre_interet')->findCentreInteretbyId($where);
-                            foreach ($interet2 as  $in) 
-                            {
-                                $article ->addCategory($in);
-                            }
 
-                            //$dateCurrent=date("YYYY-MM-DD H:i:s"); 
-                            //$dateCurrent2 = \DateTime::createFromFormat('YYYY-MM-DD', $dateCurrent);
-                            $article->setTitre($_POST['ajouter_article']['titre']);
-                            $article->setAdresse($_POST['ajouter_article']['adresse']);
-                            $article->setDescription($_POST['ajouter_article']['description']);
-                            $article->setVille($_POST['ajouter_article']['ville']);
-                            $article->setCP($_POST['ajouter_article']['cp']);
-                            $article->setSignale(false);
-                            $article->setUser($user);
+                        return $this->render(
+                            'BabyAdvisorBundle:BabyAdvisor:ajouterArticle.html.twig',
+                                array(
+                                    'form' => $form->createView()
+                                ));
 
-                            // $article->setDateCrea($dateCurrent);
 
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist($article);
-                            $em->flush();
-                        }
+                    }//fin if role
+                    else{
+                        $session->getFlashBag()->add('info', 'Vous devez vous connecter afin d\'ajouter un nouvel article'); 
+                        return $this->redirectToRoute('login');
                     }
-                }
-            }        
-            return $this->render(
-                'BabyAdvisorBundle:BabyAdvisor:ajouterArticle.html.twig',
-                array(
-                    'form' => $form->createView()
-                )
-            );
-        }//fin if role
-        else{
-            $session->getFlashBag()->add('info', 'Vous devez vous connecter afin d\'ajouter un nouvel article'); 
-            return $this->redirectToRoute('login');
-        }
+
     }
+
     public function noterArticleAction(Request $request, $idArticle){
 
         $session = $request->getSession();
