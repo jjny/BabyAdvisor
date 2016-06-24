@@ -528,7 +528,7 @@ class User
     /**
      * Get tranchesAge
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \BabyAdvisorBundle\Entity\Tranche_age $tranchesAge
      */
     public function getTranchesAge()
     {

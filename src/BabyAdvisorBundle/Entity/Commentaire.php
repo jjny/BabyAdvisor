@@ -32,12 +32,12 @@ class Commentaire
     private $Signale;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="Commentaires", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Commentaires")
      */ 
     protected $User;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Commentaires", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="Commentaires")
      */ 
     protected $Article;
 

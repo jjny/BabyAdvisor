@@ -43,9 +43,6 @@ button{
 #right-bar #new-article{
     color: #ef9129;
 }
-#navbar-bottom{
-    
-}
 #left-bar{
     float: left;
     margin-top: 10px;
@@ -62,7 +59,7 @@ button{
     opacity: 0.8;
 }
 #user-bar{
-    margin-top: 14px;
+    margin-top: 0px;
 }
 .helloUser{
     padding-left: 5px;
@@ -78,8 +75,9 @@ button{
 #main-content{
     margin-top:190px;
     /*overflow-y: scroll;*/
-    margin-bottom: 144px;
+    margin-bottom: 40px;
     padding-right: 0px;
+    display: block;
 }
 .content-container{
     margin-top: 20px;
@@ -89,6 +87,8 @@ button{
     background-color: #333333;
     color: #ffffff;
     padding: 22px 0px 10px 0px;
+    position: relative!important;
+    clear: both;
 }
 .footer a{
     color: #ffffff !important;
@@ -130,6 +130,61 @@ button{
 #footerMini{
     display:none;
 }
+#close{
+    display:none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu-panel{
+    display:none;
+    margin-top:190px;
+    margin-bottom: 144px;
+    padding-right: 0px;
+}
+#menu{
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu:hover, #close:hover{
+    opacity: 0.6;
+}
+#login-bar, #action-bar, #activite-bar{
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+#login-bar button, #activite-bar button{
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#menu-panel div{
+    margin-bottom: 10px;
+}
+#mon-compte a, #mon-compte img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+#mon-compte img{
+    width: 12%;
+}
+#mon-compte a{
+    text-align: center;
+}
+#mon-compte button, activite-bar button{
+    font-size: 14px;
+}
+#login-bar button{
+    text-transform: uppercase;
+}
+
 /********* RESPONSIVE ************/
 @media only screen and (max-width: 991px) and (min-width: 768px){
     .container {
@@ -190,6 +245,9 @@ button{
         max-width: 490px;
         margin-bottom: 105px;
     }
+    #navigation-bar {
+        min-height: 130px;
+    }
     #navbar-up {
         margin-top: 5px;
     }
@@ -221,10 +279,8 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
-    /*#advisors{
-        display: none;
-    }*/
     #left-bar, #user-bar{
         margin-top: 0px;
     }
@@ -260,12 +316,21 @@ button{
         font-size: 9px;
         margin-top: 0px;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
 }
 @media only screen and (max-width: 374px){
     .container {
         max-width: 650px;
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    #navigation-bar {
+        min-height: 130px;
     }
     #main-content{
         padding-left: 0px;
@@ -303,6 +368,7 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
     #advisors{
         display: none;
@@ -359,5 +425,15 @@ button{
     }
     #footerNormal{
         display:none;
+    }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
+    #menu, #close{
+    left: 10px;
+    top: 10px;
     }
 }

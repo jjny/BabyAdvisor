@@ -15,16 +15,24 @@ membres:
     defaults: { _controller: BabyAdvisorBundle:Membres:index }    
 
 admin_suppresion:
-    path:     /adminSuppresion
-    defaults: { _controller: BabyAdvisorBundle:Admin:confirmation }  
+    path:     /adminSuppresion/{type}/{id}
+    defaults: { _controller: BabyAdvisorBundle:Admin:supprimer }
+
+admin_annuler:
+    path:     /adminAnnuler/{type}/{id}
+    defaults: { _controller: BabyAdvisorBundle:Admin:annuler }     
 
 recherche:
     path:     /recherche
-    defaults: { _controller: BabyAdvisorBundle:Home:recherche }
+    defaults: { _controller: BabyAdvisorBundle:Recherche:index }
 
 signaler_article:
     path:     /signaler_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }    
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerArticle }
+
+signaler_commentaire:
+    path:     /signaler_commentaire/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Home:signalerCommentaire }         
 
 view_article:
     path:     /article/{id}
@@ -44,8 +52,16 @@ noter_article:
 
 commenter_article:
     path:     /commenter_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }       
+    defaults: { _controller: BabyAdvisorBundle:Home:commenterArticle }
 
-at_the_moment:
-    path:     /En_ce_moment
-    defaults: { _controller: BabyAdvisorBundle:Home:atTheMoment }
+modifier_commentaire:
+    path:     /modifier_commentaire/{idArticle}/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Home:modifierCommentaire }   
+
+voir_commentaire:
+    path:     /voir_commentaire/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Admin:voirCommentaire }     
+
+modifier_article:
+    path:     /modifier_article/{idArticle}
+    defaults: { _controller: BabyAdvisorBundle:Home:modifierArticle }

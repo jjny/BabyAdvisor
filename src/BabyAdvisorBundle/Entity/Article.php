@@ -98,7 +98,7 @@ class Article
     protected $Commentaires;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="Articles", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Articles")
      */ 
     protected $User;
 

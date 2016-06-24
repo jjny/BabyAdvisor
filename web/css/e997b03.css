@@ -1,3 +1,4 @@
+/* PAGE ARTICLE */
 .article .entete{
     text-align: center;
     margin-top: 20px;
@@ -69,8 +70,172 @@
     max-width:60px;
     padding-left: 10px;
 }
+.article .commentaires-section{
+    margin: 10px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.article .commentaires-section h4{
+    padding-left: 15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.article .commentaires-section .one-comment{
+   /* border: 1px solid #b5b5b5;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-left: 6px; 
+    margin-right: 6px; */
+}
+.article .commentaires-section .one-comment table{
+     margin-bottom: 20px;
+}
+.article .commentaires-section .one-comment img{
+    width: 75%;
+    margin-right: 12px;
+}
+.article .commentaires-section .one-comment h6{
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.article .commentaires-section .one-comment p{
+    font-size: 13px;
+}
+.article #button-bottom{
+    margin-top: 20px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 20em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 20em; /* Firefox */
+    column-gap: 20em;
+}
+.article #button-bottom button, .article button#modif-comm, .article button#modif-art{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    border: none;
+}
+.article #button-bottom button#commenter{
+    color: #ed855c;
+}
+.article #button-bottom button#noter{
+    color: #f1a82c;
+}
+.article #button-bottom button#signaler{
+    color: #566fa5;
+}
+.article #a-modif-art{
+    margin-top:30px; 
+    display: block;
+}
+.article button#modif-art{
+    color: #ef9129;
+    padding-left: 0px;
+}
+.article #a-modif-comm{
+    display: block;
+    text-align: center;
+}
+.article button#modif-comm{
+    color: #ef9129;
+    font-size: 13px;
+}
+
+/*PAGE AJOUTER ARTICLE */
+#ajout-article form{
+    margin-top: 20px;
+}
+#ajout-article .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 26px;
+     -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 1em; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1em; /* Firefox */
+    column-gap: 1em;
+}
+#ajout-article .left, #ajout-article .center, #ajout-article .right{
+    display: inline-block;
+}
+#ajout-article label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#ajout-article #ajouter_article_titre{
+    width: 160%;
+}
+#ajout-article #ajouter_article_description{
+    width: 280%;
+}
+#ajout-article .code {
+    width: 40%;
+}
+#ajout-article #interets{
+    width: 250%;
+}
+#ajout-article #ajouter_article_trancheAge{
+    width: 250%;
+}
+#ajout-article #ajouter_article_horaires{
+    width: 250%;
+}
+#ajout-article #ajouter_article_nombreEnfant label, #ajout-article #ajouter_article_trancheAge label, #ajout-article #ajouter_article_centreInterets label, #ajout-article #ajouter_article_horaires label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#ajout-article #ajouter_article_nombreEnfant input, ##ajout-article #interets input{
+     margin-right: 6px;
+}
+#ajout-article .horaires>div{
+    margin-bottom: 8px;
+}
+#ajout-article #ajouter_article_horaires label[for$='HeureDeb'], #ajout-article #ajouter_article_horaires label[for$='HeureFin']{
+    display: inline-block;
+    padding: 6px 0px;
+    margin-right: 5px;
+    margin-left: 0px;
+}
+#ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 2px 0px;
+    width: 10%;
+}
+#ajout-article .button-ajout{
+    border-radius: 5px;
+    padding: 2px 14px;
+    font-size: 12px;
+}
+#ajout-article .button-ajout:hover{
+    background-color: #287296;
+    color: #ffffff;
+    box-shadow: white;
+}
+#ajout-article #ajouter_article_photos{
+    font-size: 12px;
+}
+#ajout-article .valider button{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#ajout-article .valider button:hover{
+    background-color: #F39213;
+    color: #ffffff;
+    box-shadow: white;
+}
+/* RESPONSIVE */
 @media only screen and (max-width: 991px) {
-    .article{
+    .article,#ajout-article{
         margin-top: 50px; 
     }
     .article .description {
@@ -96,17 +261,73 @@
 }
 
 @media only screen and (max-width: 767px){
-    .article{
+    .article, #ajout-article{
         margin-top: 20px; 
+    }
+    #ajout-article .row{
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 240%;
+    }
+    #ajout-article #interets{
+       width: 102%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 102%;
+    }
+    .article #button-bottom{
+         -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+        margin-top: 30px;
+    }
+    .article #button-bottom button {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 15px;
+        margin-top: 15px;
     }
 }
 @media only screen and (max-width: 474px){
     .article{
         margin-top: 50px; 
     }
+    #ajout-article{
+        margin-top: 0px; 
+        margin-bottom: 50px;
+    }
+    #ajout-article h2, #ajout-article form{
+        margin-left: 20px;
+        margin-right:20px;
+    }
     .article h2>span{
         margin-top:10px;
         display: block;
+    }
+    #ajout-article #ajouter_article_titre{
+        width: 150%;
+    }
+    #ajout-article #ajouter_article_description {
+        width: 150%;
+    }
+    #ajout-article #interets{
+       width: 96%
+    }
+    #ajout-article #ajouter_article_trancheAge{
+        width: 84%;
+    }
+    #ajout-article #ajouter_article_horaires {
+        width: 70%;
+    }
+    #ajout-article #ajouter_article_horaires input[id$='HeureDeb'], #ajout-article #ajouter_article_horaires input[id$='HeureFin']{
+        width: 40%;
     }
 }
 body{
@@ -154,9 +375,6 @@ button{
 #right-bar #new-article{
     color: #ef9129;
 }
-#navbar-bottom{
-    
-}
 #left-bar{
     float: left;
     margin-top: 10px;
@@ -173,7 +391,7 @@ button{
     opacity: 0.8;
 }
 #user-bar{
-    margin-top: 14px;
+    margin-top: 0px;
 }
 .helloUser{
     padding-left: 5px;
@@ -189,8 +407,9 @@ button{
 #main-content{
     margin-top:190px;
     /*overflow-y: scroll;*/
-    margin-bottom: 144px;
+    margin-bottom: 40px;
     padding-right: 0px;
+    display: block;
 }
 .content-container{
     margin-top: 20px;
@@ -200,6 +419,8 @@ button{
     background-color: #333333;
     color: #ffffff;
     padding: 22px 0px 10px 0px;
+    position: relative!important;
+    clear: both;
 }
 .footer a{
     color: #ffffff !important;
@@ -241,6 +462,61 @@ button{
 #footerMini{
     display:none;
 }
+#close{
+    display:none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu-panel{
+    display:none;
+    margin-top:190px;
+    margin-bottom: 144px;
+    padding-right: 0px;
+}
+#menu{
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 50px;
+    z-index: 9999;
+}
+#menu:hover, #close:hover{
+    opacity: 0.6;
+}
+#login-bar, #action-bar, #activite-bar{
+    max-width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+#login-bar button, #activite-bar button{
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#menu-panel div{
+    margin-bottom: 10px;
+}
+#mon-compte a, #mon-compte img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+#mon-compte img{
+    width: 12%;
+}
+#mon-compte a{
+    text-align: center;
+}
+#mon-compte button, activite-bar button{
+    font-size: 14px;
+}
+#login-bar button{
+    text-transform: uppercase;
+}
+
 /********* RESPONSIVE ************/
 @media only screen and (max-width: 991px) and (min-width: 768px){
     .container {
@@ -301,6 +577,9 @@ button{
         max-width: 490px;
         margin-bottom: 105px;
     }
+    #navigation-bar {
+        min-height: 130px;
+    }
     #navbar-up {
         margin-top: 5px;
     }
@@ -332,10 +611,8 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
-    /*#advisors{
-        display: none;
-    }*/
     #left-bar, #user-bar{
         margin-top: 0px;
     }
@@ -371,12 +648,21 @@ button{
         font-size: 9px;
         margin-top: 0px;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
 }
 @media only screen and (max-width: 374px){
     .container {
         max-width: 650px;
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    #navigation-bar {
+        min-height: 130px;
     }
     #main-content{
         padding-left: 0px;
@@ -414,6 +700,7 @@ button{
     }
     #navbar-bottom{ 
         padding:0px;
+        display:none;
     }
     #advisors{
         display: none;
@@ -471,6 +758,16 @@ button{
     #footerNormal{
         display:none;
     }
+    #close,#menu-panel{
+        display:none;
+    }
+    #menu, #main-content{
+        display: block;
+    }
+    #menu, #close{
+    left: 10px;
+    top: 10px;
+    }
 }
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -505,6 +802,15 @@ button{
     font-size: 12px;
     text-transform: uppercase;
     margin-left: 5px;
+}
+#form-inscription .code {
+    width: 40%;
+}
+#form-inscription #interets{
+    width: 250%;
+}
+#form-inscription #inscription_trancheAge{
+    width: 250%;
 }
 #form-inscription #inscription_nombreEnfant, #form-inscription #inscription_ageEnfant{
     border: none;
@@ -550,7 +856,7 @@ button{
     -moz-column-gap: 1em; /* Firefox */
     column-gap: 1em;
 }
-#formConnexion .left, #formConnexion .right{
+#formConnexion .left, #formConnexion .centre, #formConnexion .right{
     display: inline-block;
 }
 #formConnexion label{
@@ -560,7 +866,11 @@ button{
     text-transform: uppercase;
     margin-left: 5px;
 }
-#formConnexion .valider #connexion_Connexion{
+#formConnexion .valider{
+    position: relative;
+    top: 26px;
+}
+#formConnexion .valider #connexion_Connexion, #formConnexion #inscription button{
     display:block;
     margin-left: auto;
     margin-right: auto;
@@ -572,13 +882,143 @@ button{
     color: #ffffff;
     box-shadow: white;
 }
+ #formConnexion #inscription button:hover{
+    background-color: #F5A814;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** COMMENTER ARTICLE ****/
+#formCommenter{
+       margin-top: 30px; 
+}
+
+#formCommenter .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formCommenter .left{
+    margin-bottom: 30px;
+}
+#formCommenter label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formCommenter .valider #commenter_article_Valider{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formCommenter .valider #commenter_article_Valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** NOTER ARTICLE ****/
+#formNoter{
+       margin-top: 30px; 
+}
+
+#formNoter .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formNoter .left{
+    margin-bottom: 30px;
+}
+#formNoter label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formNoter #noter_article_proprete label, #formNoter #noter_article_accessibilite label, #formNoter #noter_article_encadrement label, #formNoter #noter_article_ambiance label, #formNoter #noter_article_equipement label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#formNoter #noter_article_proprete input,#formNoter #noter_article_accessibilite input, #formNoter #noter_article_encadrement input, #formNoter #noter_article_ambiance input, #formNoter #noter_article_equipement input{
+     margin-right: 6px;
+}
+#formNoter .valider #noter_article_Noter{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formNoter .valider #noter_article_Noter:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** SIGNALEMENT ****/
+#formSignalement{
+       margin-top: 30px; 
+}
+
+#formSignalement .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formSignalement .left{
+    margin-bottom: 30px;
+}
+#formSignalement label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formSignalement #signaler_signaler label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#formSignalement #signaler_signaler input{
+     margin-right: 6px;
+}
+#formSignalement .valider #signaler_Valider{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formSignalement .valider #signaler_Valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** RESPONSIVE ****/
 @media only screen and (max-width: 991px) {
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter,#formNoter, #formSignalement{
     margin-top: 50px; 
+    }
+    #form-inscription #row3{
+         -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+    }
+    #form-inscription #interets{
+        width: 270%;
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 130%;
     }
 }
 @media only screen and (max-width: 767px){
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter, #formNoter, #formSignalement{
         margin-top: 40px; 
         margin-bottom: 40px; 
     }
@@ -587,18 +1027,21 @@ button{
         -moz-column-count: 2; /* Firefox */
         column-count: 2;
     }
-    #form-inscription #interets{
-        float:none !important;
-    }
     #form-inscription #inscriptio_anniv{
         margin-bottom: 20px;
     }
+    #form-inscription #interets{
+       width: 185%
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 84%;
+    }
 }
 @media only screen and (max-width: 474px){
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter, #formNoter, #formSignalement{
         margin-bottom: 50px; 
     }
-    #form-inscription form, #formConnexion form{
+    #form-inscription form, #formConnexion form, #formCommenter form, #formNoter form, #formSignalement{
         margin-left: 20px;
         margin-right:20px;
     } 
@@ -607,11 +1050,20 @@ button{
         -moz-column-count: 1; /* Firefox */
         column-count: 1;
     }
+    #formConnexion form{
+        margin-bottom:100px;
+    }
     #formConnexion .row{
         margin-bottom: 20px;
     }
     #formConnexion #password{
         width: 80%;
+    }
+    #form-inscription #interets{
+       width: 105%
+    }
+    #form-inscription #inscription_trancheAge{
+        width: 92%;
     }
 }
 #banner{

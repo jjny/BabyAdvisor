@@ -8,7 +8,7 @@
 	
 {% block body %}
 
-	 <div class="container home form-group">
+	 <div id="formNoter" class="container home form-group col-md-8 col-md-offset-2">
 
        <div>
             {% for message in app.session.flashbag.get('info') %}
@@ -18,30 +18,34 @@
 
         <form action="#" method="post" enctype="multipart/form-data">
 
-           
+          <div class="row"> 
+             <div class="left"> 
         {{ form_label(form.proprete) }}
         {{ form_widget(form.proprete) }}
-
+              </div>
+<div class="left">
         {{ form_label(form.accessibilite) }}
         {{ form_widget(form.accessibilite) }}
-
+              </div>
+              <div class="left">
         {{ form_label(form.encadrement) }}
         {{ form_widget(form.encadrement) }}
-
+              </div>
+              <div class="left">
         {{ form_label(form.ambiance) }}
         {{ form_widget(form.ambiance) }}
-
+              </div>
+              <div class="left">
          {{ form_label(form.equipement) }}
         {{ form_widget(form.equipement) }}
-      
+              </div>
+            </div>
 
-
-        {{ form_widget(form._token) }}
-
-
+  <div class="valider right">
         {{ form_widget(form.Noter) }}
+              </div>
        
-
+ {{ form_widget(form._token) }}
         </form>
 
 	  

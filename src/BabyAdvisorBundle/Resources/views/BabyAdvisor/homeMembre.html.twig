@@ -8,13 +8,27 @@
 	
 {% block body %}
 
-	<div class="container home">
-		<div>
+	 <div>
             {% for message in app.session.flashbag.get('info') %}
                 <p class="alert alert-danger" role="alert">{{ message }}</p>
             {% endfor %}
         </div>
-        <p> membre home</p>
-	</div>
+
+         <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
+                
+                {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
+                {{ form_label(form.localisation) }}
+                {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
+                {{ form_widget(form._token) }}
+
+                 {{ form_widget(form.Rechercher) }}
+            </form>
+
+    <div class="media"
+        
+	  <p> membre home</p>
+
+
+	  </div >
 
 {% endblock %}

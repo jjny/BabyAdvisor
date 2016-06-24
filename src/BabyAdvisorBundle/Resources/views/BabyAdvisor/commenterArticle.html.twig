@@ -8,7 +8,7 @@
 	
 {% block body %}
 
-	 <div class="container home form-group">
+	 <div id="formCommenter" class="container home form-group col-md-8 col-md-offset-2">
 
        <div>
             {% for message in app.session.flashbag.get('info') %}
@@ -18,17 +18,19 @@
 
         <form action="#" method="post" enctype="multipart/form-data">
 
-           
+            <div class="row"> 
+             <div class="left">
         {{ form_label(form.texte) }}
         {{ form_widget(form.texte) }}
+                </div>
 
+            </div>
 
-        {{ form_widget(form._token) }}
+        <div class="valider">
+            {{ form_widget(form.Valider) }}
+                </div>       
 
-
-        {{ form_widget(form.Valider) }}
-       
-
+                 {{ form_widget(form._token) }}
         </form>
 
 	  
