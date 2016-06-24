@@ -9,12 +9,14 @@
 {% block body %}
 
 	<div class="container home">
-		<p> liste des membres</p>
-		<p>
+		<h2> liste des membres</h2>
+		
 			{% for u in users %}
-				{{u.Pseudo}}<br>
+        <p>
+				{{u.Pseudo}}
+            	</p>
 			{% endfor %}
-		</p>
+	
 	</div >
 
 {% endblock %}
