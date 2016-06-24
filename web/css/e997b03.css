@@ -72,6 +72,8 @@
 }
 .article .commentaires-section{
     margin: 10px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .article .commentaires-section h4{
     padding-left: 15px;
@@ -109,7 +111,7 @@
     -moz-column-gap: 20em; /* Firefox */
     column-gap: 20em;
 }
-.article #button-bottom button{
+.article #button-bottom button, .article button#modif-comm, .article button#modif-art{
     text-transform: uppercase;
     text-align: center;
     font-weight: 400;
@@ -124,6 +126,22 @@
 }
 .article #button-bottom button#signaler{
     color: #566fa5;
+}
+.article #a-modif-art{
+    margin-top:30px; 
+    display: block;
+}
+.article button#modif-art{
+    color: #ef9129;
+    padding-left: 0px;
+}
+.article #a-modif-comm{
+    display: block;
+    text-align: center;
+}
+.article button#modif-comm{
+    color: #ef9129;
+    font-size: 13px;
 }
 
 /*PAGE AJOUTER ARTICLE */
@@ -389,7 +407,7 @@ button{
 #main-content{
     margin-top:190px;
     /*overflow-y: scroll;*/
-    margin-bottom: 144px;
+    margin-bottom: 40px;
     padding-right: 0px;
     display: block;
 }
@@ -401,6 +419,8 @@ button{
     background-color: #333333;
     color: #ffffff;
     padding: 22px 0px 10px 0px;
+    position: relative!important;
+    clear: both;
 }
 .footer a{
     color: #ffffff !important;
@@ -745,7 +765,8 @@ button{
         display: block;
     }
     #menu, #close{
-    left: 20px;
+    left: 10px;
+    top: 10px;
     }
 }
 /*!
@@ -866,9 +887,122 @@ button{
     color: #ffffff;
     box-shadow: white;
 }
+/**** COMMENTER ARTICLE ****/
+#formCommenter{
+       margin-top: 30px; 
+}
+
+#formCommenter .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formCommenter .left{
+    margin-bottom: 30px;
+}
+#formCommenter label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formCommenter .valider #commenter_article_Valider{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formCommenter .valider #commenter_article_Valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** NOTER ARTICLE ****/
+#formNoter{
+       margin-top: 30px; 
+}
+
+#formNoter .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formNoter .left{
+    margin-bottom: 30px;
+}
+#formNoter label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formNoter #noter_article_proprete label, #formNoter #noter_article_accessibilite label, #formNoter #noter_article_encadrement label, #formNoter #noter_article_ambiance label, #formNoter #noter_article_equipement label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#formNoter #noter_article_proprete input,#formNoter #noter_article_accessibilite input, #formNoter #noter_article_encadrement input, #formNoter #noter_article_ambiance input, #formNoter #noter_article_equipement input{
+     margin-right: 6px;
+}
+#formNoter .valider #noter_article_Noter{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formNoter .valider #noter_article_Noter:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
+/**** SIGNALEMENT ****/
+#formSignalement{
+       margin-top: 30px; 
+}
+
+#formSignalement .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+     -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+#formSignalement .left{
+    margin-bottom: 30px;
+}
+#formSignalement label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#formSignalement #signaler_signaler label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#formSignalement #signaler_signaler input{
+     margin-right: 6px;
+}
+#formSignalement .valider #signaler_Valider{
+    border-radius: 5px;
+    padding: 4px 20px;
+}
+#formSignalement .valider #signaler_Valider:hover{
+    background-color: #566FA5;
+    color: #ffffff;
+    box-shadow: white;
+}
 /**** RESPONSIVE ****/
 @media only screen and (max-width: 991px) {
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter,#formNoter, #formSignalement{
     margin-top: 50px; 
     }
     #form-inscription #row3{
@@ -884,7 +1018,7 @@ button{
     }
 }
 @media only screen and (max-width: 767px){
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter, #formNoter, #formSignalement{
         margin-top: 40px; 
         margin-bottom: 40px; 
     }
@@ -904,10 +1038,10 @@ button{
     }
 }
 @media only screen and (max-width: 474px){
-    #form-inscription, #formConnexion{
+    #form-inscription, #formConnexion, #formCommenter, #formNoter, #formSignalement{
         margin-bottom: 50px; 
     }
-    #form-inscription form, #formConnexion form{
+    #form-inscription form, #formConnexion form, #formCommenter form, #formNoter form, #formSignalement{
         margin-left: 20px;
         margin-right:20px;
     } 

@@ -7,56 +7,62 @@
 {% endblock %}
 	
 {% block body %}
-    <div class="article">
 
-         <div>
+    <div class="article">
+        <div>
             {% for message in app.session.flashbag.get('info') %}
                 <p class="alert alert-danger" role="alert">{{ message }}</p>
             {% endfor %}
-           
         </div>
-        
         <!-- TITRE -->
-       <div class="entete">
+        <div class="entete">
         <h2>{{article.titre}}   
             <span>{{article.adresse ~ ' ' ~ article.CP ~ ' ' ~ article.ville}}</span>
         </h2>
         <p>
-            <span class="soustitre">{% for c in article.categories %}{{c.libelle}} - {% endfor %}
-            {% for t in article.TranchesAge %}{{t.libelle}} - {% endfor %}
+            <span class="soustitre">
+                {% for c in article.categories %}
+                    {{c.libelle}} - 
+                {% endfor %}
+                {% for t in article.TranchesAge %}
+                    {{t.libelle}} - 
+                {% endfor %}
             </span>
-            <span class="date" >créé le {{article.DateCrea|date("m/d/Y")}}{% if not(article.DateCrea == article.DateMaJ) %} - modifié le : {{article.DateMaJ|date("m/d/Y")}}{% endif %}
+            <span class="date" >
+                créé le {{article.DateCrea|date("m/d/Y")}}
+                {% if not(article.DateCrea == article.DateMaJ) %}
+                     - modifié le : {{article.DateMaJ|date("m/d/Y")}}
+                {% endif %}
             </span>
         </p>
     </div>
-        
-        <!-- CAROUSEL IMG -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li class="active" data-target="#myCarousel" data-slide-to="1"></li>
-        <li class="" data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item">
-          <img class="first-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="First slide">
+    <!-- CAROUSEL IMG -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+            <li class="active" data-target="#myCarousel" data-slide-to="1"></li>
+            <li class="" data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item">
+                <img class="first-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="First slide">
+            </div>
+            <div class="item active">
+                <img class="second-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Second slide">
+            </div>
+            <div class="item">
+                <img class="third-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Third slide">
+            </div>
         </div>
-        <div class="item active">
-          <img class="second-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Second slide">
-        </div>
-        <div class="item">
-          <img class="third-slide" src="{{ asset('images/Musee_en_Herbe.jpg') }}" alt="Third slide">
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>  
     </div>
         
        
@@ -64,50 +70,67 @@
          <!-- DESCRIPTION left -->
         <div class="description col-md-8  ">
             <p>{{article.description}}</p>
+            <p>
+                {% for h in article.Horaires %}
+                    {{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>
+                {% endfor %}
+            </p>
+            <p>
+                {% for a in article.Activites %}
+                    {{a.libelle}} - {{a.tarif}}
+                {% endfor %}
+            </p>
+            <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Noter l'article </button></a>
+            <a href="{{ path ('commenter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Commenter l'article</button> </a>
+            <a href="{{ path ('signaler_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Signaler l'article </button></a>
             <p>{% for h in article.Horaires %}{{h.jour}} : {{h.HeureDeb}} - {{h.HeureFin}}<br>{% endfor %}</p>
             <p>{% for a in article.Activites %}{{a.libelle}} - {{a.tarif}}{% endfor %}</p>
-            
+            {% if article.User.id == app.session.get('userId')%}
+                <a id="a-modif-art" href="{{ path ('modifier_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="modif-art">Modifier votre article </button></a> 
+             {% endif %}
         </div>
        
         <!-- NOTES right -->
         <div class="notes col-md-4  ">
            <div class="note-article">
-             <h3>{%for n in article.Notes %}{{n.MoyGen}}{% endfor %}</h3>
+               {%for n in article.Notes %}
+             <h3>{{n.MoyGen}}</h3>
                         <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
-             <object id="deux" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+             <object id="{{n.MoyGen}}" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
         Note de l'article <!-- fallback image in CSS -->
             </object>
+               {% endfor %}
         </div> 
         <div class="list-moyen-container">    
             <ul class="list-moyen">
                 {% for n in article.Notes %}
                     <li><img src="{{ asset('images/notes_proprete.png') }}"/>
                         Propreté  {{n.MoyPropre}}
-                        <object id="trois" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+                        <object id="{{n.MoyPropre}}" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
             Note de l'article <!-- fallback image in CSS -->
                         </object>
                     </li>
                     <li><img src="{{ asset('images/notes_accesibilite.png') }}"/>
                         Accéssibilité  {{n.MoyAcce}}
-                        <object id="deux" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+                        <object id="{{n.MoyAcce}}" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
             Note de l'article <!-- fallback image in CSS -->
                         </object>
                     </li>
                     <li><img src="{{ asset('images/notes_encadrement.png') }}"/>
                         Encadrement  {{n.MoyEncad}}
-                        <object id="trois" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+                        <object id="{{n.MoyEncad}}" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
             Note de l'article <!-- fallback image in CSS -->
                         </object>
                         </li>
                     <li><img src="{{ asset('images/notes_equipement.png') }}"/>
                         Equipement  {{n.MoyEquip}}
-                        <object id="cinque" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+                        <object id="{{n.MoyEquip}}" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
             Note de l'article <!-- fallback image in CSS -->
                         </object>
                         </li>
                     <li><img src="{{ asset('images/notes_ambiance.png') }}"/>
                         Ambiance  {{n.MoyAmbiance}}
-                        <object id="un" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
+                        <object id="{{n.MoyAmbiance}}" class="list-moyen-svg" type="image/svg+xml" data="{{ asset('images/list-moyen.svg') }}" >
             Note de l'article <!-- fallback image in CSS -->
                         </object>
                     </li>
@@ -121,6 +144,7 @@
     {% if app.session.get('userRole') =='ROLE_USER' %}
     <div class="commentaires-section col-md-12">
         <h4>Commentaires</h4>
+        
         {% for c in article.Commentaires %}
             <div class="one-comment col-md-4 col-sm-12">
                 <table>
@@ -136,11 +160,12 @@
         </table>
                
                 <p>{{c.Texte}}</p>
-            </div>
-             {% if c.User.id == app.session.get('userId')%}
-            <a href="{{ path ('modifier_commentaire', {'idArticle': app.request.attributes.get('id'), 'idCommentaire': c.id}) }}"> <button>Modifier votre commentaire </button></a>
+          {% if c.User.id == app.session.get('userId')%}
+            <a id="a-modif-comm" href="{{ path ('modifier_commentaire', {'idArticle': app.request.attributes.get('id'), 'idCommentaire': c.id}) }}"> <button id="modif-comm">Modifier votre commentaire </button></a>
 
-         {% endif %}
+         {% endif %} 
+            </div>
+           
 
         {% endfor %}
         </div>
@@ -150,10 +175,6 @@
             <a href="{{ path ('commenter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="commenter">Commenter l'article</button> </a>
              <a href="{{ path ('noter_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="noter">Noter l'article </button></a>
             <a href="{{ path ('signaler_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button id="signaler">Signaler l'article </button></a>
-            {% if article.User.id == app.session.get('userId')%}
-                <!--<a href="{{ path ('modifier_article', {'idArticle': app.request.attributes.get('id')}) }}"> <button>Modifier votre article </button></a> -->
-
-             {% endif %}
         </div>
     </div> 
 </div>

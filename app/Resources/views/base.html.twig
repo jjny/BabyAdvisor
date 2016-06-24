@@ -41,7 +41,8 @@
                 </a>
 
                   <div id="right-bar" class="navbar-right">
-
+                      
+{% if app.request.get('_route') == 'homepage' %}
                  <a id="now-anchor" href="#now-section">
                     <button id="now" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
                 </a>
@@ -49,7 +50,15 @@
                        <a id="best-notes-anchor" href="#best-notes-section">
                     <button id="best-notes" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
                 </a>
+{% else %}
+                       <a id="now-anchor" href="#">
+                    <button id="now" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> En ce moment </button>
+                </a>
 
+                       <a id="best-notes-anchor" href="#">
+                    <button id="best-notes" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Meilleurs notes </button>
+                </a>
+{% endif %}
                        <a href="{{ path ('ajouter_article') }}">
                     <button id="new-article" class="btn btn-xs text-center navbar-btn "><span class="glyphicons glyphicons-hand-left"></span> Ajouter un article </button>
 
@@ -87,6 +96,7 @@
                          <img src="{{ asset('images/man-user.png') }}" ><span class="glyphicons glyphicons-hand-left"></span></img>
                          </td>
                         <td colspan="2">
+
                          <p class="helloUser">Bonjour {{app.session.get('userPseudo') }} </p>
                          </td>
 
@@ -229,7 +239,7 @@
 
         {% endblock %}
             </div>
-            </div>
+        </div>
        
 
         <footer class="footer navbar-bottom">

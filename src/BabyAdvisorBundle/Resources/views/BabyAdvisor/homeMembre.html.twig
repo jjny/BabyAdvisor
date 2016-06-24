@@ -8,13 +8,10 @@
 	
 {% block body %}
 
-	
-
 	 <div>
             {% for message in app.session.flashbag.get('info') %}
                 <p class="alert alert-danger" role="alert">{{ message }}</p>
             {% endfor %}
-           
         </div>
 
          <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
@@ -33,7 +30,5 @@
 
 
 	  </div >
-
-
 
 {% endblock %}
