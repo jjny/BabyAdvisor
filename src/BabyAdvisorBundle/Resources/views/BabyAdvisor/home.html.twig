@@ -15,14 +15,20 @@
            
         </div>
 
-        <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
-                  
+        <form id="formRecherche"  action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                      <div class="left">
                 {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
+                          </div>
+                      <div class="right valider">
                 {{ form_label(form.localisation) }}
                 {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
-                {{ form_widget(form._token) }}
-
+                          
+                     
                  {{ form_widget(form.Rechercher) }}
+                          </div>
+                      </div>
+             {{ form_widget(form._token) }}
             </form>
 
     <div class="media">
@@ -59,11 +65,13 @@
                     <h4 class="title-activite">{{tA.Titre}}</h4>
                     <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} -{% endfor %} {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
                     <div class="note-activite">
-                        <h3>{%for n in tA.Notes %}{{n.MoyGen}}{% endfor %}</h3>
+                        {%for n in tA.Notes %}
+                        <h3>{{n.MoyGen}}</h3>
                         <!-- if (note < 1,8) add id "un", if note < 2,8 add id "deux" , etc...-->
-                        <object id="trois" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
+                        <object id="{{n.MoyGen}}" class="notes-svg" type="image/svg+xml" data="{{ asset('images/notes.svg') }}" >
         Note de l'article <!-- fallback image in CSS -->
     </object>
+                        {% endfor %}
                     </div>
                     <a class="partegez" href="">partagez !</a>
 

@@ -84,7 +84,7 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
          codeLatLng(coords.lat()+','+coords.lng()); 
 
         } else {
-          alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+         // alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
         }
       });
     }
@@ -103,13 +103,13 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
           var elt = results[0].address_components;
           for(i in elt){
             if(elt[i].types[0] == 'postal_code')
-        	document.getElementById('recherche_cp').value = elt[i].long_name;
-        	if(elt[i].types[0] == 'locality')
+          document.getElementById('recherche_cp').value = elt[i].long_name;
+          if(elt[i].types[0] == 'locality')
             document.getElementById('recherche_ville').value = elt[i].long_name;
           }
         }
       } else {
-        alert("Geocoder failed due to: " + status);
+       // alert("Geocoder failed due to: " + status);
       }
     });
   }
@@ -117,7 +117,7 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
   var adressArray = [];
   function getCoordinate(ville, cp) {
     adresse = ville +' '+cp;
-    console.log(adresse);
+   // console.log(adresse);
     adressArray.push(adresse);
 
     var getCurrentPosition = document.getElementById("recherche_ville").value;
@@ -126,6 +126,9 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
   }
 
   function getPositionsCurrent(value) {
+    if(!value) {
+      value = "4 Place Jussieu, 75005 Paris";
+    }
     geocoder.geocode( { 'address': value + ' France'}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var coords = results[0].geometry.location
@@ -149,14 +152,14 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
 
         google.maps.event.addListenerOnce(map, 'bounds_changed', handleSearchResults(adressArray));
       } else {
-        alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+        //alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
       }
     });
   }
 
   function getAdressePositions(value) {
     for(var i = 0; i < value.length; i++) {
-      console.log(value[i]);
+      //console.log(value[i]);
       geocoder.geocode( { 'address': value[i] + ' France'}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var coords = results[0].geometry.location
@@ -168,10 +171,10 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
           var marker = new google.maps.Marker({
             position: adresse_loc,
             map: map,
-            icon: "{{ asset('images/logo-babyAdvisor.png') }}"
+            icon: "/BabyAdvisor/web/images/pin.png"
           });
         } else {
-          alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+         // alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
         }
       });
     }
@@ -186,23 +189,23 @@ if(x.isFunction(n))while(r=o[i++])"+"===r[0]?(r=r.slice(1)||"*",(e[r]=e[r]||[]).
       var coordonnates = getAdressePositions(results);
     }
 
- 	function getPosition() {
- 		var options = {
-  			enableHighAccuracy: true,
-  			timeout: 5000,
-  			maximumAge: 0
-		};
+  function getPosition() {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
 
-		function success(pos) {
-  			var crd = pos.coords;
-  			codeLatLng(crd.latitude +','+crd.longitude); 
-		};
+    function success(pos) {
+        var crd = pos.coords;
+        codeLatLng(crd.latitude +','+crd.longitude); 
+    };
 
-		function error(err) {
-  			console.warn('ERROR(' + err.code + '): ' + err.message);
-		};
-		navigator.geolocation.getCurrentPosition(success, error, options);
-	}
+    function error(err) {
+        console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
 
   function retrieve(){
     var input = document.getElementById("latlng").value;

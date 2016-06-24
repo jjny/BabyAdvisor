@@ -1,0 +1,68 @@
+#search_bar{
+    margin-bottom: 30px;
+}
+#recherche{
+    margin-top: 30px; 
+}
+
+#recherche .row{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:20px;
+}
+
+#recherche .left, #form-inscription .right{
+    display: inline-block;
+}
+#recherche .left{
+    float: left;
+    margin-right: 50px;
+    width: 50%;
+}
+#recherche label{
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+#recherche #ville{
+    width: 60%;
+}
+.valider #recherche_localisation, .valider #recherche_Rechercher{
+    display:inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 4px 30px;
+    margin-right: 30px;
+}
+#ajout-article #ajouter_article_nombreEnfant label, #ajout-article #ajouter_article_trancheAge label, #ajout-article #ajouter_article_centreInterets label, #ajout-article #ajouter_article_horaires label{
+   text-transform: lowercase;
+    margin-right: 25px;
+}
+#ajout-article #ajouter_article_nombreEnfant input, ##ajout-article #interets input{
+     margin-right: 6px;
+}
+#ajout-article .horaires>div{
+    margin-bottom: 8px;
+}
+.valider #recherche_localisation{
+    background-color: #566FA5;
+     color: #ffffff;
+}
+.valider #recherche_Rechercher{
+     background-color:#F5A814;
+    color: #ffffff;
+}
+.valider #recherche_localisation:hover, .valider #recherche_Rechercher:hover{
+    opacity: 0.7;
+    box-shadow: white;
+}
+#contains{
+    clear: both;
+    display: block;
+    margin-top:30px;
+    margin-bottom: 30px;
+}

@@ -5,23 +5,38 @@
 	
 {% block body %}
 
-	<div class="">
+	<div id="recherche" class="container home  ">
 	
         <div id="search_bar">
             <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
+                
+                <div class="row">
+                    <div id="ville" class="left">
                 {{ form_label(form.ville) }}
                 {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
                 {{ form_widget(form.cp) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="left">
                 {{ form_label(form.tranchesAge) }}
                 {{ form_widget(form.tranchesAge) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="left">
                 {{ form_label(form.centreInterets) }}
                 {{ form_widget(form.centreInterets) }}
-
+                    </div>
+                </div>
+              
+                <div class="left valider">
                 {{ form_label(form.localisation) }}
                 {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
-                {{ form_widget(form._token) }}
-
+               
                 {{ form_widget(form.Rechercher) }}
+    </div>
+                 {{ form_widget(form._token) }}
             </form>
         </div>
 
