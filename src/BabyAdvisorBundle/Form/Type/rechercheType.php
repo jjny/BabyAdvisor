@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -31,7 +32,7 @@ class rechercheType extends AbstractType {
     {
         $builder
         //->add('nom', TextType::class, array('label' => 'Nom', 'attr' => array('class' => 'form-control', 'placeholder' => '')))
-        ->add('trancheAge', EntityType::class, array(
+        ->add('tranchesAge', EntityType::class, array(
             'label' => 'Tranche d\'age',
             'class' => 'BabyAdvisorBundle:Tranche_age',
             'choice_label' => 'Libelle',
@@ -45,10 +46,9 @@ class rechercheType extends AbstractType {
             'expanded' => true,
         ))
         ->add('ville', TextType::class, array('label' => 'Ville', 'required' => false, 'attr' => array('class' => 'form-control', 'placeholder' => 'Paris, 75000, ...')))
-        //->add('localisation', CheckboxType::class, array('label' => 'Localisez-moi', 'required' => false))
         ->add('cp', HiddenType::class, array('data' => ''))
-        ->add('localisation', ButtonType::class, array('attr' => array('class' => 'save')))
-        ->add('Valider', SubmitType::class);
+        ->add('localisation', ButtonType::class, array('label' => 'Me localiser','attr' => array('class' => 'save')))
+        ->add('Rechercher', SubmitType::class);
     }
 
 

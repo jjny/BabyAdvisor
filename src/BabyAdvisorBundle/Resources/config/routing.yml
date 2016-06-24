@@ -58,6 +58,10 @@ modifier_commentaire:
     path:     /modifier_commentaire/{idArticle}/{idCommentaire}
     defaults: { _controller: BabyAdvisorBundle:Home:modifierCommentaire }   
 
+voir_commentaire:
+    path:     /voir_commentaire/{idCommentaire}
+    defaults: { _controller: BabyAdvisorBundle:Admin:voirCommentaire }     
+
 modifier_article:
     path:     /modifier_article/{idArticle}
     defaults: { _controller: BabyAdvisorBundle:Home:modifierArticle }               

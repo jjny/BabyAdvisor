@@ -103,7 +103,7 @@ class AdminController extends Controller
 
 
                                  }
-                                 elseif ($type=="Commentaire") {
+                                 elseif ($type=="commentaire") {
                                     $commentaire= $em2->getRepository('BabyAdvisorBundle:Commentaire')->findOneBy(array('id'=>$id));
 
                                     $commentaire->setSignale(false);
@@ -147,11 +147,21 @@ class AdminController extends Controller
             return $this->redirectToRoute('homepage');
 
         }
-        
+       } 
 
+         public function voirCommentaireAction(Request $request,$idCommentaire)
+        {
+         $session = $request->getSession();
+            if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER'){
+                $em2 = $this->container->get('doctrine')->getManager();
+                $commentaire=$em2->getRepository('BabyAdvisorBundle:Commentaire')->findOneBy(array('id'=>$idCommentaire));
 
+             return $this->render('BabyAdvisorBundle:BabyAdvisor:viewCommentaire.html.twig', array(
+                                     'commentaire' => $commentaire));
+
+            }
         
-    }
+         }
 
 
   

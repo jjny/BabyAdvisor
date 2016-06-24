@@ -5,40 +5,59 @@
 	
 {% block body %}
 
-	<div class="container home">
+	<div class="">
 	
         <div id="search_bar">
             <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
-                {{ form_label(form.trancheAge) }}
-                {{ form_widget(form.trancheAge) }}
-                {{ form_label(form.centreInterets) }}
-                {{ form_widget(form.centreInterets) }}
                 {{ form_label(form.ville) }}
                 {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
                 {{ form_widget(form.cp) }}
+                {{ form_label(form.tranchesAge) }}
+                {{ form_widget(form.tranchesAge) }}
+                {{ form_label(form.centreInterets) }}
+                {{ form_widget(form.centreInterets) }}
+
                 {{ form_label(form.localisation) }}
                 {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
                 {{ form_widget(form._token) }}
 
-                {{ form_widget(form.Valider) }}
+                {{ form_widget(form.Rechercher) }}
             </form>
         </div>
 
         <div id="contains"> 
+         <div id="map-canvas">hello</div>
+        {% block stylesheets %}
+            <style type="text/css">
+                #map-canvas {
+                height:600px;
+                border : solid 3px yellow;
+                }
+            </style>
+        {% endblock %}
 
         {% if searchArticle is defined %}
+        <ul class="list-activites">
            {% for key, tA in searchArticle %}
-            <li>
-                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
-                    <h4 class="title-activite">{{tA.Titre}}</h4>
-                    <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
-                    <div class="note-activite">
-                        <img src="{{ asset('images/3.png') }}" />
+                <li>
+                <a href="{{path ('view_article', {'id': tA.id})}}">
+                    <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
+                        <h4 class="title-activite">{{tA.Titre}}</h4>
+                        <p clas="details-activite">{% for cat in tA.Categories %}{{cat.Libelle}} {% endfor %}- {{tA.DateMaJ|date("d/m/Y")}} - {{tA.ville}}</p>
+                        <div class="note-activite">
+                            <img src="{{ asset('images/3.png') }}" />
+                        </div>
+                        <a class="partegez" href="">partagez !</a>
+                      </a>  
+                </li>
+                 {% if tA.Adresse is defined and tA.CP is defined %}
+                    <div onload='getCoordinate("{{tA.Adresse}}", "{{tA.CP}}")'>          
                     </div>
-                    <a class="partegez" href="">partagez !</a>
-            </li>
+                {% endif %}
             {% endfor %}
+            </ul>
         {% endif %}
         </div>
 	</div>
 {% endblock %}
+

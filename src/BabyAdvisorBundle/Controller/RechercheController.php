@@ -40,8 +40,6 @@ class RechercheController extends Controller
 
                 // =====================    Tranche d'âge          =================================
                 $trancheAge = isset($_POST['recherche']['trancheAge']) ? $_POST['recherche']['trancheAge'] : NULL;
-                dump($trancheAge);
-
                 $trancheAgeArray = '';
 
                 if($trancheAge){
@@ -53,10 +51,6 @@ class RechercheController extends Controller
                         }
                     }
                 }
-
-                dump($trancheAgeArray);
-
-                die();
 
                 // =====================    Centre d'interêts        =================================
                 $centreInteret = isset($_POST['recherche']['centreInterets']) ? $_POST['recherche']['centreInterets'] : NULL;
@@ -157,4 +151,6 @@ class RechercheController extends Controller
             )
         );
     }
+
+  
 }

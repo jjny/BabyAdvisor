@@ -21,8 +21,8 @@ class HomeController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->container->get('doctrine')->getManager();
+        $form = $this->createForm('BabyAdvisorBundle\Form\Type\rechercheType');
         $topArticle = $em->getRepository('BabyAdvisorBundle:Article')->findTopArticle();
-
         $lastArticle = $em->getRepository('BabyAdvisorBundle:Article')->findlastArticles();
 
         $session = $request->getSession();
@@ -42,14 +42,18 @@ class HomeController extends Controller
     	}
     	elseif ($session->get('userRole')=='ROLE_USER'){
         
-    		return $this->render('BabyAdvisorBundle:BabyAdvisor:homeMembre.html.twig');
+    		return $this->render('BabyAdvisorBundle:BabyAdvisor:homeMembre.html.twig', array(
+                                                                'form' => $form->createView()
+                                                                )
+                                                            );
     	}
     	else{
     		return $this->render(
                 'BabyAdvisorBundle:BabyAdvisor:home.html.twig',
                 array(
                     'topArticle' => $topArticle,
-                    'lastArticle' => $lastArticle
+                    'lastArticle' => $lastArticle,
+                    'form' => $form->createView()
                     )
                 );
     	}
