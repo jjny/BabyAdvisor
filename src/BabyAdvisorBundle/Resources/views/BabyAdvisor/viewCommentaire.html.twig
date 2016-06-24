@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Commentaire{% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+    <div>
+
+        <p> Ecrit par : {{commentaire.User.Pseudo}} ( id: {{commentaire.User.id}} ) </p>
+        <br/>
+        <p>
+
+            
+                {{commentaire.Texte}}
+            
+         
+            
+        </p>
+    </div>
+{% endblock %}

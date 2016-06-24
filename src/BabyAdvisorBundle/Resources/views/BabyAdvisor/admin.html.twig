@@ -8,6 +8,13 @@
 	
 {% block body %}
 
+         <div>
+            {% for message in app.session.flashbag.get('info') %}
+                <p class="alert alert-danger" role="alert">{{ message }}</p>
+            {% endfor %}
+           
+        </div>
+
 	 <div class="container home">
 
  		<button id="allBtn" class="btn btn-xs "><a href="#">Tous les signalements</a> </button>
@@ -41,13 +48,13 @@
                                 <li>
 									
                                     {% if s.ObjectName== "Article" %}
-                                    <form method="post" action="{{path ('view_article', {'id': s.IdObject} ) }}">
-                                    {% elseif s.ObjectName== "Commentaire" %}
-                                    <form method="post" action="#">
+                                        <form method="post" action="{{path ('view_article', {'id': s.IdObject} ) }}">
+                                    {% elseif s.ObjectName== "commentaire" %}
+                                        <form method="post" action="{{path ('voir_commentaire', {'idCommentaire': s.IdObject} ) }}">
                                     {% elseif s.ObjectName== "Photo" %}
-                                    <form method="post" action="#">
+                                        <form method="post" action="#">
                                     {% else %}
-                                    <form method="post" action="#">
+                                         <form method="post" action="#">
                                     {% endif %}
                                         <button class="btn btn-xs btn-block">Voir</button>
                                     
@@ -145,7 +152,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <form method="post" action="#">
+                                        <form method="post" action="{{path ('voir_commentaire', {'idCommentaire': s.IdObject} ) }}">
                                             <button class="btn btn-xs btn-block">Voir</button>
                                         </form>
                                     </li>

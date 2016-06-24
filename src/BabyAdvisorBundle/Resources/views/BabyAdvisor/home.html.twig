@@ -15,6 +15,16 @@
            
         </div>
 
+        <form action="{{ path('recherche') }}" method="post" enctype="multipart/form-data">
+                  
+                {{ form_widget(form.ville, {'attr': {'onblur': 'codeAddress()' }}) }}
+                {{ form_label(form.localisation) }}
+                {{ form_widget(form.localisation,  {'attr': {'onclick': 'getPosition()' }}) }}
+                {{ form_widget(form._token) }}
+
+                 {{ form_widget(form.Rechercher) }}
+            </form>
+
     <div class="media">
         <img id="banner" src="{{ asset('images/banner-babyAdvisor.jpg') }}" alt="Plus besoin de chasses au tresor pour vos bonnes adresses !" />
     </div>
