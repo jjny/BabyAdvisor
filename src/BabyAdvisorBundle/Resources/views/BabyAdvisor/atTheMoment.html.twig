@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BabyAdvisor - Accueil{% endblock %}
+
+{% block stylesheets %}
+		
+{% endblock %}
+	
+{% block body %}
+
+	<div class="container home">
+		<ul class="list-activites">
+            {% for key, a in articles%}
+
+            <li>
+            	<a href="{{path ('at_the_moment')}}">
+	                <img class="cover" src="{{ asset('images/cover-activite.jpg') }}" alt="" />
+	                <h4 class="title-activite">{{a.Titre}}</h4>
+	                <p clas="details-activite">
+	                	{% for cat in a.Categories %}
+	                		{{cat.Libelle}} -
+	                	{% endfor %} 
+	                	{{a.DateMaJ|date("d/m/Y")}} - {{a.ville}}
+	               	</p>
+                </a>
+            </li>
+            {% endfor %}
+
+        </ul>
+	</div>
+
+{% endblock %}

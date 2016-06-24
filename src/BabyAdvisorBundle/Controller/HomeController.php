@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use BabyAdvisorBundle\Entity\Article;
 use BabyAdvisorBundle\Entity\Horaire;
 use BabyAdvisorBundle\Entity\Commentaire;
-use BabyAdvisorBundle\Entity\Notation;
+use BabyAdvisorBundle\Entity\EstSignale;
+
+
 
 class HomeController extends Controller
 {
@@ -65,14 +67,64 @@ class HomeController extends Controller
     }
 
 
-    public function signalerAction()
+    public function signalerArticleAction(Request $request, $idArticle)
     {
-         $form_signaler = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
+        $session = $request->getSession();
+         $em = $this->container->get('doctrine')->getManager();
+         $form = $this->createForm('BabyAdvisorBundle\Form\Type\signalerType');
+         $userId=$session->get('userId');
+
+         if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER'){
+             if ($request->isMethod('POST')){
+                $form->handleRequest($request);
+                if ($form->isValid()){  
+                        if($_POST["signaler"]["signaler"]==1){
+                            
+                            $em2 = $this->container->get('doctrine')->getManager();
+                            $articleSignale= $em2->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id'=>$idArticle));
+                            $tabSignale=$em2->getRepository('BabyAdvisorBundle:EstSignale')->findAll();
+                            $test=false;
+
+                            if($tabSignale!=null){
+                                foreach ($tabSignale as $s) {
+                                    if($s->getUser()->getId()==$userId && $s->getIdObject()==$idArticle){
+                                        $test=true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if($test==false){
+                                $articleSignale->setSignale(1);
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($articleSignale);
+                                $em->flush();
+                                $session->getFlashBag()->add('info', 'L\'article a été signalé');
+                            }
+                            else{
+                                $session->getFlashBag()->add('info', 'Vous avez déjà signalé cet article');
+                            }   
+                            return $this->redirectToRoute('view_article',array(
+                                                        'id' => $idArticle ));        
+                         }
+                         else{
+                            $session->getFlashBag()->add('info', 'L\'article n\'a pas été signalé'); 
+                            return $this->redirectToRoute('view_article',array(
+                                                                 'id' => $idArticle));
+
+                             }
+
+                    }
+                }
+        }
+        else{
+             $session->getFlashBag()->add('info', 'Vous devez vous connecter afin de pouvoir signaler un article');return $this->redirectToRoute('login');
+        }    
 
         return $this->render(
             'BabyAdvisorBundle:BabyAdvisor:confirmationSignalement.html.twig',
             array(
-                'form' => $form_signaler->createView()
+                'form' => $form->createView()
             )
         );
     }
@@ -196,7 +248,6 @@ class HomeController extends Controller
             return $this->redirectToRoute('login');
         }
     }
-
     public function noterArticleAction(Request $request, $idArticle){
 
         $session = $request->getSession();
@@ -269,9 +320,79 @@ class HomeController extends Controller
             $session->getFlashBag()->add('info', 'Vous devez vous connecter afin de noter un article'); 
             return $this->redirectToRoute('login');
         }
-
     }
 
+    public function commenterArticleAction(Request $request, $idArticle)
+    {
+        $session = $request->getSession();
+
+        if($session->get('userRole')=='ROLE_ADMIN' || $session->get('userRole')=='ROLE_USER')
+        {
+            $form = $this->createForm('BabyAdvisorBundle\Form\Type\commenterArticleType');
+            if ($request->isMethod('POST'))
+            {
+                $form->handleRequest($request);
+                if ($form->isValid())
+                {  
+                    $em2 = $this->container->get('doctrine')->getManager();
+                    $commentaire = new Commentaire();
+                    $userId=$session->get('userId');
+                    $user= $em2->getRepository('BabyAdvisorBundle:User')->findOneBy(array('id'=>$userId));
+
+                    $article= $em2->getRepository('BabyAdvisorBundle:Article')->findOneBy(array('id'=>$idArticle));
+
+                    $tabCommentaire=$em2->getRepository('BabyAdvisorBundle:Commentaire')->findAll();
+                                    
+                    $test=false;
+
+                    if($tabCommentaire!=null)
+                    {
+                        foreach ($tabCommentaire as $c) 
+                        {
+                            if($c->getUser()->getId()==$userId && $c->getArticle()->getId()==$idArticle)
+                            {
+                                $test=true;
+                                break;
+                            }
+                        }
+                    }
+                    if($test==false)
+                    {
+                        $commentaire->setTexte($_POST['commenter_article']['texte']);
+                        $commentaire->setSignale(false);
+                        $commentaire->setUser($user);
+                        $commentaire->setArticle($article);
+
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($commentaire);
+                        $em->flush();
+
+                        $session->getFlashBag()->add('info', 'Votre commentaire a bien été pris en compte'); 
+
+                        //return $this->redirectToRoute('view_article', array('id' => $idArticle));
+                    }else{
+                        $session->getFlashBag()->add('info', 'Vous avez déjà commenté cet article'); 
+                    }
+                    return $this->redirectToRoute(
+                        'view_article',
+                        array(
+                            'id' => $idArticle
+                        )
+                    );
+                }
+            }
+            return $this->render(
+                'BabyAdvisorBundle:BabyAdvisor:commenterArticle.html.twig',
+                array(
+                    'form' => $form->createView()
+                )
+            );
+        }//fin if role
+        else{
+            $session->getFlashBag()->add('info', 'Vous devez vous connecter afin de commenter un article'); 
+            return $this->redirectToRoute('login');
+        }
+    }
 
     public function viewActivitiesAction()
     {
@@ -288,4 +409,16 @@ class HomeController extends Controller
         );
     }
 
+    public function atTheMomentAction ()
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $newArticles = $em->getRepository('BabyAdvisorBundle:Article')->findBy(array(), array('DateMaJ' => 'ASC'), 9, 0);
+        exit(dump($newArticles));
+        return $this->render(
+            'BabyAdvisorBundle:BabyAdvisor:atTheMoment.html.twig',
+            array(
+                'articles' => $newArticles
+            )
+        );
+    }
 }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fr120940
- * Date: 04/05/2016
- * Time: 11:27
- */
 
 namespace BabyAdvisorBundle\Form\Type;
 
