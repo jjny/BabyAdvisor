@@ -1,7 +1,6 @@
 <?php
 namespace BabyAdvisorBundle\Entity;
 use Doctrine\ORM\Mapping AS ORM;
-
 /**
  * @ORM\Entity(repositoryClass="BabyAdvisorBundle\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks

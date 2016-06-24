@@ -14,18 +14,15 @@ class ConnexionController extends Controller
     /**
      * @Route("/")
      */
+    public function loginAction(Request $request)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+        $users= $em->getRepository('BabyAdvisorBundle:User')->findAll();
 
-    	public function loginAction(Request $request)
-
-  {
-     $em = $this->container->get('doctrine')->getManager();
-     $users= $em->getRepository('BabyAdvisorBundle:User')->findAll();
-
-    $form = $this->createForm('ConnexionBundle\Form\Type\connexionType');
+        $form = $this->createForm('ConnexionBundle\Form\Type\connexionType');
 
         $messageFlash=false;
         $session = $request->getSession();
-
 
         if ($request->isMethod('POST'))
         {
@@ -42,11 +39,9 @@ class ConnexionController extends Controller
                         $session->set('userId', $u->getId());
                         $session->set('userRole', $u->getRole());
                         $session->set('userPseudo', $u->getPseudo());
-                        
+                        return $this->redirectToRoute('homepage');
 
-                       return $this->redirectToRoute('homepage');
-                     }
-                     else{
+                    }else{
                         $messageFlash=true;
                     }
 
@@ -59,14 +54,13 @@ class ConnexionController extends Controller
             $session->getFlashBag()->add('info', 'Le pseudo et/ou le mot de passe est(sont) incorrecte(s)');
         }
 
-
-
-    return $this->render('ConnexionBundle:connexion:login.html.twig', array(
-    	'form' => $form->createView()
-
-    ));
-
-  }
+        return $this->render(
+            'ConnexionBundle:connexion:login.html.twig', 
+            array(
+    	       'form' => $form->createView()
+            )
+        );
+    }
 
   /*
 
@@ -81,14 +75,14 @@ class ConnexionController extends Controller
     }*/
 
 
-        public function loginCheckAction(Request $request)
+    public function loginCheckAction(Request $request)
     {
-    	  	  $em = $this->container->get('doctrine')->getManager();
-            $users= $em->getRepository('BabyAdvisorBundle:User')->findAll();
-            $pseudo= $_POST['_username'];
-            $motDePasse=$_POST['_password'];
+    	$em = $this->container->get('doctrine')->getManager();
+        $users= $em->getRepository('BabyAdvisorBundle:User')->findAll();
+        $pseudo= $_POST['_username'];
+        $motDePasse=$_POST['_password'];
 
-          $session = $request->getSession();
+        $session = $request->getSession();
 
         if ($request->isMethod('POST'))
         {
@@ -101,28 +95,22 @@ class ConnexionController extends Controller
                     {
                         $session->set('userId', $u['id']);
 
-                       return $this->redirectToRoute('homepage');
-                     }
-
+                        return $this->redirectToRoute('homepage');
+                    }
                 }
             }
         }
-
         $session->getFlashBag()->add('info', 'Login/Mot de passe incorrecte');
-          return $this->redirectToRoute('login');
-       
+        return $this->redirectToRoute('login');
     }
 
 
-     public function logoutAction(Request $request){
-
+    public function logoutAction(Request $request)
+    {
         $session = $request->getSession();
-
         $session->clear();
 
         return $this->redirectToRoute('homepage');
-
-
     }
 
 }

@@ -64,4 +64,4 @@ voir_commentaire:
 
 modifier_article:
     path:     /modifier_article/{idArticle}
-    defaults: { _controller: BabyAdvisorBundle:Home:modifierArticle }               
+    defaults: { _controller: BabyAdvisorBundle:Home:modifierArticle }
